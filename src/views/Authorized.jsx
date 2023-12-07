@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { NavBar } from "./Navbar.jsx";
+import { Navbar } from "../components/Navbar";
 
 export const Authorized = () => {
   if (localStorage.getItem("flashes_token")) {
     return (
       <>
-        <NavBar />
+        <Navbar />
         <main className="flex items-center justify-center">
           <Outlet />
         </main>
