@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllShirts } from "../services/shirtService";
+import { getAllShirts } from "../services/fetchServices";
 
 export const Landing = () => {
   const [shirts, setShirts] = useState([
