@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllColors, getAllPatterns } from "../services/fetchServices";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -31,8 +32,25 @@ export const Create = () => {
     },
   ]);
   const [patterns, setPatterns] = useState([{
-    
+    id: null,
+    pattern_url_a: "NETWORK INACTIVE",
+    pattern_url_b: "NETWORK INACTIVE",
+    label: "NETWORK INACTIVE"
   }])
+  const [colors, setColors] = useState([{
+    id: null,
+    color: "NETWORK INACTIVE",
+    label: "NETWORK INACTIVE"
+  }])
+
+  useEffect(() => {
+    getAllColors().then((colorsArray) => {
+      setColors(colorsArray)
+    });
+    getAllPatterns().then((patternsArray) => {
+      setPatterns(patternsArray)
+    })
+  }, [])
 
   return <>CREATE IT</>;
 };
