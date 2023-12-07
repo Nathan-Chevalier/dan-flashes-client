@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAllShirts } from "../services/shirtService";
 
 export const Landing = () => {
   const [shirts, setShirts] = useState([
@@ -33,6 +34,12 @@ export const Landing = () => {
       is_owner: true
     }
   ])
+
+  useEffect(() => {
+    getAllShirts().then((shirtsArray) => {
+      setShirts(shirtsArray)
+    })
+  }, [])
 
 
     return <>YOU HAVE LANDED</>;
