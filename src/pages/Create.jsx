@@ -4,7 +4,7 @@ import { getAllColors, getAllPatterns } from "../services/fetchServices";
 
 export const Create = () => {
   const navigate = useNavigate();
-  //! TODO(DRY): For loop to generate pattern index, pattern index = i 
+  //! TODO(DRY): For loop to generate pattern index, pattern index = i
   const [patternChoices, setPatternChoices] = useState([
     {
       pattern_id: null,
@@ -31,26 +31,37 @@ export const Create = () => {
       pattern_index: 6,
     },
   ]);
-  const [patterns, setPatterns] = useState([{
-    id: null,
-    pattern_url_a: "NETWORK INACTIVE",
-    pattern_url_b: "NETWORK INACTIVE",
-    label: "NETWORK INACTIVE"
-  }])
-  const [colors, setColors] = useState([{
-    id: null,
-    color: "NETWORK INACTIVE",
-    label: "NETWORK INACTIVE"
-  }])
+  const [patterns, setPatterns] = useState([
+    {
+      id: null,
+      pattern_url_a: "NETWORK INACTIVE",
+      pattern_url_b: "NETWORK INACTIVE",
+      label: "NETWORK INACTIVE",
+    },
+  ]);
+  const [colors, setColors] = useState([
+    {
+      id: null,
+      color: "NETWORK INACTIVE",
+      label: "NETWORK INACTIVE",
+    },
+  ]);
 
   useEffect(() => {
     getAllColors().then((colorsArray) => {
-      setColors(colorsArray)
+      setColors(colorsArray);
     });
     getAllPatterns().then((patternsArray) => {
-      setPatterns(patternsArray)
-    })
-  }, [])
+      setPatterns(patternsArray);
+    });
+  }, []);
 
-  return <>CREATE IT</>;
+  return (
+    <div className="__shirt-form-container__ flex flex-col items-center">
+      <form className="__shirt-form__ h-[794px] w-[1278px] bg-orange-600 rounded-xl">
+        <div className="__label-preview-color-container__ flex flex-col"></div>
+        <div className="__pattern-public-save-container__ flex flex-col"></div>
+      </form>
+    </div>
+  );
 };
