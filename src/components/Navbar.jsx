@@ -20,7 +20,7 @@ export const Navbar = () => {
             </NavLink>
           </div>
           <div className="navbar__item">
-            <NavLink className="btn-navbar" to={"/categorymanager"}>
+            <NavLink className="btn-navbar" to={"/"}>
               DAN FLASHES LOGO HERE
             </NavLink>
           </div>
