@@ -15,7 +15,7 @@ export const Carousel = ({ cats }) => {
   };
 
   return (
-    <div className="w-[60%] m-auto flex overflow-hidden">
+    <div className="w-[40%] m-auto flex">
       <button className="btn-edit" onClick={handlePrevious}>
         Previous
       </button>
