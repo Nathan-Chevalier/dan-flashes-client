@@ -4,6 +4,9 @@ import { getAllColors, getAllPatterns } from "../services/fetchServices";
 
 export const Create = () => {
   const navigate = useNavigate();
+
+  const [isPublic, setIsPublic] = useState(false)
+
   const [shirt, setShirt] = useState({
     color: 1,
     label: "useStateShirt",
@@ -36,6 +39,8 @@ export const Create = () => {
     },
   ]);
 
+
+  //? Modify to change the base price of shirts generated
   const basePrice = 60;
 
   useEffect(() => {
@@ -75,7 +80,7 @@ export const Create = () => {
                 <label key={color.id}>
                   <div
                     style={{ "backgroundColor": `${color.color}` }}
-                    className={shirt.color === color.id ? "w-[48px] h-[48px] border border-white": "w-[32px] h-[32px]"}
+                    className={shirt.color === color.id ? "w-[40px] h-[40px] border border-white rounded-lg": "w-[32px] h-[32px] rounded"}
                     onClick={() => {
                       const copy = { ...shirt}
                       copy.color = parseInt(color.id)
@@ -89,7 +94,23 @@ export const Create = () => {
             })}
           </fieldset>
         </div>
-        <div className="__pattern-public-save-container__ flex flex-col"></div>
+        <div className="__pattern-public-save-container__ flex flex-col">
+          <div className="__pattern-first-trio-container__ flex">
+            <div className="__choice-one-container__"></div>
+            <div className="__choice-two-container__"></div>
+            <div className="__choice-three-container__"></div>
+          </div>
+          <div className="__pattern-second-trio-container__ flex">
+          <div className="__choice-four-container__"></div>
+            <div className="__choice-five-container__"></div>
+            <div className="__choice-six-container__"></div>
+          </div>
+          <div className="__public-toggle-save-container__ flex">
+            <div className="__public-toggle__">
+              <label><input type="checkbox" checked={isPublic} onChange={() => setIsPublic(!isPublic)}/>Share this shirt?</label>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   );
