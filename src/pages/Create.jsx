@@ -9,14 +9,14 @@ export const Create = () => {
     label: "useStateShirt",
     public: false,
     price: "",
-    patterns: []
-  })
+    patterns: [],
+  });
 
   const [patternChoices, setPatternChoices] = useState([
     {
       pattern_id: null,
       pattern_index: null,
-    }
+    },
   ]);
 
   const [patterns, setPatterns] = useState([
@@ -36,7 +36,7 @@ export const Create = () => {
     },
   ]);
 
-  const basePrice = 60
+  const basePrice = 60;
 
   useEffect(() => {
     getAllColors().then((colorsArray) => {
@@ -47,16 +47,42 @@ export const Create = () => {
     });
   }, []);
 
+  // className={`bg-[${color.color}] w-[24px] h-[24px]`}
+
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
-      <form className="__shirt-form__ h-[794px] w-[1278px] bg-orange-600 rounded-xl">
+      <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl">
         <div className="__label-preview-color-container__ flex flex-col">
           <fieldset>
-            <input type="text" className="input-text" value={shirt.label} onChange={(event) => {
-              const copy = { ...shirt }
-              copy.label = event.target.value
-              setShirt(copy)
-            }}/>
+            {/* Label input */}
+            <input
+              type="text"
+              className="__label-input__ input-text"
+              value={shirt.label}
+              onChange={(event) => {
+                const copy = { ...shirt };
+                copy.label = event.target.value;
+                setShirt(copy);
+              }}
+            />
+          </fieldset>
+          <div className="__image-preview__">
+            THIS IS WHERE THE SHIRT PREVIEW MAGIC HAPPENS
+          </div>
+          {/* Color input */}
+          <fieldset className="__color-choice-container flex">
+            {colors.map((color) => {
+              return (
+                <label key={color.id}>
+                  <div
+                    style={{ "background-color": `${color.color}` }}
+                    className="w-[32px] h-[32px]"
+                  >
+                    {" "}
+                  </div>
+                </label>
+              );
+            })}
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col"></div>
