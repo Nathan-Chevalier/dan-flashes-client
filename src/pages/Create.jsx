@@ -46,8 +46,7 @@ export const Create = () => {
       setPatterns(patternsArray);
     });
   }, []);
-
-  // className={`bg-[${color.color}] w-[24px] h-[24px]`}
+  // w-[32px] h-[32px]
 
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
@@ -70,13 +69,18 @@ export const Create = () => {
             THIS IS WHERE THE SHIRT PREVIEW MAGIC HAPPENS
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex">
+          <fieldset className="__color-choice-container flex items-center">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
                   <div
-                    style={{ "background-color": `${color.color}` }}
-                    className="w-[32px] h-[32px]"
+                    style={{ "backgroundColor": `${color.color}` }}
+                    className={shirt.color === color.id ? "w-[48px] h-[48px] border border-white": "w-[32px] h-[32px]"}
+                    onClick={() => {
+                      const copy = { ...shirt}
+                      copy.color = parseInt(color.id)
+                      setShirt(copy)
+                    }}
                   >
                     {" "}
                   </div>
