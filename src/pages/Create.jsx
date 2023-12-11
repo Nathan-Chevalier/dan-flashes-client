@@ -16,8 +16,6 @@ export const Create = () => {
     patterns: [],
   });
 
-  const [patternChoices, setPatternChoices] = useState([]);
-
   const [patternA, setPatternA] = useState(null);
   const [patternB, setPatternB] = useState(null);
   const [patternC, setPatternC] = useState(null);
@@ -52,7 +50,7 @@ export const Create = () => {
     getAllPatterns().then((patternsArray) => {
       setPatterns(patternsArray);
     });
-  }, []);
+  }, [patternA]);
 
   const handleSaveShirt = async (event) => {
     event.preventDefault();
@@ -149,13 +147,63 @@ export const Create = () => {
                 pIndex={1}
               />
             </div>
-            <div className="__choice-b-container__ flex flex-col items-center">
-              <PatternCarousel
-                patterns={patterns}
-                setPatternChoice={setPatternB}
-                pIndex={2}
-              />
-            </div>
+            {patternA ? (
+              <div className="__choice-b-container__ flex flex-col items-center">
+                <PatternCarousel
+                  patterns={patterns}
+                  setPatternChoice={setPatternB}
+                  pIndex={2}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {patternB ? (
+              <div className="__choice-C-container__ flex flex-col items-center">
+                <PatternCarousel
+                  patterns={patterns}
+                  setPatternChoice={setPatternC}
+                  pIndex={3}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="__pattern-second-trio-container__ flex">
+            {patternC ? (
+              <div className="__choice-D-container__ flex flex-col items-center">
+                <PatternCarousel
+                  patterns={patterns}
+                  setPatternChoice={setPatternD}
+                  pIndex={4}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {patternD ? (
+              <div className="__choice-E-container__ flex flex-col items-center">
+                <PatternCarousel
+                  patterns={patterns}
+                  setPatternChoice={setPatternE}
+                  pIndex={5}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {patternE ? (
+              <div className="__choice-F-container__ flex flex-col items-center">
+                <PatternCarousel
+                  patterns={patterns}
+                  setPatternChoice={setPatternF}
+                  pIndex={6}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="__public-toggle-save-container__ flex">
             <fieldset className="__public-toggle__">
