@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllColors, getAllPatterns } from "../services/fetchServices";
-import { Carousel } from "../components/Carousel";
+import { PatternCarousel } from "../components/PatternCarousel";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -17,6 +17,13 @@ export const Create = () => {
   });
 
   const [patternChoices, setPatternChoices] = useState([]);
+
+  const [patternA, setPatternA] = useState(null);
+  const [patternB, setPatternB] = useState(null);
+  const [patternC, setPatternC] = useState(null);
+  const [patternD, setPatternD] = useState(null);
+  const [patternE, setPatternE] = useState(null);
+  const [patternF, setPatternF] = useState(null);
 
   const [patterns, setPatterns] = useState([
     {
@@ -35,21 +42,8 @@ export const Create = () => {
     },
   ]);
 
-  // const [aIndex, setaIndex] = useState(0);
-
-  // const handlePrevious = () => {
-  //   const newIndex = aIndex - 1;
-  //   setaIndex(newIndex < 0 ? lengthA - 1 : newIndex);
-  // };
-
-  // const handleNext = () => {
-  //   const newIndex = aIndex + 1;
-  //   setaIndex(newIndex >= lengthA ? 0 : newIndex);
-  // };
-
   //? Modify to change the base price of shirts generated
   const basePrice = 60;
-  const pattern_array = patterns;
 
   useEffect(() => {
     getAllColors().then((colorsArray) => {
@@ -59,7 +53,6 @@ export const Create = () => {
       setPatterns(patternsArray);
     });
   }, []);
-  // w-[32px] h-[32px]
 
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
@@ -108,8 +101,19 @@ export const Create = () => {
         </div>
         <div className="__pattern-public-save-container__ flex flex-col">
           <div className="__pattern-first-trio-container__ flex">
-            <div className="__choice-one-container__ flex flex-col items-center">
-              <Carousel cats={pattern_array} />
+            <div className="__choice-a-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternA}
+                pIndex={1}
+              />
+            </div>
+            <div className="__choice-b-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternB}
+                pIndex={2}
+              />
             </div>
           </div>
           <div className="__public-toggle-save-container__ flex">

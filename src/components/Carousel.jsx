@@ -4,13 +4,14 @@ export const Carousel = ({ cats }) => {
   const [index, setIndex] = useState(0);
   const length = cats.length;
 
-  const handlePrevious = () => {
-    debugger
+  const handlePrevious = (event) => {
+    event.preventDefault()
     const newIndex = index - 1;
     setIndex(newIndex < 0 ? length - 1 : newIndex);
   };
 
-  const handleNext = () => {
+  const handleNext = (event) => {
+    event.preventDefault()
     const newIndex = index + 1;
     setIndex(newIndex >= length ? 0 : newIndex);
   };
