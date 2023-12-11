@@ -54,6 +54,47 @@ export const Create = () => {
     });
   }, []);
 
+  const handleSaveShirt = async (event) => {
+    event.preventDefault();
+    debugger;
+    const patternArray = [patternA];
+    if (patternB) {
+      patternArray.push(patternB);
+    }
+    if (patternC) {
+      patternArray.push(patternC);
+    }
+    if (patternD) {
+      patternArray.push(patternD);
+    }
+    if (patternE) {
+      patternArray.push(patternE);
+    }
+    if (patternF) {
+      patternArray.push(patternF);
+    }
+
+    const finalValues = {
+      color: shirt.color,
+      label: shirt.label,
+      public: shirt.public,
+      price: basePrice * patternArray.length,
+      patterns: patternArray,
+    };
+
+    await fetch(`http://localhost:8000/shirts`, {
+      method: "POST",
+      headers: {
+        Authorzation: `Token ${
+          JSON.parse(localStorage.getItem("flashes_token")).token
+        }`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalValues),
+    });
+    navigate("/closet");
+  };
+
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
       <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl flex">
@@ -117,7 +158,7 @@ export const Create = () => {
             </div>
           </div>
           <div className="__public-toggle-save-container__ flex">
-            <div className="__public-toggle__">
+            <fieldset className="__public-toggle__">
               <label>
                 <input
                   type="checkbox"
@@ -126,7 +167,15 @@ export const Create = () => {
                 />
                 Share this shirt?
               </label>
-            </div>
+            </fieldset>
+            <button
+              className="btn-edit"
+              onClick={(event) => {
+                handleSaveShirt(event);
+              }}
+            >
+              SAVE SHIRT
+            </button>
           </div>
         </div>
       </form>
