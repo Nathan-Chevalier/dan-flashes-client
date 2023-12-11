@@ -17,26 +17,27 @@ export const ViewShirt = ({ shirts }) => {
   };
 
   return (
-    <div className="absolute">
+    <div>
       {shirts.map((shirt) => {
         return (
           <div key={`shirt-${shirt.id}`}>
-            {shirt.shirt_pattern.map((pattern) => {
-              <div key={`pattern-${pattern.id}`}>
-                <img
-                className="relative"
-                  src={pattern?.pattern.pattern_url_a}
-                  alt={`pattern_url_a_${pattern?.pattern_index}`}
-                  style={{zIndex: pattern?.pattern_index * 2}}
-                />
-                <img
-                className="relative"
-                  src={pattern?.pattern.pattern_url_b}
-                  alt={`pattern_url_b_${pattern?.pattern_index}`}
-                  style={{zIndex: pattern?.pattern_index * 2 + 1}}
-                />
-
-              </div>;
+            {shirt?.shirt_pattern.map((pattern) => {
+              return (
+                <div key={`pattern-${pattern.id}`} className="absolute">
+                  <img
+                    className="relative top-0 left-0"
+                    src={pattern?.pattern.pattern_url_a}
+                    alt={`pattern_url_a_${pattern?.pattern_index}`}
+                    style={{ zIndex: pattern?.pattern_index * 2 }}
+                  />
+                  <img
+                    className="relative top-0 left-0"
+                    src={pattern?.pattern.pattern_url_b}
+                    alt={`pattern_url_b_${pattern?.pattern_index}`}
+                    style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
+                  />
+                </div>
+              );
             })}
           </div>
         );
