@@ -56,7 +56,6 @@ export const Create = () => {
 
   const handleSaveShirt = async (event) => {
     event.preventDefault();
-    debugger;
     const patternArray = [patternA];
     if (patternB) {
       patternArray.push(patternB);
@@ -82,12 +81,13 @@ export const Create = () => {
       patterns: patternArray,
     };
 
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+
     await fetch(`http://localhost:8000/shirts`, {
       method: "POST",
       headers: {
-        Authorzation: `Token ${
-          JSON.parse(localStorage.getItem("flashes_token")).token
-        }`,
+        Authorization: `Token ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(finalValues),
