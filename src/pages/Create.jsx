@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllColors, getAllPatterns } from "../services/fetchServices";
+import { PatternCarousel } from "../components/PatternCarousel";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -15,12 +16,14 @@ export const Create = () => {
     patterns: [],
   });
 
-  const [patternChoices, setPatternChoices] = useState([
-    {
-      pattern_id: null,
-      pattern_index: null,
-    },
-  ]);
+  const [patternChoices, setPatternChoices] = useState([]);
+
+  const [patternA, setPatternA] = useState(null);
+  const [patternB, setPatternB] = useState(null);
+  const [patternC, setPatternC] = useState(null);
+  const [patternD, setPatternD] = useState(null);
+  const [patternE, setPatternE] = useState(null);
+  const [patternF, setPatternF] = useState(null);
 
   const [patterns, setPatterns] = useState([
     {
@@ -50,7 +53,47 @@ export const Create = () => {
       setPatterns(patternsArray);
     });
   }, []);
-  // w-[32px] h-[32px]
+
+  const handleSaveShirt = async (event) => {
+    event.preventDefault();
+    const patternArray = [patternA];
+    if (patternB) {
+      patternArray.push(patternB);
+    }
+    if (patternC) {
+      patternArray.push(patternC);
+    }
+    if (patternD) {
+      patternArray.push(patternD);
+    }
+    if (patternE) {
+      patternArray.push(patternE);
+    }
+    if (patternF) {
+      patternArray.push(patternF);
+    }
+
+    const finalValues = {
+      color: shirt.color,
+      label: shirt.label,
+      public: shirt.public,
+      price: basePrice * patternArray.length,
+      patterns: patternArray,
+    };
+
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+
+    await fetch(`http://localhost:8000/shirts`, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalValues),
+    });
+    navigate("/closet");
+  };
 
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
@@ -99,62 +142,23 @@ export const Create = () => {
         </div>
         <div className="__pattern-public-save-container__ flex flex-col">
           <div className="__pattern-first-trio-container__ flex">
-            <div className="__choice-one-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
+            <div className="__choice-a-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternA}
+                pIndex={1}
+              />
             </div>
-            <div className="__choice-two-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-three-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-          </div>
-          <div className="__pattern-second-trio-container__ flex">
-            <div className="__choice-four-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-five-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-six-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
+            <div className="__choice-b-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternB}
+                pIndex={2}
+              />
             </div>
           </div>
           <div className="__public-toggle-save-container__ flex">
-            <div className="__public-toggle__">
+            <fieldset className="__public-toggle__">
               <label>
                 <input
                   type="checkbox"
@@ -163,7 +167,15 @@ export const Create = () => {
                 />
                 Share this shirt?
               </label>
-            </div>
+            </fieldset>
+            <button
+              className="btn-edit"
+              onClick={(event) => {
+                handleSaveShirt(event);
+              }}
+            >
+              SAVE SHIRT
+            </button>
           </div>
         </div>
       </form>
