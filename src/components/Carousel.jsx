@@ -5,6 +5,7 @@ export const Carousel = ({ cats }) => {
   const length = cats.length;
 
   const handlePrevious = () => {
+    debugger
     const newIndex = index - 1;
     setIndex(newIndex < 0 ? length - 1 : newIndex);
   };
@@ -28,7 +29,7 @@ export const Carousel = ({ cats }) => {
             }`}
           >
             <span>{cat.label}</span>
-            <img src={`${cat.url}`} />
+            <img src={`${cat.pattern_preview}`} />
           </div>
         );
       })}

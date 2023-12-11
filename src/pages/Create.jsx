@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllColors, getAllPatterns } from "../services/fetchServices";
+import { Carousel } from "../components/Carousel";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -15,12 +16,7 @@ export const Create = () => {
     patterns: [],
   });
 
-  const [patternChoices, setPatternChoices] = useState([
-    {
-      pattern_id: null,
-      pattern_index: null,
-    },
-  ]);
+  const [patternChoices, setPatternChoices] = useState([]);
 
   const [patterns, setPatterns] = useState([
     {
@@ -39,8 +35,21 @@ export const Create = () => {
     },
   ]);
 
+  // const [aIndex, setaIndex] = useState(0);
+
+  // const handlePrevious = () => {
+  //   const newIndex = aIndex - 1;
+  //   setaIndex(newIndex < 0 ? lengthA - 1 : newIndex);
+  // };
+
+  // const handleNext = () => {
+  //   const newIndex = aIndex + 1;
+  //   setaIndex(newIndex >= lengthA ? 0 : newIndex);
+  // };
+
   //? Modify to change the base price of shirts generated
   const basePrice = 60;
+  const pattern_array = patterns;
 
   useEffect(() => {
     getAllColors().then((colorsArray) => {
@@ -100,57 +109,7 @@ export const Create = () => {
         <div className="__pattern-public-save-container__ flex flex-col">
           <div className="__pattern-first-trio-container__ flex">
             <div className="__choice-one-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-two-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-three-container__ flex flex-col items-center">
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-          </div>
-          <div className="__pattern-second-trio-container__ flex">
-            <div className="__choice-four-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-five-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
-            </div>
-            <div className="__choice-six-container__ flex flex-col items-center">
-              {" "}
-              <div className="__choice-one-image__ bg-orange-500 h-[96px] w-[96px]"></div>
-              <div className="__choice-one-buttons__ flex">
-                <button className="btn-edit">Left</button>
-                <button className="btn-edit">Submit</button>
-                <button className="btn-edit">Right</button>
-              </div>
+              <Carousel cats={pattern_array} />
             </div>
           </div>
           <div className="__public-toggle-save-container__ flex">

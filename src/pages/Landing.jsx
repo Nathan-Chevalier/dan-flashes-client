@@ -46,21 +46,21 @@ export const Landing = () => {
     {
       id: 1,
       label: "cat 1",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_March_2010-1.jpg/2560px-Cat_March_2010-1.jpg",
+      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_March_2010-1.jpg/2560px-Cat_March_2010-1.jpg",
     },
     {
       id: 2,
       label: "cat 2",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Six_weeks_old_cat_%28aka%29.jpg/1200px-Six_weeks_old_cat_%28aka%29.jpg",
+      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Six_weeks_old_cat_%28aka%29.jpg/1200px-Six_weeks_old_cat_%28aka%29.jpg",
     },
     {
       id: 3,
       label: "cat 3",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/800px-Felis_catus-cat_on_snow.jpg?20190920093216",
+      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/800px-Felis_catus-cat_on_snow.jpg?20190920093216",
     },
   ]
 
 
-    return <><Carousel cats={cats}/></>;
+    return <>Banana<Carousel cats={cats}/></>;
   };
   
