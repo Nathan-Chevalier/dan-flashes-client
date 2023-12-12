@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllShirts } from "../services/fetchServices";
 import { Carousel } from "../components/Carousel";
+import { ViewShirt } from "../components/ViewShirt";
 
 export const Landing = () => {
   const [shirts, setShirts] = useState([
@@ -38,29 +39,12 @@ export const Landing = () => {
 
   useEffect(() => {
     getAllShirts().then((shirtsArray) => {
-      setShirts(shirtsArray)
+      const publicShirts = shirtsArray.filter((shirt) => shirt.public === true)
+      setShirts(publicShirts)
     })
   }, [])
 
-  const cats = [
-    {
-      id: 1,
-      label: "cat 1",
-      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_March_2010-1.jpg/2560px-Cat_March_2010-1.jpg",
-    },
-    {
-      id: 2,
-      label: "cat 2",
-      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Six_weeks_old_cat_%28aka%29.jpg/1200px-Six_weeks_old_cat_%28aka%29.jpg",
-    },
-    {
-      id: 3,
-      label: "cat 3",
-      pattern_preview: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/800px-Felis_catus-cat_on_snow.jpg?20190920093216",
-    },
-  ]
 
-
-    return <><Carousel cats={cats}/></>;
+    return <div className="flex flex-col items-center justify-center w-7/12 h-[512px] my-12"><ViewShirt shirts={shirts} /></div>;
   };
   
