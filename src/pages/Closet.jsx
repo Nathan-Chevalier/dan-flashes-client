@@ -52,7 +52,8 @@ export const Closet = () => {
 
   useEffect(() => {
     getAllShirts().then((shirtsArray) => {
-      setShirts(shirtsArray);
+      const ownerShirts = shirtsArray.filter((shirt) => shirt.is_owner === true)
+      setShirts(ownerShirts);
     });
   }, []);
 
