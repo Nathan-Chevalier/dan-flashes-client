@@ -36,7 +36,7 @@ export const Navbar = () => {
           </li>
         </>
       )}
-      <div className="">
+      <div className="btn-navbar">
         <NavLink className="" to={"/favs"}>
           Favs
         </NavLink>
