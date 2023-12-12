@@ -61,6 +61,6 @@ export const Landing = () => {
   ]
 
 
-    return <>Banana<Carousel cats={cats}/></>;
+    return <><Carousel cats={cats}/></>;
   };
   

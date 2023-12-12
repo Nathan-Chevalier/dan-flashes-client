@@ -18,20 +18,23 @@ export const ViewShirt = ({ shirts }) => {
 
   return (
     <div>
-      {shirts.map((shirt) => {
+      {shirts.map((shirt, i) => {
         return (
-          <div key={`shirt-${shirt.id}`}>
+          <div
+            key={`shirt-${shirt.id}`}
+            className={`${i === index ? "flex" : "hidden"}`}
+          >
             {shirt?.shirt_pattern.map((pattern) => {
               return (
-                <div key={`pattern-${pattern.id}`} className="absolute">
+                <div key={`pattern-${pattern.id}`} className="">
                   <img
-                    className="relative top-0 left-0"
+                    className=""
                     src={pattern?.pattern.pattern_url_a}
                     alt={`pattern_url_a_${pattern?.pattern_index}`}
                     style={{ zIndex: pattern?.pattern_index * 2 }}
                   />
                   <img
-                    className="relative top-0 left-0"
+                    className=""
                     src={pattern?.pattern.pattern_url_b}
                     alt={`pattern_url_b_${pattern?.pattern_index}`}
                     style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
@@ -39,6 +42,11 @@ export const ViewShirt = ({ shirts }) => {
                 </div>
               );
             })}
+            <div className="__button-container__ flex">
+            <button className="btn-edit translate-y-32" onClick={handlePrevious}>Previous</button>
+              <button className="btn-edit translate-y-32" onClick={handleNext}>Next</button>
+
+            </div>
           </div>
         );
       })}
