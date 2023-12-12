@@ -74,7 +74,7 @@ export const Create = () => {
     const finalValues = {
       color: shirt.color,
       label: shirt.label,
-      public: shirt.public,
+      public: isPublic,
       price: basePrice * patternArray.length,
       patterns: patternArray,
     };
