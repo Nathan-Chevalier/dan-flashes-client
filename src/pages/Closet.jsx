@@ -52,13 +52,14 @@ export const Closet = () => {
 
   useEffect(() => {
     getAllShirts().then((shirtsArray) => {
-      setShirts(shirtsArray);
+      const ownerShirts = shirtsArray.filter((shirt) => shirt.is_owner === true)
+      setShirts(ownerShirts);
     });
   }, []);
 
   return (
-    <>
+    <div className="__closet-container__ flex flex-col items-center justify-center w-7/12 h-[512px] my-12 bg-slate-500">
       <ViewShirt shirts={shirts} />
-    </>
+    </div>
   );
 };

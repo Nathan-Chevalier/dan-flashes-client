@@ -17,35 +17,51 @@ export const ViewShirt = ({ shirts }) => {
   };
 
   return (
-    <div>
+    <div className="bg-cyan-500 h-full w-full">
       {shirts.map((shirt, i) => {
         return (
           <div
             key={`shirt-${shirt.id}`}
-            className={`${i === index ? "flex" : "hidden"}`}
+            className={`${
+              i === index ? "flex flex-col items-center" : "hidden"
+            }`}
           >
-            {shirt?.shirt_pattern.map((pattern) => {
-              return (
-                <div key={`pattern-${pattern.id}`} className="">
-                  <img
-                    className=""
-                    src={pattern?.pattern.pattern_url_a}
-                    alt={`pattern_url_a_${pattern?.pattern_index}`}
-                    style={{ zIndex: pattern?.pattern_index * 2 }}
-                  />
-                  <img
-                    className=""
-                    src={pattern?.pattern.pattern_url_b}
-                    alt={`pattern_url_b_${pattern?.pattern_index}`}
-                    style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
-                  />
-                </div>
-              );
-            })}
+            <div className="text-3xl font-bold text-white pt-5">
+              {shirt.label}
+            </div>
+            <div className="relative h-96 w-96 bg-slate-950/10">
+              {shirt?.shirt_pattern.map((pattern) => {
+                return (
+                  <>
+                    <img
+                      className="absolute top-0 left-0"
+                      src={pattern?.pattern.pattern_url_a}
+                      alt={`pattern_url_a_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 }}
+                    />
+                    <img
+                      className="absolute top-0 left-0"
+                      src={pattern?.pattern.pattern_url_b}
+                      alt={`pattern_url_b_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
+                    />
+                  </>
+                );
+              })}
+            </div>
             <div className="__button-container__ flex">
-            <button className="btn-edit translate-y-32" onClick={handlePrevious}>Previous</button>
-              <button className="btn-edit translate-y-32" onClick={handleNext}>Next</button>
-
+              <button
+                className="btn-edit -translate-x-[400px] -translate-y-[200px]"
+                onClick={handlePrevious}
+              >
+                Previous
+              </button>
+              <button
+                className="btn-edit translate-x-[400px] -translate-y-[200px]"
+                onClick={handleNext}
+              >
+                Next
+              </button>
             </div>
           </div>
         );
