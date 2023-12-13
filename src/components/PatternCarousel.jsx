@@ -27,13 +27,6 @@ export const PatternCarousel = ({
     }
   }, []);
 
-  //   const handleSelect = (selection, event) => {
-  //     event.preventDefault()
-  //     const copy = { ...patternChoices}
-  //     copy.push(selection)
-  //     setPatternChoices(copy)
-  //   }
-
   return (
     <div>
       {patterns.map((pattern, i) => {
