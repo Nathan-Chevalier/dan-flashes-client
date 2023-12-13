@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { getAllShirts } from "../services/fetchServices";
-import { Carousel } from "../components/Carousel";
 import { ViewShirt } from "../components/ViewShirt";
 
 export const Landing = () => {
+
   const [shirts, setShirts] = useState([
     {
       id: 1,
@@ -32,7 +32,7 @@ export const Landing = () => {
       label: 'That "Network Down" Shirt',
       public: true,
       price: "6000.00",
-      favorites: [1,2,3],
+      shirt_favorite: [],
       is_owner: true
     }
   ])

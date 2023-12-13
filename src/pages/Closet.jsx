@@ -43,8 +43,8 @@ export const Closet = () => {
       "label": "Protoshirt",
       "public": true,
       "price": "1000.00",
-      "favorites": [
-          1
+      "shirt_favorite": [
+          
       ],
       "is_owner": true
   },

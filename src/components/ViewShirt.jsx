@@ -15,10 +15,15 @@ export const ViewShirt = ({ shirts }) => {
     const newIndex = index + 1;
     setIndex(newIndex >= length ? 0 : newIndex);
   };
+  const getCurrentUser = JSON.parse(localStorage.getItem("flashes_token"));
+  const currentUser = getCurrentUser.user_id;
 
   return (
     <div className="bg-cyan-500 h-full w-full">
       {shirts.map((shirt, i) => {
+        const isFavorite = shirt.shirt_favorite.some(
+          (favorite) => favorite.flashes_user == currentUser
+        );
         return (
           <div
             key={`shirt-${shirt.id}`}
@@ -34,13 +39,13 @@ export const ViewShirt = ({ shirts }) => {
                 return (
                   <>
                     <img
-                      className="absolute top-0 left-0"
+                      className="absolute top-[35%] left-[35%]"
                       src={pattern?.pattern.pattern_url_a}
                       alt={`pattern_url_a_${pattern?.pattern_index}`}
                       style={{ zIndex: pattern?.pattern_index * 2 }}
                     />
                     <img
-                      className="absolute top-0 left-0"
+                      className="absolute top-[35%] left-[35%]"
                       src={pattern?.pattern.pattern_url_b}
                       alt={`pattern_url_b_${pattern?.pattern_index}`}
                       style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
@@ -63,6 +68,19 @@ export const ViewShirt = ({ shirts }) => {
                 Next
               </button>
             </div>
+            {!shirt.is_owner ? (
+              isFavorite ? (
+                <button className="btn-unfavorite">Unfavorite</button>
+              ) : (
+                <button className="btn-favorite">Favorite</button>
+              )
+            ) : (
+              <div className="__edit-delete-dock__">
+                {/* Edit/Delete buttons */}
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
+            )}
           </div>
         );
       })}
