@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { getAllShirts } from "../services/fetchServices";
-import { Carousel } from "../components/Carousel";
 import { ViewShirt } from "../components/ViewShirt";
 
 export const Landing = () => {
+
   const [shirts, setShirts] = useState([
     {
       id: 1,
@@ -32,7 +32,7 @@ export const Landing = () => {
       label: 'That "Network Down" Shirt',
       public: true,
       price: "6000.00",
-      favorites: [1,2,3],
+      shirt_favorite: [],
       is_owner: true
     }
   ])
@@ -43,8 +43,11 @@ export const Landing = () => {
       setShirts(publicShirts)
     })
   }, [])
+  const updateShirts = async () => {
+    const updatedShirts = await getAllShirts()
+    setShirts(updatedShirts)
+  }
 
-
-    return <div className="flex flex-col items-center justify-center w-7/12 h-[512px] my-12"><ViewShirt shirts={shirts} /></div>;
+    return <div className="flex flex-col items-center justify-center w-7/12 h-[512px] my-12"><ViewShirt shirts={shirts} updateShirts={updateShirts}/></div>;
   };
   

@@ -43,10 +43,10 @@ export const Closet = () => {
       "label": "Protoshirt",
       "public": true,
       "price": "1000.00",
-      "favorites": [
-          1
+      "shirt_favorite": [
+          
       ],
-      "is_owner": true
+      "is_owner": false
   },
   ]);
 
@@ -57,9 +57,14 @@ export const Closet = () => {
     });
   }, []);
 
+  const updateShirts = async () => {
+    const updatedShirts = await getAllShirts()
+    setShirts(updatedShirts)
+  }
+
   return (
     <div className="__closet-container__ flex flex-col items-center justify-center w-7/12 h-[512px] my-12 bg-slate-500">
-      <ViewShirt shirts={shirts} />
+      <ViewShirt shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
 };
