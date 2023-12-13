@@ -39,6 +39,7 @@ export const Edit = () => {
     is_owner: true,
   });
 
+  const [selectedPatterns, setSelectedPatterns] = useState([]);
   const [patternA, setPatternA] = useState(null);
   const [patternB, setPatternB] = useState(null);
   const [patternC, setPatternC] = useState(null);
@@ -71,6 +72,13 @@ export const Edit = () => {
     getOneShirt(shirtId).then((shirtObject) => {
       setShirt(shirtObject);
       setIsPublic(shirtObject.public);
+      const shirtPatterns = shirtObject.shirt_pattern.map(pattern => ({
+        patternId: pattern.pattern.id,
+        pattern_url_a: pattern.pattern.pattern_url_a,
+        pattern_url_b: pattern.pattern.pattern_url_b,
+        pattern_index: pattern.pattern_index
+      }))
+      setSelectedPatterns(shirtPatterns)
 
       //? Loop through each pattern in the shirt_pattern array
       shirtObject.shirt_pattern.forEach((patternObj) => {
@@ -111,7 +119,33 @@ export const Edit = () => {
     getAllPatterns().then((patternsArray) => {
       setPatterns(patternsArray);
     });
+
   }, []);
+
+  const updateSelectedPatterns = (newPattern) => {
+    setSelectedPatterns((prevPatterns) => {
+      const index = prevPatterns.findIndex(
+        (p) => p.pattern_index === newPattern.pattern_index
+      );
+      if (index > -1) {
+        // Replace existing pattern
+        return [
+          ...prevPatterns.slice(0, index),
+          newPattern,
+          ...prevPatterns.slice(index + 1),
+        ];
+      } else {
+        // Add new pattern
+        return [...prevPatterns, newPattern];
+      }
+    });
+  };
+
+  const removeSelectedPattern = (patternIndex) => {
+    setSelectedPatterns((prevPatterns) => 
+      prevPatterns.filter((p) => p.pattern_index !== patternIndex)
+    );
+  };
 
   const handleEditShirt = async (event) => {
     event.preventDefault();
