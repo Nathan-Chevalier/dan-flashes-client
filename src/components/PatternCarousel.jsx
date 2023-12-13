@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const PatternCarousel = ({ patterns, setPatternChoice, pIndex }) => {
+export const PatternCarousel = ({
+  patterns,
+  setPatternChoice,
+  pIndex,
+  currentId,
+}) => {
   const [index, setIndex] = useState(0);
   const length = patterns.length;
 
@@ -16,12 +21,18 @@ export const PatternCarousel = ({ patterns, setPatternChoice, pIndex }) => {
     setIndex(newIndex >= length ? 0 : newIndex);
   };
 
-//   const handleSelect = (selection, event) => {
-//     event.preventDefault()
-//     const copy = { ...patternChoices}
-//     copy.push(selection)
-//     setPatternChoices(copy)
-//   }
+  useEffect(() => {
+    if (currentId) {
+      setIndex(currentId)
+    }
+  }, []);
+
+  //   const handleSelect = (selection, event) => {
+  //     event.preventDefault()
+  //     const copy = { ...patternChoices}
+  //     copy.push(selection)
+  //     setPatternChoices(copy)
+  //   }
 
   return (
     <div>
@@ -37,20 +48,36 @@ export const PatternCarousel = ({ patterns, setPatternChoice, pIndex }) => {
               <button className="btn-edit" onClick={handlePrevious}>
                 Previous
               </button>
-              <button className="btn-edit" onClick={(event) => {
-                event.preventDefault()
-                const patternId = parseInt(pattern.id)
-                setPatternChoice({pattern_id: patternId, pattern_index: pIndex})
-              }}>Select</button>
+              <button
+                className="btn-edit"
+                onClick={(event) => {
+                  event.preventDefault();
+                  const patternId = parseInt(pattern.id);
+                  setPatternChoice({
+                    pattern_id: patternId,
+                    pattern_index: pIndex,
+                  });
+                }}
+              >
+                Select
+              </button>
               <button className="btn-edit" onClick={handleNext}>
                 Next
               </button>
-
             </div>
-            {pIndex > 1 ? <button className="btn-edit" onClick={(event) => {
-                event.preventDefault()
-                setPatternChoice(null)
-            }}>Remove</button> : ""}
+            {pIndex > 1 ? (
+              <button
+                className="btn-edit"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setPatternChoice(null);
+                }}
+              >
+                Remove
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         );
       })}
