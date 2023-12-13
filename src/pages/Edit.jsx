@@ -189,7 +189,7 @@ export const Edit = () => {
   };
 
   return (
-    <div className="__shirt-form-container__ flex flex-col items-center">
+    <div className="__shirt-form-container__ flex flex-col items-center pl-40">
       <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl flex">
         <div className="__label-preview-color-container__ flex flex-col">
           <fieldset>
@@ -205,8 +205,26 @@ export const Edit = () => {
               }}
             />
           </fieldset>
-          <div className="__image-preview__">
-            THIS IS WHERE THE SHIRT PREVIEW MAGIC HAPPENS
+          <div className="__image-preview__ h-[256px] w-[256px] relative" style={{backgroundColor: `${shirt.color.color}`}}>
+
+            {selectedPatterns.map((pattern) => {
+                return (
+                  <>
+                    <img
+                      className="absolute top-[35%] left-[35%]"
+                      src={pattern.pattern_url_a}
+                      alt={`pattern_url_a_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 }}
+                    />
+                    <img
+                      className="absolute top-[35%] left-[35%]"
+                      src={pattern.pattern_url_b}
+                      alt={`pattern_url_b_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
+                    />
+                  </>
+                );
+              })}
           </div>
           {/* Color input */}
           <fieldset className="__color-choice-container flex items-center">
@@ -222,7 +240,7 @@ export const Edit = () => {
                     }
                     onClick={() => {
                       const copy = { ...shirt };
-                      copy.color.id = parseInt(color.id);
+                      copy.color = color;
                       setShirt(copy);
                     }}
                   >
