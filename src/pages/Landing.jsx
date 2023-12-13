@@ -43,8 +43,11 @@ export const Landing = () => {
       setShirts(publicShirts)
     })
   }, [])
+  const updateShirts = async () => {
+    const updatedShirts = await getAllShirts()
+    setShirts(updatedShirts)
+  }
 
-
-    return <div className="flex flex-col items-center justify-center w-7/12 h-[512px] my-12"><ViewShirt shirts={shirts} /></div>;
+    return <div className="flex flex-col items-center justify-center w-7/12 h-[512px] my-12"><ViewShirt shirts={shirts} updateShirts={updateShirts}/></div>;
   };
   

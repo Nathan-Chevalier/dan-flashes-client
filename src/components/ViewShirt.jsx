@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const ViewShirt = ({ shirts }) => {
+export const ViewShirt = ({ shirts, updateShirts }) => {
   const [index, setIndex] = useState(0);
   const length = shirts.length;
 
@@ -18,6 +18,7 @@ export const ViewShirt = ({ shirts }) => {
   const getCurrentUser = JSON.parse(localStorage.getItem("flashes_token"));
   const currentUser = getCurrentUser.user_id;
 
+
   const handleFavorite = async (shirtId) => {
     const getToken = JSON.parse(localStorage.getItem("flashes_token"));
     const token = getToken.token;
@@ -31,6 +32,21 @@ export const ViewShirt = ({ shirts }) => {
       },
       body: JSON.stringify(finalValues),
     });
+    updateShirts()
+  };
+
+  const handleUnfavorite = async (shirtId) => {
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+
+    await fetch(`http://localhost:8000/favorites/${shirtId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      }
+    });
+    updateShirts()
   };
 
   return (
@@ -39,6 +55,12 @@ export const ViewShirt = ({ shirts }) => {
         const isFavorite = shirt.shirt_favorite.some(
           (favorite) => favorite.flashes_user == currentUser
         );
+        let favId = null
+        shirt.shirt_favorite.forEach(favorite => {
+          if (favorite.flashes_user == currentUser) {
+            favId = favorite.id
+          }
+        })
         return (
           <div
             key={`shirt-${shirt.id}`}
@@ -85,16 +107,16 @@ export const ViewShirt = ({ shirts }) => {
             </div>
             {!shirt.is_owner ? (
               isFavorite ? (
-                <button className="btn-unfavorite">Unfavorite</button>
+                <button className="btn-delete" onClick={() => {
+                  handleUnfavorite(favId)
+                }}>Unfavorite</button>
               ) : (
                 <button className="btn-edit" onClick={()=> {
-                  debugger
                   handleFavorite(shirt.id)
                 }}>Favorite</button>
               )
             ) : (
               <div className="__edit-delete-dock__">
-                {/* Edit/Delete buttons */}
                 <button>Edit</button>
                 <button>Delete</button>
               </div>
