@@ -50,7 +50,7 @@ export const Create = () => {
     getAllPatterns().then((patternsArray) => {
       setPatterns(patternsArray);
     });
-  }, [patternA]);
+  }, []);
 
   const handleSaveShirt = async (event) => {
     event.preventDefault();

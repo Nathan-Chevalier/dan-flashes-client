@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
+  const [deleteTarget, setDeleteTarget] = useState(0);
   const length = shirts.length;
+  const deleteModal = useRef();
 
   const handlePrevious = (event) => {
     event.preventDefault();
@@ -18,7 +22,6 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
   const getCurrentUser = JSON.parse(localStorage.getItem("flashes_token"));
   const currentUser = getCurrentUser.user_id;
 
-
   const handleFavorite = async (shirtId) => {
     const getToken = JSON.parse(localStorage.getItem("flashes_token"));
     const token = getToken.token;
@@ -32,7 +35,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
       },
       body: JSON.stringify(finalValues),
     });
-    updateShirts()
+    updateShirts();
   };
 
   const handleUnfavorite = async (shirtId) => {
@@ -44,9 +47,25 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
       headers: {
         Authorization: `Token ${token}`,
         "Content-Type": "application/json",
-      }
+      },
     });
-    updateShirts()
+    updateShirts();
+  };
+
+  const handleDeleteShirt = async (event) => {
+    event.preventDefault();
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+
+    await fetch(`http://localhost:8000/shirts/${deleteTarget}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    updateShirts();
+    deleteModal.current.close();
   };
 
   return (
@@ -55,12 +74,12 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
         const isFavorite = shirt.shirt_favorite.some(
           (favorite) => favorite.flashes_user == currentUser
         );
-        let favId = null
-        shirt.shirt_favorite.forEach(favorite => {
+        let favId = null;
+        shirt.shirt_favorite.forEach((favorite) => {
           if (favorite.flashes_user == currentUser) {
-            favId = favorite.id
+            favId = favorite.id;
           }
-        })
+        });
         return (
           <div
             key={`shirt-${shirt.id}`}
@@ -107,23 +126,66 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
             {!shirt.is_owner ? (
               isFavorite ? (
-                <button className="btn-delete" onClick={() => {
-                  handleUnfavorite(favId)
-                }}>Unfavorite</button>
+                <button
+                  className="btn-delete"
+                  onClick={() => {
+                    handleUnfavorite(favId);
+                  }}
+                >
+                  Unfavorite
+                </button>
               ) : (
-                <button className="btn-edit" onClick={()=> {
-                  handleFavorite(shirt.id)
-                }}>Favorite</button>
+                <button
+                  className="btn-edit"
+                  onClick={() => {
+                    handleFavorite(shirt.id);
+                  }}
+                >
+                  Favorite
+                </button>
               )
             ) : (
               <div className="__edit-delete-dock__">
-                <button>Edit</button>
-                <button>Delete</button>
+                <button
+                  className="btn-edit"
+                  onClick={() => {
+                    navigate(`/edit/${shirt.id}`);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn-delete"
+                  onClick={() => {
+                    setDeleteTarget(shirt.id);
+                    deleteModal.current.showModal();
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             )}
           </div>
         );
       })}
+      {/* Delete Modal */}
+      <dialog
+        className="__delete-modal__ bg-red-400/90 p-10 font-bold rounded border border-white"
+        ref={deleteModal}
+      >
+        <div>Are you sure you want to delete this shirt?</div>
+        <div className="__btn-container__ flex justify-around mt-6">
+          <button className="btn-edit px-6" onClick={(event) => {handleDeleteShirt(event)}}>
+            Ok
+          </button>
+          <button
+            className="btn-delete"
+            onClick={() => deleteModal.current.close()}
+          >
+            Cancel
+          </button>
+        </div>
+      </dialog>
     </div>
   );
 };
