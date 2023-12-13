@@ -139,7 +139,7 @@ export const Edit = () => {
                   <div
                     style={{ backgroundColor: `${color.color}` }}
                     className={
-                      shirt.color === color.id
+                      shirt.color.id === color.id
                         ? "w-[40px] h-[40px] border border-white rounded-lg"
                         : "w-[32px] h-[32px] rounded"
                     }
