@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getOneShirt } from "../services/fetchServices";
 import { getAllColors } from "../services/fetchServices";
 import { getAllPatterns } from "../services/fetchServices";
 import { PatternCarousel } from "../components/PatternCarousel";
 
 export const Edit = () => {
+  const navigate = useNavigate();
   const { shirtId } = useParams();
   const [shirt, setShirt] = useState({
     id: 1,
@@ -64,10 +65,12 @@ export const Edit = () => {
 
   const [isPublic, setIsPublic] = useState(false);
 
+  const basePrice = 60;
+
   useEffect(() => {
     getOneShirt(shirtId).then((shirtObject) => {
       setShirt(shirtObject);
-      setIsPublic(shirtObject.public)
+      setIsPublic(shirtObject.public);
 
       //? Loop through each pattern in the shirt_pattern array
       shirtObject.shirt_pattern.forEach((patternObj) => {
@@ -101,7 +104,6 @@ export const Edit = () => {
             break;
         }
       });
-
     });
     getAllColors().then((colorsArray) => {
       setColors(colorsArray);
@@ -110,6 +112,47 @@ export const Edit = () => {
       setPatterns(patternsArray);
     });
   }, []);
+
+  const handleEditShirt = async (event) => {
+    event.preventDefault();
+    const patternArray = [patternA];
+    if (patternB) {
+      patternArray.push(patternB);
+    }
+    if (patternC) {
+      patternArray.push(patternC);
+    }
+    if (patternD) {
+      patternArray.push(patternD);
+    }
+    if (patternE) {
+      patternArray.push(patternE);
+    }
+    if (patternF) {
+      patternArray.push(patternF);
+    }
+
+    const finalValues = {
+      color: shirt.color.id,
+      label: shirt.label,
+      public: isPublic,
+      price: basePrice * patternArray.length,
+      patterns: patternArray,
+    };
+
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+
+    await fetch(`http://localhost:8000/shirts/${shirtId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalValues),
+    });
+    navigate("/closet");
+  };
 
   return (
     <div className="__shirt-form-container__ flex flex-col items-center">
@@ -145,7 +188,7 @@ export const Edit = () => {
                     }
                     onClick={() => {
                       const copy = { ...shirt };
-                      copy.color = parseInt(color.id);
+                      copy.color.id = parseInt(color.id);
                       setShirt(copy);
                     }}
                   >
@@ -242,12 +285,15 @@ export const Edit = () => {
             </fieldset>
             <button
               className="btn-edit"
+              onClick={(event) => {
+                handleEditShirt(event);
+              }}
             >
-              SAVE SHIRT
+              CONFIRM EDIT
             </button>
           </div>
         </div>
       </form>
     </div>
-  );;
+  );
 };
