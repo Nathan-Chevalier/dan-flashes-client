@@ -18,6 +18,21 @@ export const ViewShirt = ({ shirts }) => {
   const getCurrentUser = JSON.parse(localStorage.getItem("flashes_token"));
   const currentUser = getCurrentUser.user_id;
 
+  const handleFavorite = async (shirtId) => {
+    const getToken = JSON.parse(localStorage.getItem("flashes_token"));
+    const token = getToken.token;
+    const finalValues = { shirt_id: shirtId };
+
+    await fetch(`http://localhost:8000/favorites`, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(finalValues),
+    });
+  };
+
   return (
     <div className="bg-cyan-500 h-full w-full">
       {shirts.map((shirt, i) => {
@@ -72,7 +87,10 @@ export const ViewShirt = ({ shirts }) => {
               isFavorite ? (
                 <button className="btn-unfavorite">Unfavorite</button>
               ) : (
-                <button className="btn-favorite">Favorite</button>
+                <button className="btn-edit" onClick={()=> {
+                  debugger
+                  handleFavorite(shirt.id)
+                }}>Favorite</button>
               )
             ) : (
               <div className="__edit-delete-dock__">
