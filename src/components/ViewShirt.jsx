@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
+  const navigate = useNavigate()
   const [index, setIndex] = useState(0);
   const length = shirts.length;
 
@@ -117,7 +119,9 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               )
             ) : (
               <div className="__edit-delete-dock__">
-                <button>Edit</button>
+                <button className="btn-edit" onClick={() => {
+                  navigate(`/edit/${shirt.id}`)
+                }}>Edit</button>
                 <button>Delete</button>
               </div>
             )}
