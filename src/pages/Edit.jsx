@@ -241,6 +241,8 @@ export const Edit = () => {
                 setPatternChoice={setPatternA}
                 pIndex={1}
                 currentId={patternA?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
               />
             </div>
             {patternA ? (
@@ -250,6 +252,8 @@ export const Edit = () => {
                   setPatternChoice={setPatternB}
                   pIndex={2}
                   currentId={patternB?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -262,6 +266,8 @@ export const Edit = () => {
                   setPatternChoice={setPatternC}
                   pIndex={3}
                   currentId={patternC?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -276,6 +282,8 @@ export const Edit = () => {
                   setPatternChoice={setPatternD}
                   pIndex={4}
                   currentId={patternD?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -288,6 +296,8 @@ export const Edit = () => {
                   setPatternChoice={setPatternE}
                   pIndex={5}
                   currentId={patternE?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -300,6 +310,8 @@ export const Edit = () => {
                   setPatternChoice={setPatternF}
                   pIndex={6}
                   currentId={patternF?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
