@@ -25,9 +25,9 @@ export const PatternCarousel = ({
 
   useEffect(() => {
     if (currentId) {
-      setIndex(currentId)
+      setIndex(currentId -1)
     }
-  }, []);
+  }, [currentId]);
 
   return (
     <div>
