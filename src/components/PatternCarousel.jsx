@@ -5,6 +5,8 @@ export const PatternCarousel = ({
   setPatternChoice,
   pIndex,
   currentId,
+  updateSelectedPatterns,
+  removeSelectedPattern
 }) => {
   const [index, setIndex] = useState(0);
   const length = patterns.length;
@@ -50,6 +52,12 @@ export const PatternCarousel = ({
                     pattern_id: patternId,
                     pattern_index: pIndex,
                   });
+                  updateSelectedPatterns({
+                    patternId: pattern.id,
+                    pattern_url_a: pattern.pattern_url_a,
+                    pattern_url_b: pattern.pattern_url_b,
+                    pattern_index: pIndex
+                  })
                 }}
               >
                 Select
@@ -64,6 +72,7 @@ export const PatternCarousel = ({
                 onClick={(event) => {
                   event.preventDefault();
                   setPatternChoice(null);
+                  removeSelectedPattern(pIndex)
                 }}
               >
                 Remove
