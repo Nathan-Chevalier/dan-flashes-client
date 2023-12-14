@@ -206,7 +206,6 @@ export const Edit = () => {
             />
           </fieldset>
           <div className="__image-preview__ h-[256px] w-[256px] relative" style={{backgroundColor: `${shirt.color.color}`}}>
-
             {selectedPatterns.map((pattern) => {
                 return (
                   <>

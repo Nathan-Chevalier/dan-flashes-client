@@ -16,6 +16,7 @@ export const Create = () => {
     patterns: [],
   });
 
+  const [selectedPatterns, setSelectedPatterns] = useState([]);
   const [patternA, setPatternA] = useState(null);
   const [patternB, setPatternB] = useState(null);
   const [patternC, setPatternC] = useState(null);
@@ -52,6 +53,31 @@ export const Create = () => {
     });
   }, []);
 
+  const updateSelectedPatterns = (newPattern) => {
+    setSelectedPatterns((prevPatterns) => {
+      const index = prevPatterns.findIndex(
+        (p) => p.pattern_index === newPattern.pattern_index
+      );
+      if (index > -1) {
+        // Replace existing pattern
+        return [
+          ...prevPatterns.slice(0, index),
+          newPattern,
+          ...prevPatterns.slice(index + 1),
+        ];
+      } else {
+        // Add new pattern
+        return [...prevPatterns, newPattern];
+      }
+    });
+  };
+
+  const removeSelectedPattern = (patternIndex) => {
+    setSelectedPatterns((prevPatterns) => 
+      prevPatterns.filter((p) => p.pattern_index !== patternIndex)
+    );
+  };
+
   const handleSaveShirt = async (event) => {
     event.preventDefault();
     const patternArray = [patternA];
@@ -72,7 +98,7 @@ export const Create = () => {
     }
 
     const finalValues = {
-      color: shirt.color,
+      color: shirt.color.id,
       label: shirt.label,
       public: isPublic,
       price: basePrice * patternArray.length,
@@ -94,7 +120,7 @@ export const Create = () => {
   };
 
   return (
-    <div className="__shirt-form-container__ flex flex-col items-center">
+    <div className="__shirt-form-container__ flex flex-col items-center pl-40">
       <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl flex">
         <div className="__label-preview-color-container__ flex flex-col">
           <fieldset>
@@ -110,8 +136,25 @@ export const Create = () => {
               }}
             />
           </fieldset>
-          <div className="__image-preview__">
-            THIS IS WHERE THE SHIRT PREVIEW MAGIC HAPPENS
+          <div className="__image-preview__ h-[256px] w-[256px] relative" style={{backgroundColor: `${shirt.color.color}`}}>
+            {selectedPatterns.map((pattern) => {
+                return (
+                  <>
+                    <img
+                      className="absolute top-[35%] left-[35%]"
+                      src={pattern.pattern_url_a}
+                      alt={`pattern_url_a_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 }}
+                    />
+                    <img
+                      className="absolute top-[35%] left-[35%]"
+                      src={pattern.pattern_url_b}
+                      alt={`pattern_url_b_${pattern?.pattern_index}`}
+                      style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
+                    />
+                  </>
+                );
+              })}
           </div>
           {/* Color input */}
           <fieldset className="__color-choice-container flex items-center">
@@ -121,13 +164,13 @@ export const Create = () => {
                   <div
                     style={{ backgroundColor: `${color.color}` }}
                     className={
-                      shirt.color === color.id
+                      shirt.color.id === color.id
                         ? "w-[40px] h-[40px] border border-white rounded-lg"
                         : "w-[32px] h-[32px] rounded"
                     }
                     onClick={() => {
                       const copy = { ...shirt };
-                      copy.color = parseInt(color.id);
+                      copy.color = color;
                       setShirt(copy);
                     }}
                   >
@@ -145,6 +188,9 @@ export const Create = () => {
                 patterns={patterns}
                 setPatternChoice={setPatternA}
                 pIndex={1}
+                currentId={patternA?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
               />
             </div>
             {patternA ? (
@@ -153,6 +199,9 @@ export const Create = () => {
                   patterns={patterns}
                   setPatternChoice={setPatternB}
                   pIndex={2}
+                  currentId={patternB?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -164,6 +213,9 @@ export const Create = () => {
                   patterns={patterns}
                   setPatternChoice={setPatternC}
                   pIndex={3}
+                  currentId={patternC?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -177,6 +229,9 @@ export const Create = () => {
                   patterns={patterns}
                   setPatternChoice={setPatternD}
                   pIndex={4}
+                  currentId={patternD?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -188,6 +243,9 @@ export const Create = () => {
                   patterns={patterns}
                   setPatternChoice={setPatternE}
                   pIndex={5}
+                  currentId={patternE?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
@@ -199,6 +257,9 @@ export const Create = () => {
                   patterns={patterns}
                   setPatternChoice={setPatternF}
                   pIndex={6}
+                  currentId={patternF?.pattern_id}
+                  updateSelectedPatterns={updateSelectedPatterns}
+                  removeSelectedPattern={removeSelectedPattern}
                 />
               </div>
             ) : (
