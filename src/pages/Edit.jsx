@@ -81,9 +81,9 @@ export const Edit = () => {
       setSelectedPatterns(shirtPatterns)
 
       //? Loop through each pattern in the shirt_pattern array
-      shirtObject.shirt_pattern.forEach((patternObj) => {
+      shirtPatterns.forEach((patternObj) => {
         const patternInfo = {
-          pattern_id: patternObj.pattern.id,
+          pattern_id: patternObj.patternId,
           pattern_index: patternObj.pattern_index,
         };
 

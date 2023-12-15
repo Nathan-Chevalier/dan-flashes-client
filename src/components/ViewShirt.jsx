@@ -66,9 +66,11 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
     });
     updateShirts();
     deleteModal.current.close();
+    navigate("/")
   };
 
   return (
+    shirts.length === 0 ? <button className="btn-edit" onClick={() => {navigate("/create")}}>Create New Shirt</button> :
     <div className="bg-cyan-500 h-full w-full">
       {shirts.map((shirt, i) => {
         const isFavorite = shirt.shirt_favorite.some(
@@ -87,8 +89,13 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               i === index ? "flex flex-col items-center" : "hidden"
             }`}
           >
-            <div className="text-3xl font-bold text-white pt-5">
-              {shirt.label}
+            {" "}
+            <div className="flex items-center">
+              <div className="text-3xl font-bold text-white pt-5">
+                {shirt.label}
+              </div>
+              <div className="pl-10">by {shirt.flashes_user.flashes_name}</div>
+              <img className="h-[96px]" src={`${shirt.flashes_user.profile_image_url}`} />
             </div>
             <div className="relative h-96 w-96 bg-slate-950/10">
               {shirt?.shirt_pattern.map((pattern) => {
@@ -110,6 +117,8 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
+            <div>{shirt.price}</div>
+            <div>Favorites: {shirt.shirt_favorite.length} </div>
             <div className="__button-container__ flex">
               <button
                 className="btn-edit -translate-x-[400px] -translate-y-[200px]"
@@ -175,7 +184,12 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
       >
         <div>Are you sure you want to delete this shirt?</div>
         <div className="__btn-container__ flex justify-around mt-6">
-          <button className="btn-edit px-6" onClick={(event) => {handleDeleteShirt(event)}}>
+          <button
+            className="btn-edit px-6"
+            onClick={(event) => {
+              handleDeleteShirt(event);
+            }}
+          >
             Ok
           </button>
           <button
