@@ -189,7 +189,7 @@ export const Edit = () => {
   };
 
   return (
-    <div className="__shirt-form-container__ flex flex-col items-center pl-40">
+    <div className="__shirt-form-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1024px] ml-[96px] rounded-[36px]">
       <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl flex">
         <div className="__label-preview-color-container__ flex flex-col">
           <fieldset>
