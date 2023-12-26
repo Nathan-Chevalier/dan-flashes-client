@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-[100%] w-[128px] fixed z-1 top-0 left-0 bg-slate-500 overflow-x-hidden py-5 flex flex-col items-start justify-between">
+    <div className="h-[100%] w-[96px] fixed z-1 top-0 left-0 bg-[#55c3f0] overflow-x-hidden py-5 flex flex-col items-start rounded-r-3xl justify-between">
       {localStorage.getItem("flashes_token") !== null ? (
         <div className="navbar__item -translate-y-2">
           <button
