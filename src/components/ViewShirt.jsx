@@ -71,7 +71,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
 
   return (
     shirts.length === 0 ? <button className="btn-edit" onClick={() => {navigate("/create")}}>Create New Shirt</button> :
-    <div className="bg-cyan-500 h-full w-full">
+    <>
       {shirts.map((shirt, i) => {
         const isFavorite = shirt.shirt_favorite.some(
           (favorite) => favorite.flashes_user == currentUser
@@ -200,6 +200,6 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
           </button>
         </div>
       </dialog>
-    </div>
+    </>
   );
 };
