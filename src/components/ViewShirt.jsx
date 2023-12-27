@@ -97,12 +97,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
         return (
           <div
             key={`shirt-${shirt.id}`}
-            className={`${
-              i === index ? "flex flex-col items-center" : "hidden"
-            }`}
+            className={`${i === index ? "flex justify-between" : "hidden"}`}
           >
             {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            <div className="flex items-center">
+            <div className="__username-pattern-price__ flex items-center">
               <div className="text-3xl font-bold text-white pt-5">
                 {shirt.label}
               </div>
@@ -112,7 +110,8 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 src={`${shirt.flashes_user.profile_image_url}`}
               />
             </div>
-            <div className="relative h-96 w-96 bg-slate-950/10">
+            {/* Shirt Container, contains base SVG layer matched with shirt object color and mapped pattern array */}
+            <div className="__shirt-preview-container__ relative w-[640px] h-[718px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="637px"
