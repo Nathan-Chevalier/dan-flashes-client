@@ -63,7 +63,7 @@ export const Closet = () => {
   }
 
   return (
-    <div className="__closet-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1200px] ml-[96px] rounded-[36px]">
+    <div className="__closet-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1200px] rounded-[36px]">
       <ViewShirt shirts={shirts} updateShirts={updateShirts} />
     </div>
   );

@@ -97,19 +97,34 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
         return (
           <div
             key={`shirt-${shirt.id}`}
-            className={`${i === index ? "flex justify-between" : "hidden"}`}
+            className={`${
+              i === index
+                ? "flex justify-between h-[768px] w-[1645px] items-center"
+                : "hidden"
+            }`}
           >
             {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            <button className="__previous-button__ btn-edit" onClick={handlePrevious}>
-              Previous
-            </button>
-            {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
-            <div className="__user-pattern-price-interaction__ flex flex-col items-center">
-              <div className="__username-image__ flex justify-between">
-                <img
-                  className="h-[96px]"
-                  src={`${shirt.flashes_user.profile_image_url}`}
+            {/* Previous arrow SVG */}
+            <div className="__previous-arrow__ w-[126px]">
+              <svg width="124px" height="104px" className="translate-x-10">
+                <path
+                  fillRule="evenodd"
+                  fill="rgb(85, 195, 240)"
+                  d="M101.56,86.361 L65.323,65.569 C55.191,59.673 55.191,45.13 65.323,39.117 L101.56,18.325 C111.234,12.403 123.990,19.759 123.990,31.551 L123.990,73.135 C123.990,84.926 111.234,92.283 101.56,86.361 ZM48.564,68.854 L92.475,94.253 C87.392,103.40 75.727,107.43 65.914,101.367 L9.703,68.854 C-3.249,61.361 -3.249,42.630 9.703,35.138 L65.914,2.624 C75.727,-3.51 87.392,0.951 92.475,9.739 L48.564,35.138 C35.611,42.630 35.611,61.361 48.564,68.854 Z"
+                  onClick={handlePrevious}
                 />
+              </svg>
+            </div>
+
+            {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
+            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[80%]">
+              <div className="__username-image__ flex justify-between self-start">
+                <div className="h-[128px] w-[128px]">
+                  <img
+                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white"
+                    src={`${shirt.flashes_user.profile_image_url}`}
+                  />
+                </div>
                 <div className="pl-10">
                   by {shirt.flashes_user.flashes_name}
                 </div>
@@ -202,9 +217,17 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <button className="__next-button__ btn-edit" onClick={handleNext}>
-              Next
-            </button>
+            <button className="__next-button__ btn-edit">Next</button>
+            <div className="__next-arrow__ w-[124px]">
+              <svg width="125px" height="104px">
+                <path
+                  fillRule="evenodd"
+                  fill="rgb(85, 195, 240)"
+                  onClick={handleNext}
+                  d="M22.943,86.361 L58.676,65.569 C68.808,59.673 68.808,45.13 58.676,39.117 L22.943,18.325 C12.765,12.403 0.9,19.759 0.9,31.551 L0.9,73.135 C0.9,84.926 12.765,92.283 22.943,86.361 ZM75.435,68.854 L31.524,94.253 C36.607,103.40 48.272,107.43 58.85,101.367 L114.296,68.854 C127.249,61.361 127.249,42.630 114.296,35.138 L58.85,2.624 C48.272,-3.51 36.607,0.951 31.524,9.739 L75.435,35.138 C88.388,42.630 88.388,61.361 75.435,68.854 Z"
+                />
+              </svg>
+            </div>
           </div>
         );
       })}
