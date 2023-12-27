@@ -100,18 +100,75 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             className={`${i === index ? "flex justify-between" : "hidden"}`}
           >
             {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            <div className="__username-pattern-price__ flex items-center">
-              <div className="text-3xl font-bold text-white pt-5">
+            <button className="btn-edit" onClick={handlePrevious}>
+              Previous
+            </button>
+            {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
+            <div className="__user-pattern-price-interaction__ flex flex-col items-center">
+              <div className="__username-image__ flex justify-between">
+                <img
+                  className="h-[96px]"
+                  src={`${shirt.flashes_user.profile_image_url}`}
+                />
+                <div className="pl-10">
+                  by {shirt.flashes_user.flashes_name}
+                </div>
+              </div>
+              <div className="__pattern-choice-container__ flex flex-col flex-wrap"></div>
+              <div>{shirt.price}</div>
+              {!shirt.is_owner ? (
+                isFavorite ? (
+                  <div className="__unfavorite-container__ flex items-center">
+                    <button
+                      className="btn-delete"
+                      onClick={() => {
+                        handleUnfavorite(favId);
+                      }}
+                    >
+                      Unfavorite
+                    </button>
+                    <span>{shirt.shirt_favorite.length}</span>
+                  </div>
+                ) : (
+                  <div className="__favorite-container__ flex items-center">
+                    <button
+                      className="btn-edit"
+                      onClick={() => {
+                        handleFavorite(shirt.id);
+                      }}
+                    >
+                      Favorite
+                    </button>
+                    <span>{shirt.shirt_favorite.length}</span>
+                  </div>
+                )
+              ) : (
+                <div className="__edit-delete-dock__">
+                  <button
+                    className="btn-edit"
+                    onClick={() => {
+                      navigate(`/edit/${shirt.id}`);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn-delete"
+                    onClick={() => {
+                      setDeleteTarget(shirt.id);
+                      deleteModal.current.showModal();
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
+            {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
+            <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
+              <div className="text-3xl font-bold text-white pt-5 absolute">
                 {shirt.label}
               </div>
-              <div className="pl-10">by {shirt.flashes_user.flashes_name}</div>
-              <img
-                className="h-[96px]"
-                src={`${shirt.flashes_user.profile_image_url}`}
-              />
-            </div>
-            {/* Shirt Container, contains base SVG layer matched with shirt object color and mapped pattern array */}
-            <div className="__shirt-preview-container__ relative w-[640px] h-[718px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="637px"
@@ -144,63 +201,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <div>{shirt.price}</div>
-            <div>Favorites: {shirt.shirt_favorite.length} </div>
-            <div className="__button-container__ flex">
-              <button
-                className="btn-edit -translate-x-[400px] -translate-y-[200px]"
-                onClick={handlePrevious}
-              >
-                Previous
-              </button>
-              <button
-                className="btn-edit translate-x-[400px] -translate-y-[200px]"
-                onClick={handleNext}
-              >
-                Next
-              </button>
-            </div>
-            {!shirt.is_owner ? (
-              isFavorite ? (
-                <button
-                  className="btn-delete"
-                  onClick={() => {
-                    handleUnfavorite(favId);
-                  }}
-                >
-                  Unfavorite
-                </button>
-              ) : (
-                <button
-                  className="btn-edit"
-                  onClick={() => {
-                    handleFavorite(shirt.id);
-                  }}
-                >
-                  Favorite
-                </button>
-              )
-            ) : (
-              <div className="__edit-delete-dock__">
-                <button
-                  className="btn-edit"
-                  onClick={() => {
-                    navigate(`/edit/${shirt.id}`);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn-delete"
-                  onClick={() => {
-                    setDeleteTarget(shirt.id);
-                    deleteModal.current.showModal();
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            )}
+            <button className="btn-edit" onClick={handleNext}>
+              Next
+            </button>
+            {/* If the shirt is owned by the current user, the edit/delete button appears, if not the owner than the favorite functionality appears.*/}
           </div>
         );
       })}
