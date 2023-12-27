@@ -100,7 +100,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             className={`${i === index ? "flex justify-between" : "hidden"}`}
           >
             {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            <button className="btn-edit" onClick={handlePrevious}>
+            <button className="__previous-button__ btn-edit" onClick={handlePrevious}>
               Previous
             </button>
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
@@ -116,6 +116,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
               <div className="__pattern-choice-container__ flex flex-col flex-wrap"></div>
               <div>{shirt.price}</div>
+              {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
               {!shirt.is_owner ? (
                 isFavorite ? (
                   <div className="__unfavorite-container__ flex items-center">
@@ -201,10 +202,9 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <button className="btn-edit" onClick={handleNext}>
+            <button className="__next-button__ btn-edit" onClick={handleNext}>
               Next
             </button>
-            {/* If the shirt is owned by the current user, the edit/delete button appears, if not the owner than the favorite functionality appears.*/}
           </div>
         );
       })}
