@@ -148,11 +148,11 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   );
                 })}
               </div>
-              <div className="__price-shape-container__ relative w-[416px] flex justify-center -translate-x-[400px]">
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-40">
                 <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
                   <span className="text-center">${shirt.price}</span>
                 </div>
-                <div>
+                <div className="__price-shape__">
                   <svg width="415.5px" height="215.5px" className="absolute">
                     <path
                     stroke="#ffffff" strokeWidth="4px" strokeLinecap="butt" strokeLinejoin="miter"
@@ -165,9 +165,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] self-end flex items-center justify-center translate-x-44 translate-y-32">
               {!shirt.is_owner ? (
                 isFavorite ? (
-                  <div className="__unfavorite-container__ flex items-center">
+                  <div className="__unfavorite-container__ flex items-center justify-around w-full">
                     <button
                       className="btn-delete"
                       onClick={() => {
@@ -192,7 +193,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   </div>
                 )
               ) : (
-                <div className="__edit-delete-dock__">
+                <div className="__edit-delete-dock__ flex items-center justify-around w-full">
                   <button
                     className="btn-edit"
                     onClick={() => {
@@ -212,6 +213,8 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   </button>
                 </div>
               )}
+              </div>
+
             </div>
             {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
