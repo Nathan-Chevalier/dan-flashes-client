@@ -103,8 +103,8 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 : "hidden"
             }`}
           >
-            {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            {/* Previous arrow SVG */}
+            {/* ^^^ The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
+            {/* vvv Previous arrow SVG */}
             <div className="__previous-arrow__ w-[126px]">
               <svg width="124px" height="104px" className="translate-x-10">
                 <path
@@ -117,24 +117,58 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
 
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
-            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[80%]">
-              <div className="__username-image__ flex justify-between self-start">
-                <div className="h-[128px] w-[128px]">
+            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[740px] h-[768px]">
+              <div className="__username-image__ flex justify-between self-start relative">
+                <div className="h-[128px] w-[128px] z-10">
                   <img
-                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white"
+                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-14 translate-x-8"
                     src={`${shirt.flashes_user.profile_image_url}`}
                   />
                 </div>
-                <div className="pl-10">
-                  by {shirt.flashes_user.flashes_name}
+                <div className="pl-10 flex items-center translate-x-3 -translate-y-8 bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
+                  <span className="text-white text-[56px] font-bold">{`${shirt.flashes_user.flashes_name}'s`}</span>
                 </div>
               </div>
-              <div className="__pattern-choice-container__ flex flex-col flex-wrap"></div>
-              <div>{shirt.price}</div>
+              <div className="__shirt-label-empty__ h-[96px]"></div>
+              {/* Pattern Choices Display*/}
+              <div className="__pattern-choice-container__ flex-col flex-wrap items-start justify-around h-[368px] w-[620px] ml-[122px]">
+                {shirt?.shirt_pattern.map((pattern) => {
+                  return (
+                    <div
+                      key={`pattern-preview-${pattern.id}`}
+                      className="flex items-center gap-2 flex-1"
+                    >
+                      <div className="__preview-image__ w-[64px] h-[64px]">
+                        <img src={pattern.pattern.pattern_preview} />
+                      </div>
+                      <span className="__preview-label__ text-lg font-bold text-white w-max">
+                        {pattern.pattern.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-40">
+                <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
+                  <span className="text-center">${shirt.price}</span>
+                </div>
+                <div className="__price-shape__">
+                  <svg width="415.5px" height="215.5px" className="absolute">
+                    <path
+                    stroke="#ffffff" strokeWidth="4px" strokeLinecap="butt" strokeLinejoin="miter"
+                      fillRule="evenodd"
+                      fill="rgb(219, 125, 33)"
+                      d="M248.78,1.499 L262.147,38.948 L323.56,17.637 L308.474,55.32 L380.442,47.455 L339.429,79.104 L411.500,86.415 L350.300,107.500 L411.500,128.584 L339.429,135.895 L380.442,167.544 L308.474,159.967 L323.56,197.362 L262.147,176.51 L248.78,213.500 L207.500,181.700 L166.921,213.500 L152.852,176.51 L91.943,197.362 L106.525,159.967 L34.557,167.544 L75.570,135.895 L3.499,128.584 L64.699,107.500 L3.499,86.415 L75.570,79.104 L34.557,47.455 L106.525,55.32 L91.943,17.637 L152.852,38.948 L166.921,1.499 L207.500,33.299 L248.78,1.499 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] self-end flex items-center justify-center translate-x-44 translate-y-32">
               {!shirt.is_owner ? (
                 isFavorite ? (
-                  <div className="__unfavorite-container__ flex items-center">
+                  <div className="__unfavorite-container__ flex items-center justify-around w-full">
                     <button
                       className="btn-delete"
                       onClick={() => {
@@ -159,7 +193,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   </div>
                 )
               ) : (
-                <div className="__edit-delete-dock__">
+                <div className="__edit-delete-dock__ flex items-center justify-around w-full">
                   <button
                     className="btn-edit"
                     onClick={() => {
@@ -179,10 +213,12 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   </button>
                 </div>
               )}
+              </div>
+
             </div>
             {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
-              <div className="text-3xl font-bold text-white pt-5 absolute">
+              <div className="text-3xl font-bold text-white pt-5 absolute z-50 -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
               <svg
@@ -217,7 +253,6 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <button className="__next-button__ btn-edit">Next</button>
             <div className="__next-arrow__ w-[124px]">
               <svg width="125px" height="104px">
                 <path
