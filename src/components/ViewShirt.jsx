@@ -127,11 +127,43 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 </div>
                 <div className="pl-10 flex items-center translate-x-3 -translate-y-8 bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
                   <span className="text-white text-[56px] font-bold">{`${shirt.flashes_user.flashes_name}'s`}</span>
-                   
                 </div>
               </div>
-              <div className="__pattern-choice-container__ flex flex-col flex-wrap h-[368px] w-[660px] bg-slate-200"></div>
-              <div>{shirt.price}</div>
+              <div className="__shirt-label-empty__ h-[96px]"></div>
+              {/* Pattern Choices Display*/}
+              <div className="__pattern-choice-container__ flex-col flex-wrap items-start justify-around h-[368px] w-[620px] ml-[122px]">
+                {shirt?.shirt_pattern.map((pattern) => {
+                  return (
+                    <div
+                      key={`pattern-preview-${pattern.id}`}
+                      className="flex items-center gap-2 flex-1"
+                    >
+                      <div className="__preview-image__ w-[64px] h-[64px]">
+                        <img src={pattern.pattern.pattern_preview} />
+                      </div>
+                      <span className="__preview-label__ text-lg font-bold text-white w-max">
+                        {pattern.pattern.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center -translate-x-[400px]">
+                <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
+                  <span className="text-center">${shirt.price}</span>
+                </div>
+                <div>
+                  <svg width="415.5px" height="215.5px" className="absolute">
+                    <path
+                    stroke="#ffffff" strokeWidth="4px" strokeLinecap="butt" strokeLinejoin="miter"
+                      fillRule="evenodd"
+                      fill="rgb(219, 125, 33)"
+                      d="M248.78,1.499 L262.147,38.948 L323.56,17.637 L308.474,55.32 L380.442,47.455 L339.429,79.104 L411.500,86.415 L350.300,107.500 L411.500,128.584 L339.429,135.895 L380.442,167.544 L308.474,159.967 L323.56,197.362 L262.147,176.51 L248.78,213.500 L207.500,181.700 L166.921,213.500 L152.852,176.51 L91.943,197.362 L106.525,159.967 L34.557,167.544 L75.570,135.895 L3.499,128.584 L64.699,107.500 L3.499,86.415 L75.570,79.104 L34.557,47.455 L106.525,55.32 L91.943,17.637 L152.852,38.948 L166.921,1.499 L207.500,33.299 L248.78,1.499 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
               {!shirt.is_owner ? (
                 isFavorite ? (
