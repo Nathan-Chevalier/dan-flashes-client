@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import shirtButtons from "../assets/shirt_buttons.png"
+import shirtMultiply from "../assets/shirt_multiply.png"
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -148,11 +150,12 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   );
                 })}
               </div>
-              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-40">
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-[100]">
                 <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
                   <span className="text-center">${shirt.price}</span>
                 </div>
                 <div className="__price-shape__">
+                  {/* Price Starburst */}
                   <svg width="415.5px" height="215.5px" className="absolute">
                     <path
                     stroke="#ffffff" strokeWidth="4px" strokeLinecap="butt" strokeLinejoin="miter"
@@ -221,6 +224,9 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               <div className="text-3xl font-bold text-white pt-5 absolute z-50 -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
+              <img alt="Shirt Button Layer" src={shirtButtons} className="absolute z-50"/>
+              <img alt="Magical Shirt Multiply Layer" className="absolute z-40 mix-blend-multiply" src={shirtMultiply}/>
+              {/* Shirt SVG Base color layer */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="637px"
