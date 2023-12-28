@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import shirtButtons from "../assets/shirt_buttons.png"
-import shirtMultiply from "../assets/shirt_multiply.png"
+import shirtButtons from "../assets/shirt_buttons.png";
+import shirtMultiply from "../assets/shirt_multiply.png";
+import shirtScreen from "../assets/shirt_screen.png";
+import shirtShadow from "../assets/shirt_shadow.png";
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -158,7 +160,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   {/* Price Starburst */}
                   <svg width="415.5px" height="215.5px" className="absolute">
                     <path
-                    stroke="#ffffff" strokeWidth="4px" strokeLinecap="butt" strokeLinejoin="miter"
+                      stroke="#ffffff"
+                      strokeWidth="4px"
+                      strokeLinecap="butt"
+                      strokeLinejoin="miter"
                       fillRule="evenodd"
                       fill="rgb(219, 125, 33)"
                       d="M248.78,1.499 L262.147,38.948 L323.56,17.637 L308.474,55.32 L380.442,47.455 L339.429,79.104 L411.500,86.415 L350.300,107.500 L411.500,128.584 L339.429,135.895 L380.442,167.544 L308.474,159.967 L323.56,197.362 L262.147,176.51 L248.78,213.500 L207.500,181.700 L166.921,213.500 L152.852,176.51 L91.943,197.362 L106.525,159.967 L34.557,167.544 L75.570,135.895 L3.499,128.584 L64.699,107.500 L3.499,86.415 L75.570,79.104 L34.557,47.455 L106.525,55.32 L91.943,17.637 L152.852,38.948 L166.921,1.499 L207.500,33.299 L248.78,1.499 Z"
@@ -169,63 +174,80 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
               <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] self-end flex items-center justify-center translate-x-44 translate-y-32">
-              {!shirt.is_owner ? (
-                isFavorite ? (
-                  <div className="__unfavorite-container__ flex items-center justify-around w-full">
-                    <button
-                      className="btn-delete"
-                      onClick={() => {
-                        handleUnfavorite(favId);
-                      }}
-                    >
-                      Unfavorite
-                    </button>
-                    <span>{shirt.shirt_favorite.length}</span>
-                  </div>
+                {!shirt.is_owner ? (
+                  isFavorite ? (
+                    <div className="__unfavorite-container__ flex items-center justify-around w-full">
+                      <button
+                        className="btn-delete"
+                        onClick={() => {
+                          handleUnfavorite(favId);
+                        }}
+                      >
+                        Unfavorite
+                      </button>
+                      <span>{shirt.shirt_favorite.length}</span>
+                    </div>
+                  ) : (
+                    <div className="__favorite-container__ flex items-center">
+                      <button
+                        className="btn-edit"
+                        onClick={() => {
+                          handleFavorite(shirt.id);
+                        }}
+                      >
+                        Favorite
+                      </button>
+                      <span>{shirt.shirt_favorite.length}</span>
+                    </div>
+                  )
                 ) : (
-                  <div className="__favorite-container__ flex items-center">
+                  <div className="__edit-delete-dock__ flex items-center justify-around w-full">
                     <button
                       className="btn-edit"
                       onClick={() => {
-                        handleFavorite(shirt.id);
+                        navigate(`/edit/${shirt.id}`);
                       }}
                     >
-                      Favorite
+                      Edit
                     </button>
-                    <span>{shirt.shirt_favorite.length}</span>
+                    <button
+                      className="btn-delete"
+                      onClick={() => {
+                        setDeleteTarget(shirt.id);
+                        deleteModal.current.showModal();
+                      }}
+                    >
+                      Delete
+                    </button>
                   </div>
-                )
-              ) : (
-                <div className="__edit-delete-dock__ flex items-center justify-around w-full">
-                  <button
-                    className="btn-edit"
-                    onClick={() => {
-                      navigate(`/edit/${shirt.id}`);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn-delete"
-                    onClick={() => {
-                      setDeleteTarget(shirt.id);
-                      deleteModal.current.showModal();
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
+                )}
               </div>
-
             </div>
             {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
               <div className="text-3xl font-bold text-white pt-5 absolute z-50 -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
-              <img alt="Shirt Button Layer" src={shirtButtons} className="absolute z-50"/>
-              <img alt="Magical Shirt Multiply Layer" className="absolute z-40 mix-blend-multiply" src={shirtMultiply}/>
+              <img
+                alt="Shirt Shadow Layer"
+                src={shirtShadow}
+                className="absolute z-50"
+              />
+              <img
+                alt="Shirt Screen Layer"
+                src={shirtScreen}
+                className="absolute z-[41] mix-blend-screen opacity-[25%]"
+              />
+              <img
+                alt="Shirt Button Layer"
+                src={shirtButtons}
+                className="absolute z-50"
+              />
+              <img
+                alt="Shirt Multiply Layer"
+                className="absolute z-40 mix-blend-multiply opacity-[70%]"
+                src={shirtMultiply}
+              />
               {/* Shirt SVG Base color layer */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
