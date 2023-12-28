@@ -103,8 +103,8 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 : "hidden"
             }`}
           >
-            {/* The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
-            {/* Previous arrow SVG */}
+            {/* ^^^ The above code creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index*/}
+            {/* vvv Previous arrow SVG */}
             <div className="__previous-arrow__ w-[126px]">
               <svg width="124px" height="104px" className="translate-x-10">
                 <path
@@ -117,19 +117,20 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
 
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
-            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[80%]">
-              <div className="__username-image__ flex justify-between self-start">
-                <div className="h-[128px] w-[128px]">
+            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[740px] h-[768px]">
+              <div className="__username-image__ flex justify-between self-start relative">
+                <div className="h-[128px] w-[128px] z-10">
                   <img
-                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white"
+                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-14 translate-x-8"
                     src={`${shirt.flashes_user.profile_image_url}`}
                   />
                 </div>
-                <div className="pl-10">
-                  by {shirt.flashes_user.flashes_name}
+                <div className="pl-10 flex items-center translate-x-3 -translate-y-8 bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
+                  <span className="text-white text-[56px] font-bold">{`${shirt.flashes_user.flashes_name}'s`}</span>
+                   
                 </div>
               </div>
-              <div className="__pattern-choice-container__ flex flex-col flex-wrap"></div>
+              <div className="__pattern-choice-container__ flex flex-col flex-wrap h-[368px] w-[660px] bg-slate-200"></div>
               <div>{shirt.price}</div>
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
               {!shirt.is_owner ? (
@@ -182,7 +183,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
             {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
-              <div className="text-3xl font-bold text-white pt-5 absolute">
+              <div className="text-3xl font-bold text-white pt-5 absolute z-50">
                 {shirt.label}
               </div>
               <svg
@@ -217,7 +218,6 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <button className="__next-button__ btn-edit">Next</button>
             <div className="__next-arrow__ w-[124px]">
               <svg width="125px" height="104px">
                 <path
