@@ -2,8 +2,8 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import shirtButtons from "../assets/shirt_buttons.png";
 import shirtMultiply from "../assets/shirt_multiply.png";
-import shirtScreen from "../assets/shirt_screen.png";
 import shirtShadow from "../assets/shirt_shadow.png";
+import shirtOverlay from "../assets/shirt_overlay.png"
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -152,7 +152,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   );
                 })}
               </div>
-              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-[100]">
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-[150]">
                 <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
                   <span className="text-center">${shirt.price}</span>
                 </div>
@@ -228,24 +228,25 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               <div className="text-3xl font-bold text-white pt-5 absolute z-50 -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
+              {/* Blending stack, adds texture to the shirt*/}
+              <img
+                alt="Shirt Overlay Layer"
+                src={shirtOverlay}
+                className="absolute z-[103] mix-blend-overlay"
+              />
               <img
                 alt="Shirt Shadow Layer"
                 src={shirtShadow}
-                className="absolute z-50"
-              />
-              <img
-                alt="Shirt Screen Layer"
-                src={shirtScreen}
-                className="absolute z-[41] mix-blend-screen opacity-[25%]"
+                className="absolute z-[102]"
               />
               <img
                 alt="Shirt Button Layer"
                 src={shirtButtons}
-                className="absolute z-50"
+                className="absolute z-[101]"
               />
               <img
                 alt="Shirt Multiply Layer"
-                className="absolute z-40 mix-blend-multiply opacity-[70%]"
+                className="absolute z-[100] mix-blend-multiply opacity-[70%]"
                 src={shirtMultiply}
               />
               {/* Shirt SVG Base color layer */}
