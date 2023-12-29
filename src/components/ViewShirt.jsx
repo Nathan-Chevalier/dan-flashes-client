@@ -225,7 +225,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
             {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
-              <div className="text-3xl font-bold text-white pt-5 absolute z-50 -translate-x-[630px] translate-y-16 text-[96px] w-max">
+              <div className="text-3xl font-bold text-white pt-5 absolute z-[200] -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
               {/* Blending stack, adds texture to the shirt*/}
