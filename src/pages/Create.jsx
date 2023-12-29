@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllColors, getAllPatterns } from "../services/fetchServices";
 import { PatternCarousel } from "../components/PatternCarousel";
+import shirtButtons from "../assets/shirt_buttons.png";
+import shirtMultiply from "../assets/shirt_multiply.png";
+import shirtShadow from "../assets/shirt_shadow.png";
+import shirtOverlay from "../assets/shirt_overlay.png";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -10,7 +14,7 @@ export const Create = () => {
 
   const [shirt, setShirt] = useState({
     color: 1,
-    label: "useStateShirt",
+    label: "",
     public: false,
     price: "",
     patterns: [],
@@ -123,11 +127,12 @@ export const Create = () => {
     <div className="__shirt-form-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1212px] rounded-[36px]">
       <form className="__shirt-form__ h-full w-full rounded-xl flex">
         <div className="__label-preview-color-container__ flex flex-col h-full items-center justify-between pl-8">
-          <fieldset>
+          <fieldset className="__label-input__ w-full px-10 translate-y-8">
             {/* Label input */}
             <input
               type="text"
               className="__label-input__ input-text"
+              placeholder="Name your design..."
               value={shirt.label}
               onChange={(event) => {
                 const copy = { ...shirt };
@@ -138,6 +143,27 @@ export const Create = () => {
           </fieldset>
           {/* Shirt Preview */}
           <div className="__shirt-preview__ h-[571px] w-[509px] relative">
+            {/* Shirt Texture blend stack */}
+            <img
+              alt="Shirt Overlay Layer"
+              src={shirtOverlay}
+              className="absolute z-[103] mix-blend-overlay"
+            />
+            <img
+              alt="Shirt Shadow Layer"
+              src={shirtShadow}
+              className="absolute z-[102]"
+            />
+            <img
+              alt="Shirt Button Layer"
+              src={shirtButtons}
+              className="absolute z-[101]"
+            />
+            <img
+              alt="Shirt Multiply Layer"
+              className="absolute z-[100] mix-blend-multiply opacity-[70%]"
+              src={shirtMultiply}
+            />
             {/* Shirt Color SVG*/}
             <svg width="509px" height="571px" className="absolute">
               <path
@@ -151,13 +177,13 @@ export const Create = () => {
               return (
                 <>
                   <img
-                    className="absolute top-[35%] left-[35%]"
+                    className="absolute w-full h-full"
                     src={pattern.pattern_url_a}
                     alt={`pattern_url_a_${pattern?.pattern_index}`}
                     style={{ zIndex: pattern?.pattern_index * 2 }}
                   />
                   <img
-                    className="absolute top-[35%] left-[35%]"
+                    className="absolute w-full h-full"
                     src={pattern.pattern_url_b}
                     alt={`pattern_url_b_${pattern?.pattern_index}`}
                     style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
@@ -167,7 +193,7 @@ export const Create = () => {
             })}
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex items-center">
+          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
@@ -191,8 +217,8 @@ export const Create = () => {
             })}
           </fieldset>
         </div>
-        <div className="__pattern-public-save-container__ flex flex-col">
-          <div className="__pattern-first-trio-container__ flex">
+        <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
+          <div className="__pattern-first-trio-container__ flex w-full h-[248px]">
             <div className="__choice-a-container__ flex flex-col items-center">
               <PatternCarousel
                 patterns={patterns}
@@ -232,7 +258,7 @@ export const Create = () => {
               ""
             )}
           </div>
-          <div className="__pattern-second-trio-container__ flex">
+          <div className="__pattern-second-trio-container__ flex w-full h-[248px]">
             {patternC ? (
               <div className="__choice-D-container__ flex flex-col items-center">
                 <PatternCarousel
