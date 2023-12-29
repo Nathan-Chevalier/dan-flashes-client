@@ -30,16 +30,16 @@ export const PatternCarousel = ({
   }, [currentId]);
 
   return (
-    <div>
+    <>
       {patterns.map((pattern, i) => {
         return (
           <div
             key={pattern.id}
-            className={`${i === index ? "flex flex-col" : "hidden"}`}
+            className={`${i === index ? "flex flex-col items-center w-[170px] h-[246px]" : "hidden"}`}
           >
             <span>{`Pattern ${i + 1}`}</span>
             <img src={pattern.pattern_preview} />
-            <div className="__buttons-container__">
+            <div className="__buttons-container__ flex">
               <button className="btn-edit" onClick={handlePrevious}>
                 Previous
               </button>
@@ -83,6 +83,6 @@ export const PatternCarousel = ({
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
