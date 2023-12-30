@@ -4,6 +4,10 @@ import { getOneShirt } from "../services/fetchServices";
 import { getAllColors } from "../services/fetchServices";
 import { getAllPatterns } from "../services/fetchServices";
 import { PatternCarousel } from "../components/PatternCarousel";
+import shirtButtons from "../assets/shirt_buttons.png";
+import shirtMultiply from "../assets/shirt_multiply.png";
+import shirtShadow from "../assets/shirt_shadow.png";
+import shirtOverlay from "../assets/shirt_overlay.png";
 
 export const Edit = () => {
   const navigate = useNavigate();
@@ -72,13 +76,13 @@ export const Edit = () => {
     getOneShirt(shirtId).then((shirtObject) => {
       setShirt(shirtObject);
       setIsPublic(shirtObject.public);
-      const shirtPatterns = shirtObject.shirt_pattern.map(pattern => ({
+      const shirtPatterns = shirtObject.shirt_pattern.map((pattern) => ({
         patternId: pattern.pattern.id,
         pattern_url_a: pattern.pattern.pattern_url_a,
         pattern_url_b: pattern.pattern.pattern_url_b,
-        pattern_index: pattern.pattern_index
-      }))
-      setSelectedPatterns(shirtPatterns)
+        pattern_index: pattern.pattern_index,
+      }));
+      setSelectedPatterns(shirtPatterns);
 
       //? Loop through each pattern in the shirt_pattern array
       shirtPatterns.forEach((patternObj) => {
@@ -119,7 +123,6 @@ export const Edit = () => {
     getAllPatterns().then((patternsArray) => {
       setPatterns(patternsArray);
     });
-
   }, []);
 
   const updateSelectedPatterns = (newPattern) => {
@@ -142,7 +145,7 @@ export const Edit = () => {
   };
 
   const removeSelectedPattern = (patternIndex) => {
-    setSelectedPatterns((prevPatterns) => 
+    setSelectedPatterns((prevPatterns) =>
       prevPatterns.filter((p) => p.pattern_index !== patternIndex)
     );
   };
@@ -189,10 +192,10 @@ export const Edit = () => {
   };
 
   return (
-    <div className="__shirt-form-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1024px] ml-[96px] rounded-[36px]">
-      <form className="__shirt-form__ h-[794px] w-[1278px] rounded-xl flex">
-        <div className="__label-preview-color-container__ flex flex-col">
-          <fieldset>
+    <div className="__shirt-form-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1212px] rounded-[36px]">
+      <form className="__shirt-form__ h-full w-full rounded-xl flex">
+        <div className="__label-preview-color-container__ flex flex-col h-full items-center justify-between pl-8">
+          <fieldset className="__label-input__ w-full px-10 translate-y-8">
             {/* Label input */}
             <input
               type="text"
@@ -205,28 +208,58 @@ export const Edit = () => {
               }}
             />
           </fieldset>
-          <div className="__image-preview__ h-[256px] w-[256px] relative" style={{backgroundColor: `${shirt.color.color}`}}>
+          {/* Shirt Preview */}
+          <div className="__image-preview__ h-[571px] w-[509px] relative">
+            {/* Shirt Texture blend stack */}
+            <img
+              alt="Shirt Overlay Layer"
+              src={shirtOverlay}
+              className="absolute z-[103] mix-blend-overlay"
+            />
+            <img
+              alt="Shirt Shadow Layer"
+              src={shirtShadow}
+              className="absolute z-[102]"
+            />
+            <img
+              alt="Shirt Button Layer"
+              src={shirtButtons}
+              className="absolute z-[101]"
+            />
+            <img
+              alt="Shirt Multiply Layer"
+              className="absolute z-[100] mix-blend-multiply opacity-[40%]"
+              src={shirtMultiply}
+            />
+            {/* Shirt Color SVG*/}
+            <svg width="509px" height="571px" className="absolute">
+              <path
+                fillRule="evenodd"
+                fill={`${shirt.color.color}`}
+                d="M243.733,566.618 C243.733,566.618 167.744,559.122 148.33,545.86 C148.33,545.86 101.552,530.412 96.196,508.401 C96.196,508.401 107.932,283.187 103.373,271.543 C103.373,271.543 91.104,282.594 85.828,283.506 C85.828,283.506 75.603,273.194 75.461,269.948 C75.461,269.948 46.361,240.231 42.763,234.61 C39.166,227.891 26.955,221.356 24.421,217.313 C21.886,213.270 0.496,192.591 0.496,192.591 L0.496,189.401 C0.496,189.401 13.929,178.291 16.446,173.451 C18.962,168.610 27.611,159.893 27.611,159.893 C27.611,159.893 37.854,138.948 52.333,126.398 C52.333,126.398 60.716,110.770 70.676,100.81 C70.676,100.81 80.653,82.591 85.828,78.548 C85.828,78.548 132.757,46.970 191.896,31.496 C191.896,31.496 196.823,9.753 214.226,3.583 C214.226,3.583 217.823,0.393 252.506,0.393 C287.188,0.393 301.153,6.773 301.153,6.773 C301.153,6.773 311.131,15.70 313.913,26.711 C313.913,26.711 317.777,26.501 317.901,28.306 C317.901,28.306 376.260,48.831 399.246,62.598 C410.3,68.391 419.183,72.168 419.183,72.168 C419.183,72.168 431.22,83.655 446.298,104.68 C461.575,124.482 486.847,168.721 508.503,194.186 C508.503,194.186 508.645,196.900 505.313,199.768 C501.981,202.637 487.113,222.154 467.831,234.858 C448.549,247.563 428.629,266.282 423.968,267.556 C421.168,268.298 419.183,271.543 419.183,271.543 C419.183,271.543 405.502,263.624 404.828,259.581 C404.828,259.581 413.38,491.255 418.386,506.8 C418.386,506.8 391.904,529.136 341.826,547.478 C291.747,565.820 284.406,565.821 284.406,565.821 L245.328,570.606 C245.328,570.606 243.733,569.170 243.733,566.618 Z"
+              />
+            </svg>
             {selectedPatterns.map((pattern) => {
-                return (
-                  <>
-                    <img
-                      className="absolute top-[35%] left-[35%]"
-                      src={pattern.pattern_url_a}
-                      alt={`pattern_url_a_${pattern?.pattern_index}`}
-                      style={{ zIndex: pattern?.pattern_index * 2 }}
-                    />
-                    <img
-                      className="absolute top-[35%] left-[35%]"
-                      src={pattern.pattern_url_b}
-                      alt={`pattern_url_b_${pattern?.pattern_index}`}
-                      style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
-                    />
-                  </>
-                );
-              })}
+              return (
+                <>
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_a}
+                    alt={`pattern_url_a_${pattern?.pattern_index}`}
+                    style={{ zIndex: pattern?.pattern_index * 2 }}
+                  />
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_b}
+                    alt={`pattern_url_b_${pattern?.pattern_index}`}
+                    style={{ zIndex: pattern?.pattern_index * 2 + 1 }}
+                  />
+                </>
+              );
+            })}
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex items-center">
+          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
@@ -250,8 +283,8 @@ export const Edit = () => {
             })}
           </fieldset>
         </div>
-        <div className="__pattern-public-save-container__ flex flex-col">
-          <div className="__pattern-first-trio-container__ flex">
+        <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
+        <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
             <div className="__choice-a-container__ flex flex-col items-center">
               <PatternCarousel
                 patterns={patterns}
@@ -263,7 +296,7 @@ export const Edit = () => {
               />
             </div>
             {patternA ? (
-              <div className="__choice-b-container__ flex flex-col items-center">
+              <div className="__choice-b-container__ flex flex-col items-center px-12">
                 <PatternCarousel
                   patterns={patterns}
                   setPatternChoice={setPatternB}
@@ -291,7 +324,7 @@ export const Edit = () => {
               ""
             )}
           </div>
-          <div className="__pattern-second-trio-container__ flex">
+          <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
             {patternC ? (
               <div className="__choice-D-container__ flex flex-col items-center">
                 <PatternCarousel
@@ -307,7 +340,7 @@ export const Edit = () => {
               ""
             )}
             {patternD ? (
-              <div className="__choice-E-container__ flex flex-col items-center">
+              <div className="__choice-E-container__ flex flex-col items-center px-12">
                 <PatternCarousel
                   patterns={patterns}
                   setPatternChoice={setPatternE}
@@ -335,7 +368,7 @@ export const Edit = () => {
               ""
             )}
           </div>
-          <div className="__public-toggle-save-container__ flex">
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
               <label>
                 <input
