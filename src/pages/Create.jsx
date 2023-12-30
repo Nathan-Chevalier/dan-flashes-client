@@ -305,11 +305,11 @@ export const Create = () => {
           <div className="__public-toggle-save-container__ flex self-end pr-8 mb-8 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
               <label>
-                <span className="mr-2">Share Design</span>
+                <span className="mr-2 text-white font-bold">Share Design</span>
                 <input
                   type="checkbox"
                   checked={isPublic}
-                  className="mr-2"
+                  className="mr-2 scale-150"
                   onChange={() => setIsPublic(!isPublic)}
                 />
               </label>
