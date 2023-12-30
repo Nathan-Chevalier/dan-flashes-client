@@ -13,7 +13,7 @@ export const Create = () => {
   const [isPublic, setIsPublic] = useState(false);
 
   const [shirt, setShirt] = useState({
-    color: 1,
+    color: {color: "#9d9fdc"},
     label: "",
     public: false,
     price: "",
@@ -161,7 +161,7 @@ export const Create = () => {
             />
             <img
               alt="Shirt Multiply Layer"
-              className="absolute z-[100] mix-blend-multiply opacity-[70%]"
+              className="absolute z-[100] mix-blend-multiply opacity-[40%]"
               src={shirtMultiply}
             />
             {/* Shirt Color SVG*/}

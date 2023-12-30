@@ -6,7 +6,7 @@ export const PatternCarousel = ({
   pIndex,
   currentId,
   updateSelectedPatterns,
-  removeSelectedPattern
+  removeSelectedPattern,
 }) => {
   const [index, setIndex] = useState(0);
   const length = patterns.length;
@@ -25,7 +25,7 @@ export const PatternCarousel = ({
 
   useEffect(() => {
     if (currentId) {
-      setIndex(currentId -1)
+      setIndex(currentId - 1);
     }
   }, [currentId]);
 
@@ -35,16 +35,26 @@ export const PatternCarousel = ({
         return (
           <div
             key={pattern.id}
-            className={`${i === index ? "flex flex-col items-center w-[170px] h-[246px]" : "hidden"}`}
+            className={`${
+              i === index
+                ? "flex flex-col items-center w-[170px] h-[246px]"
+                : "hidden"
+            }`}
           >
             <span>{`Pattern ${i + 1}`}</span>
-            <img src={pattern.pattern_preview} />
-            <div className="__buttons-container__ flex">
-              <button className="btn-edit" onClick={handlePrevious}>
-                Previous
+            <div className="__pattern-preview)__ w-[170px] h-[170px] flex items-center justify-center">
+              <img src={pattern.pattern_preview} />
+            </div>
+
+            <div className="__buttons-container__ flex items-center justify-between w-full mb-2">
+              <button
+                className="btn-edit h-[60px] w-[48px]"
+                onClick={handlePrevious}
+              >
+                P
               </button>
               <button
-                className="btn-edit"
+                className="btn-edit w-[42px] h-[60px]"
                 onClick={(event) => {
                   event.preventDefault();
                   const patternId = parseInt(pattern.id);
@@ -56,30 +66,29 @@ export const PatternCarousel = ({
                     patternId: pattern.id,
                     pattern_url_a: pattern.pattern_url_a,
                     pattern_url_b: pattern.pattern_url_b,
-                    pattern_index: pIndex
-                  })
+                    pattern_index: pIndex,
+                  });
                 }}
               >
-                Select
+                S
               </button>
-              <button className="btn-edit" onClick={handleNext}>
-                Next
+              <button
+                className="btn-edit h-[60px] w-[48px]"
+                onClick={handleNext}
+              >
+                N
               </button>
             </div>
-            {pIndex > 1 ? (
-              <button
-                className="btn-edit"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setPatternChoice(null);
-                  removeSelectedPattern(pIndex)
-                }}
-              >
-                Remove
-              </button>
-            ) : (
-              ""
-            )}
+            <button
+              className="btn-edit"
+              onClick={(event) => {
+                event.preventDefault();
+                setPatternChoice(null);
+                removeSelectedPattern(pIndex);
+              }}
+            >
+              R
+            </button>
           </div>
         );
       })}
