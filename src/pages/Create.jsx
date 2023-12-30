@@ -218,7 +218,7 @@ export const Create = () => {
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
-          <div className="__pattern-first-trio-container__ flex w-full h-[248px]">
+          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
             <div className="__choice-a-container__ flex flex-col items-center">
               <PatternCarousel
                 patterns={patterns}
@@ -230,7 +230,7 @@ export const Create = () => {
               />
             </div>
             {patternA ? (
-              <div className="__choice-b-container__ flex flex-col items-center">
+              <div className="__choice-b-container__ flex flex-col items-center px-12">
                 <PatternCarousel
                   patterns={patterns}
                   setPatternChoice={setPatternB}
@@ -258,7 +258,7 @@ export const Create = () => {
               ""
             )}
           </div>
-          <div className="__pattern-second-trio-container__ flex w-full h-[248px]">
+          <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
             {patternC ? (
               <div className="__choice-D-container__ flex flex-col items-center">
                 <PatternCarousel
@@ -274,7 +274,7 @@ export const Create = () => {
               ""
             )}
             {patternD ? (
-              <div className="__choice-E-container__ flex flex-col items-center">
+              <div className="__choice-E-container__ flex flex-col items-center px-12">
                 <PatternCarousel
                   patterns={patterns}
                   setPatternChoice={setPatternE}
@@ -302,15 +302,16 @@ export const Create = () => {
               ""
             )}
           </div>
-          <div className="__public-toggle-save-container__ flex">
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-8 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
               <label>
+                <span className="mr-2">Share Design</span>
                 <input
                   type="checkbox"
                   checked={isPublic}
+                  className="mr-2"
                   onChange={() => setIsPublic(!isPublic)}
                 />
-                Share this shirt?
               </label>
             </fieldset>
             <button
