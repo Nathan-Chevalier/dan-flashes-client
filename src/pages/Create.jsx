@@ -302,7 +302,7 @@ export const Create = () => {
               ""
             )}
           </div>
-          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-8 items-center justify-center gap-4">
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
               <label>
                 <span className="mr-2 text-white font-bold">Share Design</span>

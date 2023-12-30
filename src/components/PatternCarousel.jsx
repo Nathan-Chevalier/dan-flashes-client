@@ -42,7 +42,7 @@ export const PatternCarousel = ({
             }`}
           >
             <span>{`Pattern ${i + 1}`}</span>
-            <div className="__pattern-preview)__ w-[170px] h-[170px] flex items-center justify-center">
+            <div className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col">
               <img src={pattern.pattern_preview} />
             </div>
 
