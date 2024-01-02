@@ -263,23 +263,21 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 />
               </svg>
               {shirt?.shirt_pattern.map((pattern, index) => {
-                // Calculate z-index for pattern_url_a (0, 2, 4, ...)
-                const zIndexA = index * 2;
-
-                // Calculate z-index for pattern_url_b, starting after the last pattern_url_a
-                // If there are N patterns, the first pattern_url_b will have z-index of 2N
-                const zIndexB = 2 * shirt?.shirt_pattern.length + index * 2;
+                // Calculate z-index for pattern_url_a and pattern_url_b for interleaving layers based on odd/even
+                const zIndexA = index % 2 === 0 ? index * 2 : index * 2 - 1;
+                const zIndexB =
+                  index % 2 === 0
+                    ? 2 * (shirt?.shirt_pattern.length / 2) + index * 2
+                    : 2 * (shirt?.shirt_pattern.length / 2) + index * 2 - 1;
 
                 return (
                   <>
-                    {/* pattern_url_a with its calculated z-index */}
                     <img
                       className="absolute w-[640px] h-[718px]"
                       src={pattern?.pattern.pattern_url_a}
                       alt={`pattern_url_a_${index + 1}`}
                       style={{ zIndex: zIndexA }}
                     />
-                    {/* pattern_url_b with its calculated z-index */}
                     <img
                       className="absolute w-[640px] h-[718px]"
                       src={pattern?.pattern.pattern_url_b}
