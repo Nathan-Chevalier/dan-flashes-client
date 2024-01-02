@@ -48,7 +48,7 @@ export const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1212px] rounded-[36px]">
+    <div className="flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1212px] rounded-[36px] outline outline-white outline-8">
       <ViewShirt shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
