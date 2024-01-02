@@ -6,6 +6,8 @@ import shirtShadow from "../assets/shirt_shadow.png";
 import shirtOverlay from "../assets/shirt_overlay.png";
 import shirtDelete from "../assets/button_delete_shirt.png"
 import shirtEdit from "../assets/button_edit_shirt.png"
+import shirtFavorite from "../assets/button_favorite_shirt.png"
+import shirtUnfavorite from "../assets/button_unfavorite_shirt.png"
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -175,29 +177,29 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
-              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] self-end flex items-center justify-center translate-x-44 translate-y-32">
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] outline outline-white outline-8 self-end flex items-center justify-center translate-x-44 translate-y-32">
                 {!shirt.is_owner ? (
                   isFavorite ? (
-                    <div className="__unfavorite-container__ flex items-center justify-around w-full">
+                    <div className="__unfavorite-container__ flex items-center justify-center gap-4 w-full">
                       <button
-                        className="btn-delete"
+                        className=""
                         onClick={() => {
                           handleUnfavorite(favId);
                         }}
                       >
-                        Unfavorite
+                        <img src={shirtUnfavorite} alt="Unfavorite Shirt" />
                       </button>
                       <span>{shirt.shirt_favorite.length}</span>
                     </div>
                   ) : (
-                    <div className="__favorite-container__ flex items-center">
+                    <div className="__favorite-container__ flex items-center justify-center gap-4 w-full">
                       <button
-                        className="btn-edit"
+                        className=""
                         onClick={() => {
                           handleFavorite(shirt.id);
                         }}
                       >
-                        Favorite
+                        <img src={shirtFavorite} alt="Favorite Shirt" />
                       </button>
                       <span>{shirt.shirt_favorite.length}</span>
                     </div>
