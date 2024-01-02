@@ -24,14 +24,14 @@ html {
   background-image: url("/src/assets/FlashesBG.png")
 }
 
-.__button-previous__ {
-  background-color: aqua;
+.__button-pattern-nav__ {
+  background-image: url("/src/assets/nav_pattern.png")
 }
 
-.__button-previous__:hover {
-  background-color: blue;
+.__button-pattern-nav__:hover {
+  background-image: url("/src/assets/nav_pattern_hover.png")
 }
 
-.__button-previous__:active {
-  background-color: red
+.__button-pattern-nav__:active {
+  background-image: url("/src/assets/nav_pattern_active.png")
 }
