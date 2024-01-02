@@ -4,6 +4,8 @@ import shirtButtons from "../assets/shirt_buttons.png";
 import shirtMultiply from "../assets/shirt_multiply.png";
 import shirtShadow from "../assets/shirt_shadow.png";
 import shirtOverlay from "../assets/shirt_overlay.png";
+import shirtDelete from "../assets/button_delete_shirt.png"
+import shirtEdit from "../assets/button_edit_shirt.png"
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -203,12 +205,12 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 ) : (
                   <div className="__edit-delete-dock__ flex items-center justify-around w-full">
                     <button
-                      className="btn-edit"
+                      className="w-[64px] h-[64px]"
                       onClick={() => {
                         navigate(`/edit/${shirt.id}`);
                       }}
                     >
-                      Edit
+                      <img src={shirtEdit} alt="Edit Shirt Button"/>
                     </button>
                     <button
                       className="btn-delete"
@@ -217,7 +219,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                         deleteModal.current.showModal();
                       }}
                     >
-                      Delete
+                      <img src={shirtDelete} alt="Delete Shirt Button"/>
                     </button>
                   </div>
                 )}
