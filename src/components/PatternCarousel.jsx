@@ -7,6 +7,7 @@ export const PatternCarousel = ({
   currentId,
   updateSelectedPatterns,
   removeSelectedPattern,
+  shirtColor
 }) => {
   const [index, setIndex] = useState(0);
   const length = patterns.length;
@@ -37,12 +38,22 @@ export const PatternCarousel = ({
             key={pattern.id}
             className={`${
               i === index
-                ? "flex flex-col items-center w-[170px] h-[246px]"
+                ? "flex flex-col items-center w-[170px] h-[max]"
                 : "hidden"
             }`}
           >
-            <span>{`Pattern ${i + 1}`}</span>
-            <div className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col">
+            <button
+              className="self-end rounded-full bg-red-700 h-[24px] w-[24px]"
+              onClick={(event) => {
+                event.preventDefault();
+                setPatternChoice(null);
+                removeSelectedPattern(pIndex);
+              }}
+            >
+              X
+            </button>
+            <span className="bg-orange-600 px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-10">{pattern.label}</span>
+            <div className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col rounded-full overflow-hidden" style={{backgroundColor: `${shirtColor}`}}>
               <img src={pattern.pattern_preview} />
             </div>
 
@@ -79,16 +90,6 @@ export const PatternCarousel = ({
                 N
               </button>
             </div>
-            <button
-              className="btn-edit"
-              onClick={(event) => {
-                event.preventDefault();
-                setPatternChoice(null);
-                removeSelectedPattern(pIndex);
-              }}
-            >
-              R
-            </button>
           </div>
         );
       })}
