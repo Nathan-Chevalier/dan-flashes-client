@@ -23,3 +23,15 @@
 html {
   background-image: url("/src/assets/FlashesBG.png")
 }
+
+.__button-previous__ {
+  background-color: aqua;
+}
+
+.__button-previous__:hover {
+  background-color: blue;
+}
+
+.__button-previous__:active {
+  background-color: red
+}
