@@ -13,7 +13,7 @@ export const Create = () => {
   const [isPublic, setIsPublic] = useState(false);
 
   const [shirt, setShirt] = useState({
-    color: {color: "#9d9fdc"},
+    color: { color: "#9d9fdc" },
     label: "",
     public: false,
     price: "",
@@ -173,30 +173,30 @@ export const Create = () => {
               />
             </svg>
             {selectedPatterns.map((pattern, index) => {
-                // Calculate z-index for pattern_url_a and pattern_url_b for interleaving layers based on odd/even
-                const zIndexA = index % 2 === 0 ? index * 2 : index * 2 - 1;
-                const zIndexB =
-                  index % 2 === 0
-                    ? 2 * (selectedPatterns.length / 2) + index * 2
-                    : 2 * (selectedPatterns.length / 2) + index * 2 - 1;
+              // Calculate z-index for pattern_url_a and pattern_url_b for interleaving layers based on odd/even
+              const zIndexA = index % 2 === 0 ? index * 2 : index * 2 - 1;
+              const zIndexB =
+                index % 2 === 0
+                  ? 2 * (selectedPatterns.length / 2) + index * 2
+                  : 2 * (selectedPatterns.length / 2) + index * 2 - 1;
 
-                return (
-                  <>
-                    <img
-                      className="absolute w-full h-full"
-                      src={pattern.pattern_url_a}
-                      alt={`pattern_url_a_${pattern?.pattern_index}`}
-                      style={{ zIndex: zIndexA }}
-                    />
-                    <img
-                      className="absolute w-full h-full"
-                      src={pattern.pattern_url_b}
-                      alt={`pattern_url_b_${pattern?.pattern_index}`}
-                      style={{ zIndex: zIndexB }}
-                    />
-                  </>
-                );
-              })}
+              return (
+                <>
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_a}
+                    alt={`pattern_url_a_${pattern?.pattern_index}`}
+                    style={{ zIndex: zIndexA }}
+                  />
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_b}
+                    alt={`pattern_url_b_${pattern?.pattern_index}`}
+                    style={{ zIndex: zIndexB }}
+                  />
+                </>
+              );
+            })}
           </div>
           {/* Color input */}
           <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
@@ -236,39 +236,30 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            {patternA ? (
-              <div className="__choice-b-container__ flex flex-col items-center px-12">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternB}
-                  pIndex={2}
-                  currentId={patternB?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {patternB ? (
-              <div className="__choice-C-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternC}
-                  pIndex={3}
-                  currentId={patternC?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
+            <div className="__choice-b-container__ flex flex-col items-center px-12">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternB}
+                pIndex={2}
+                currentId={patternB?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
+            <div className="__choice-C-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternC}
+                pIndex={3}
+                currentId={patternC?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
           </div>
           <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-            {patternC ? (
               <div className="__choice-D-container__ flex flex-col items-center">
                 <PatternCarousel
                   patterns={patterns}
@@ -280,10 +271,7 @@ export const Create = () => {
                   shirtColor={shirt.color.color}
                 />
               </div>
-            ) : (
-              ""
-            )}
-            {patternD ? (
+
               <div className="__choice-E-container__ flex flex-col items-center px-12">
                 <PatternCarousel
                   patterns={patterns}
@@ -295,10 +283,6 @@ export const Create = () => {
                   shirtColor={shirt.color.color}
                 />
               </div>
-            ) : (
-              ""
-            )}
-            {patternE ? (
               <div className="__choice-F-container__ flex flex-col items-center">
                 <PatternCarousel
                   patterns={patterns}
@@ -310,9 +294,6 @@ export const Create = () => {
                   shirtColor={shirt.color.color}
                 />
               </div>
-            ) : (
-              ""
-            )}
           </div>
           <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
