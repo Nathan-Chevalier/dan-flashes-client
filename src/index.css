@@ -40,8 +40,12 @@ html {
   background-image: url("/src/assets/pattern_select_checked.png")
 }
 
-.__button-pattern-hover__ {
+.__button-pattern-unchecked__:hover {
   background-image: url("/src/assets/pattern_select_hover.png")
+}
+
+.__button-pattern-unchecked__:active {
+  background-image: url("/src/assets/pattern_select_checked.png")
 }
 
 .__button-pattern-unchecked__ {

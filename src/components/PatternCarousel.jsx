@@ -70,11 +70,13 @@ export const PatternCarousel = ({
 
             <div className="__buttons-container__ flex items-center justify-between w-full mb-2 py-[2px]">
               <button
-                className="__button-pattern-nav__ h-[60px] w-[64px]"
+                className="__button-pattern-nav__ h-[64px] w-[64px]"
                 onClick={handlePrevious}
               />
               <button
-                className="btn-edit w-[42px] h-[60px]"
+                className={`${
+                  index === currentId -1 ?
+                  "__button-pattern-checked__ h-[64px] w-[64px]": "__button-pattern-unchecked__ h-[64px] w-[64px]"}`}
                 onClick={(event) => {
                   event.preventDefault();
                   const patternId = parseInt(pattern.id);
@@ -89,11 +91,10 @@ export const PatternCarousel = ({
                     pattern_index: pIndex,
                   });
                 }}
-              >
-                S
-              </button>
+              />
+
               <button
-                className="__button-pattern-nav__ h-[60px] w-[64px] -scale-100 translate-y-1"
+                className={"__button-pattern-nav__ __false__ h-[60px] w-[64px] -scale-100 translate-y-1 translate-x-2"}
                 onClick={handleNext}
               />
             </div>
