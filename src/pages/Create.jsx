@@ -21,13 +21,7 @@ export const Create = () => {
   });
 
   const [selectedPatterns, setSelectedPatterns] = useState([]);
-  const [patternA, setPatternA] = useState({
-    id: 1,
-    pattern_url_a: "https://i.imgur.com/rDuUH0I.png",
-    pattern_url_b: "https://i.imgur.com/llOB6qj.png",
-    pattern_preview: "https://i.imgur.com/Fn8KXvV.png",
-    label: "Hippodrome Warlock",
-  });
+  const [patternA, setPatternA] = useState(null);
   const [patternB, setPatternB] = useState(null);
   const [patternC, setPatternC] = useState(null);
   const [patternD, setPatternD] = useState(null);
@@ -231,18 +225,22 @@ export const Create = () => {
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
           <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-            <div className="__choice-a-container__ flex flex-col items-center">
+            <div
+              className={`${"__choice-a-container__ flex flex-col items-center"}`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternA}
                 pIndex={1}
-                currentId={patternA.pattern_id}
+                currentId={patternA?.pattern_id}
                 updateSelectedPatterns={updateSelectedPatterns}
                 removeSelectedPattern={removeSelectedPattern}
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className="__choice-b-container__ flex flex-col items-center px-12">
+            <div className={`${
+              patternA ?
+              "__choice-b-container__ flex px-12 flex-col items-center" : "__choice-b-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternB}
