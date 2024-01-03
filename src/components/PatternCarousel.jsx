@@ -28,7 +28,7 @@ export const PatternCarousel = ({
     if (currentId) {
       setIndex(currentId - 1);
     }
-  }, [currentId, setPatternChoice]);
+  }, [currentId]);
 
   return (
     <>

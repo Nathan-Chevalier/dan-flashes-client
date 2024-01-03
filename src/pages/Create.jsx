@@ -251,7 +251,9 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className="__choice-C-container__ flex flex-col items-center">
+            <div className={`${
+              patternB ?
+              "__choice-c-container__ flex flex-col items-center" : "__choice-c-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternC}
@@ -264,7 +266,9 @@ export const Create = () => {
             </div>
           </div>
           <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-            <div className="__choice-D-container__ flex flex-col items-center">
+            <div className={`${
+              patternC ?
+              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternD}
@@ -276,7 +280,9 @@ export const Create = () => {
               />
             </div>
 
-            <div className="__choice-E-container__ flex flex-col items-center px-12">
+            <div className={`${
+              patternD ?
+              "__choice-e-container__ flex px-12 flex-col items-center" : "__choice-e-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternE}
@@ -287,7 +293,9 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className="__choice-F-container__ flex flex-col items-center">
+            <div className={`${
+              patternE ?
+              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternF}
