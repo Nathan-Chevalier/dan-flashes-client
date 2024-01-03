@@ -37,13 +37,19 @@ export const PatternCarousel = ({
           <div
             key={pattern.id}
             className={`${
+              // Carousel mechanics for the currently displayed pattern
               i === index
                 ? "flex flex-col items-center w-[170px] h-[max]"
                 : "hidden"
             }`}
           >
             <button
-              className="self-end rounded-full bg-red-700 h-[24px] w-[24px]"
+              className={`${
+                // Hides the remove pattern button if no pattern is selected
+                currentId
+                  ? "__button-remove-pattern__ self-end rounded-full text-white font-bold h-[24px] w-[24px] translate-y-14 outline bg-slate-800/20 hover:bg-red-300"
+                  : "opacity-0"
+              }`}
               onClick={(event) => {
                 event.preventDefault();
                 setPatternChoice(null);
@@ -52,23 +58,26 @@ export const PatternCarousel = ({
             >
               X
             </button>
-            <span className="bg-orange-600 px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-10">
+            <span className="bg-orange-600 px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-30">
               {pattern.label}
             </span>
             <div
-              className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col rounded-full overflow-hidden outline outline-white outline-4"
+              className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col rounded-full overflow-hidden outline outline-white outline-4 z-20"
               style={{ backgroundColor: `${shirtColor}` }}
             >
               <img src={pattern.pattern_preview} />
             </div>
 
-            <div className="__buttons-container__ flex items-center justify-between w-full mb-2 py-[2px]">
+            <div className="__buttons-container__ flex items-end w-[180px] h-[120px] pb-[6px] py-[2px] outline outline-white  rounded-[36px] justify-self-end -translate-y-12 bg-slate-800/20">
               <button
-                className="__button-pattern-nav__ h-[60px] w-[64px]"
+                className="__button-pattern-nav__ h-[64px] w-[64px]"
                 onClick={handlePrevious}
               />
               <button
-                className="btn-edit w-[42px] h-[60px]"
+                className={`${
+                  // Checks an offset currentId against the index to render the checked/unchecked button
+                  index === currentId -1 ?
+                  "__button-pattern-checked__ h-[64px] w-[64px]": "__button-pattern-unchecked__ h-[64px] w-[64px]"}`}
                 onClick={(event) => {
                   event.preventDefault();
                   const patternId = parseInt(pattern.id);
@@ -83,14 +92,12 @@ export const PatternCarousel = ({
                     pattern_index: pIndex,
                   });
                 }}
-              >
-                S
-              </button>
-              <button
-                className="__button-pattern-nav__ h-[60px] w-[64px] -scale-100 translate-y-1"
-                onClick={handleNext}
               />
 
+              <button
+                className={"__button-pattern-nav__ h-[64px] w-[64px] -scale-100 translate-x-2 mr-2"}
+                onClick={handleNext}
+              />
             </div>
           </div>
         );
