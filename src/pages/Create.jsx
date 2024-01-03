@@ -233,6 +233,7 @@ export const Create = () => {
                 currentId={patternA?.pattern_id}
                 updateSelectedPatterns={updateSelectedPatterns}
                 removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
               />
             </div>
             {patternA ? (
@@ -244,6 +245,7 @@ export const Create = () => {
                   currentId={patternB?.pattern_id}
                   updateSelectedPatterns={updateSelectedPatterns}
                   removeSelectedPattern={removeSelectedPattern}
+                  shirtColor={shirt.color.color}
                 />
               </div>
             ) : (
@@ -258,6 +260,7 @@ export const Create = () => {
                   currentId={patternC?.pattern_id}
                   updateSelectedPatterns={updateSelectedPatterns}
                   removeSelectedPattern={removeSelectedPattern}
+                  shirtColor={shirt.color.color}
                 />
               </div>
             ) : (
@@ -274,6 +277,7 @@ export const Create = () => {
                   currentId={patternD?.pattern_id}
                   updateSelectedPatterns={updateSelectedPatterns}
                   removeSelectedPattern={removeSelectedPattern}
+                  shirtColor={shirt.color.color}
                 />
               </div>
             ) : (
@@ -288,6 +292,7 @@ export const Create = () => {
                   currentId={patternE?.pattern_id}
                   updateSelectedPatterns={updateSelectedPatterns}
                   removeSelectedPattern={removeSelectedPattern}
+                  shirtColor={shirt.color.color}
                 />
               </div>
             ) : (
@@ -302,6 +307,7 @@ export const Create = () => {
                   currentId={patternF?.pattern_id}
                   updateSelectedPatterns={updateSelectedPatterns}
                   removeSelectedPattern={removeSelectedPattern}
+                  shirtColor={shirt.color.color}
                 />
               </div>
             ) : (

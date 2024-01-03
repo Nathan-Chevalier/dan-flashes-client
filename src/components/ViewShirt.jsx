@@ -177,10 +177,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
-              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-[540px] h-[96px] outline outline-white outline-8 self-end flex items-center justify-center translate-x-44 translate-y-32">
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center translate-x-44 translate-y-32">
                 {!shirt.is_owner ? (
                   isFavorite ? (
-                    <div className="__unfavorite-container__ flex items-center justify-center gap-4 w-full">
+                    <div className="__unfavorite-container__ flex items-center justify-center gap-4 w-[220px]">
                       <button
                         className=""
                         onClick={() => {
@@ -192,7 +192,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                       <span>{shirt.shirt_favorite.length}</span>
                     </div>
                   ) : (
-                    <div className="__favorite-container__ flex items-center justify-center gap-4 w-full">
+                    <div className="__favorite-container__ flex items-center justify-center gap-4 w-[220px]">
                       <button
                         className=""
                         onClick={() => {
@@ -205,7 +205,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                     </div>
                   )
                 ) : (
-                  <div className="__edit-delete-dock__ flex items-center justify-around w-full">
+                  <div className="__edit-delete-dock__ flex items-center justify-around w-[440px]">
                     <button
                       className="w-[64px] h-[64px]"
                       onClick={() => {

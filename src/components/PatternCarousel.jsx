@@ -7,6 +7,7 @@ export const PatternCarousel = ({
   currentId,
   updateSelectedPatterns,
   removeSelectedPattern,
+  shirtColor,
 }) => {
   const [index, setIndex] = useState(0);
   const length = patterns.length;
@@ -37,22 +38,35 @@ export const PatternCarousel = ({
             key={pattern.id}
             className={`${
               i === index
-                ? "flex flex-col items-center w-[170px] h-[246px]"
+                ? "flex flex-col items-center w-[170px] h-[max]"
                 : "hidden"
             }`}
           >
-            <span>{`Pattern ${i + 1}`}</span>
-            <div className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col">
+            <button
+              className="self-end rounded-full bg-red-700 h-[24px] w-[24px]"
+              onClick={(event) => {
+                event.preventDefault();
+                setPatternChoice(null);
+                removeSelectedPattern(pIndex);
+              }}
+            >
+              X
+            </button>
+            <span className="bg-orange-600 px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-10">
+              {pattern.label}
+            </span>
+            <div
+              className="__pattern-preview)__ w-[170px] h-[170px] flex flex-col rounded-full overflow-hidden outline outline-white outline-4"
+              style={{ backgroundColor: `${shirtColor}` }}
+            >
               <img src={pattern.pattern_preview} />
             </div>
 
-            <div className="__buttons-container__ flex items-center justify-between w-full mb-2">
+            <div className="__buttons-container__ flex items-center justify-between w-full mb-2 py-[2px]">
               <button
-                className="btn-edit h-[60px] w-[48px]"
+                className="__button-pattern-nav__ h-[60px] w-[64px]"
                 onClick={handlePrevious}
-              >
-                P
-              </button>
+              />
               <button
                 className="btn-edit w-[42px] h-[60px]"
                 onClick={(event) => {
@@ -73,22 +87,11 @@ export const PatternCarousel = ({
                 S
               </button>
               <button
-                className="btn-edit h-[60px] w-[48px]"
+                className="__button-pattern-nav__ h-[60px] w-[64px] -scale-100 translate-y-1"
                 onClick={handleNext}
-              >
-                N
-              </button>
+              />
+
             </div>
-            <button
-              className="btn-edit"
-              onClick={(event) => {
-                event.preventDefault();
-                setPatternChoice(null);
-                removeSelectedPattern(pIndex);
-              }}
-            >
-              R
-            </button>
           </div>
         );
       })}

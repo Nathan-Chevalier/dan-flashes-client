@@ -23,3 +23,27 @@
 html {
   background-image: url("/src/assets/FlashesBG.png")
 }
+
+.__button-pattern-nav__ {
+  background-image: url("/src/assets/nav_pattern.png")
+}
+
+.__button-pattern-nav__:hover {
+  background-image: url("/src/assets/nav_pattern_hover.png")
+}
+
+.__button-pattern-nav__:active {
+  background-image: url("/src/assets/nav_pattern_active.png")
+}
+
+.__button-pattern-checked__ {
+  background-image: url("/src/assets/pattern_select_checked.png")
+}
+
+.__button-pattern-hover__ {
+  background-image: url("/src/assets/pattern_select_hover.png")
+}
+
+.__button-pattern-unchecked__ {
+  background-image: url("/src/assets/pattern_select_unchecked.png")
+}
