@@ -209,7 +209,7 @@ export const Edit = () => {
             />
           </fieldset>
           {/* Shirt Preview */}
-          <div className="__image-preview__ h-[571px] w-[509px] relative">
+          <div className="__shirt-preview__ h-[571px] w-[509px] relative">
             {/* Shirt Texture blend stack */}
             <img
               alt="Shirt Overlay Layer"
@@ -240,30 +240,30 @@ export const Edit = () => {
               />
             </svg>
             {selectedPatterns.map((pattern, index) => {
-                // Calculate z-index for pattern_url_a and pattern_url_b for interleaving layers based on odd/even
-                const zIndexA = index % 2 === 0 ? index * 2 : index * 2 - 1;
-                const zIndexB =
-                  index % 2 === 0
-                    ? 2 * (selectedPatterns.length / 2) + index * 2
-                    : 2 * (selectedPatterns.length / 2) + index * 2 - 1;
+              // Calculate z-index for pattern_url_a and pattern_url_b for interleaving layers based on odd/even
+              const zIndexA = index % 2 === 0 ? index * 2 : index * 2 - 1;
+              const zIndexB =
+                index % 2 === 0
+                  ? 2 * (selectedPatterns.length / 2) + index * 2
+                  : 2 * (selectedPatterns.length / 2) + index * 2 - 1;
 
-                return (
-                  <>
-                    <img
-                      className="absolute w-full h-full"
-                      src={pattern.pattern_url_a}
-                      alt={`pattern_url_a_${pattern?.pattern_index}`}
-                      style={{ zIndex: zIndexA }}
-                    />
-                    <img
-                      className="absolute w-full h-full"
-                      src={pattern.pattern_url_b}
-                      alt={`pattern_url_b_${pattern?.pattern_index}`}
-                      style={{ zIndex: zIndexB }}
-                    />
-                  </>
-                );
-              })}
+              return (
+                <>
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_a}
+                    alt={`pattern_url_a_${pattern?.pattern_index}`}
+                    style={{ zIndex: zIndexA }}
+                  />
+                  <img
+                    className="absolute w-full h-full"
+                    src={pattern.pattern_url_b}
+                    alt={`pattern_url_b_${pattern?.pattern_index}`}
+                    style={{ zIndex: zIndexB }}
+                  />
+                </>
+              );
+            })}
           </div>
           {/* Color input */}
           <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
@@ -291,8 +291,10 @@ export const Edit = () => {
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
-        <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-            <div className="__choice-a-container__ flex flex-col items-center">
+          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
+            <div
+              className={`${"__choice-a-container__ flex flex-col items-center"}`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternA}
@@ -303,83 +305,74 @@ export const Edit = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            {patternA ? (
-              <div className="__choice-b-container__ flex flex-col items-center px-12">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternB}
-                  pIndex={2}
-                  currentId={patternB?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {patternB ? (
-              <div className="__choice-C-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternC}
-                  pIndex={3}
-                  currentId={patternC?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
+            <div className={`${
+              patternA ?
+              "__choice-b-container__ flex px-12 flex-col items-center" : "__choice-b-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternB}
+                pIndex={2}
+                currentId={patternB?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
+            <div className={`${
+              patternB ?
+              "__choice-c-container__ flex flex-col items-center" : "__choice-c-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternC}
+                pIndex={3}
+                currentId={patternC?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
           </div>
           <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-            {patternC ? (
-              <div className="__choice-D-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternD}
-                  pIndex={4}
-                  currentId={patternD?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {patternD ? (
-              <div className="__choice-E-container__ flex flex-col items-center px-12">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternE}
-                  pIndex={5}
-                  currentId={patternE?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {patternE ? (
-              <div className="__choice-F-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternF}
-                  pIndex={6}
-                  currentId={patternF?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-            ) : (
-              ""
-            )}
+            <div className={`${
+              patternC ?
+              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternD}
+                pIndex={4}
+                currentId={patternD?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
+
+            <div className={`${
+              patternD ?
+              "__choice-e-container__ flex px-12 flex-col items-center" : "__choice-e-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternE}
+                pIndex={5}
+                currentId={patternE?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
+            <div className={`${
+              patternE ?
+              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternF}
+                pIndex={6}
+                currentId={patternF?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
           </div>
           <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">
