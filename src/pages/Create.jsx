@@ -21,7 +21,13 @@ export const Create = () => {
   });
 
   const [selectedPatterns, setSelectedPatterns] = useState([]);
-  const [patternA, setPatternA] = useState(null);
+  const [patternA, setPatternA] = useState({
+    id: 1,
+    pattern_url_a: "https://i.imgur.com/rDuUH0I.png",
+    pattern_url_b: "https://i.imgur.com/llOB6qj.png",
+    pattern_preview: "https://i.imgur.com/Fn8KXvV.png",
+    label: "Hippodrome Warlock",
+  });
   const [patternB, setPatternB] = useState(null);
   const [patternC, setPatternC] = useState(null);
   const [patternD, setPatternD] = useState(null);
@@ -230,7 +236,7 @@ export const Create = () => {
                 patterns={patterns}
                 setPatternChoice={setPatternA}
                 pIndex={1}
-                currentId={patternA?.pattern_id}
+                currentId={patternA.pattern_id}
                 updateSelectedPatterns={updateSelectedPatterns}
                 removeSelectedPattern={removeSelectedPattern}
                 shirtColor={shirt.color.color}
@@ -260,40 +266,40 @@ export const Create = () => {
             </div>
           </div>
           <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
-              <div className="__choice-D-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternD}
-                  pIndex={4}
-                  currentId={patternD?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
+            <div className="__choice-D-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternD}
+                pIndex={4}
+                currentId={patternD?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
 
-              <div className="__choice-E-container__ flex flex-col items-center px-12">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternE}
-                  pIndex={5}
-                  currentId={patternE?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
-              <div className="__choice-F-container__ flex flex-col items-center">
-                <PatternCarousel
-                  patterns={patterns}
-                  setPatternChoice={setPatternF}
-                  pIndex={6}
-                  currentId={patternF?.pattern_id}
-                  updateSelectedPatterns={updateSelectedPatterns}
-                  removeSelectedPattern={removeSelectedPattern}
-                  shirtColor={shirt.color.color}
-                />
-              </div>
+            <div className="__choice-E-container__ flex flex-col items-center px-12">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternE}
+                pIndex={5}
+                currentId={patternE?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
+            <div className="__choice-F-container__ flex flex-col items-center">
+              <PatternCarousel
+                patterns={patterns}
+                setPatternChoice={setPatternF}
+                pIndex={6}
+                currentId={patternF?.pattern_id}
+                updateSelectedPatterns={updateSelectedPatterns}
+                removeSelectedPattern={removeSelectedPattern}
+                shirtColor={shirt.color.color}
+              />
+            </div>
           </div>
           <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
             <fieldset className="__public-toggle__">

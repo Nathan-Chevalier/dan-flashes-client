@@ -28,6 +28,12 @@ export const PatternCarousel = ({
     if (currentId) {
       setIndex(currentId - 1);
     }
+    if (pIndex === 1) {
+      setPatternChoice({
+        pattern_id: 1,
+        pattern_index: pIndex,
+      });
+    }
   }, [currentId]);
 
   return (
@@ -37,13 +43,19 @@ export const PatternCarousel = ({
           <div
             key={pattern.id}
             className={`${
+              // Carousel mechanics for the currently displayed pattern
               i === index
                 ? "flex flex-col items-center w-[170px] h-[max]"
                 : "hidden"
             }`}
           >
             <button
-              className="self-end rounded-full bg-red-700 h-[24px] w-[24px]"
+              className={`${
+                // Hides the remove pattern button if no pattern is selected
+                currentId
+                  ? "__button-remove-pattern__ self-end rounded-full bg-red-700 h-[24px] w-[24px]"
+                  : "opacity-0"
+              }`}
               onClick={(event) => {
                 event.preventDefault();
                 setPatternChoice(null);
@@ -90,7 +102,6 @@ export const PatternCarousel = ({
                 className="__button-pattern-nav__ h-[60px] w-[64px] -scale-100 translate-y-1"
                 onClick={handleNext}
               />
-
             </div>
           </div>
         );
