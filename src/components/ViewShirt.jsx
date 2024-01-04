@@ -182,10 +182,16 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
-              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center self-end translate-y-9 translate-x-20">
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center self-end translate-y-9 translate-x-10">
                 {!shirt.is_owner ? (
                   isFavorite ? (
-                    <div className="__unfavorite-container__ flex items-center justify-center gap-4 w-[220px]">
+                    <div className="__unfavorite-container__ flex items-center justify-end w-[220px] -translate-x-8">
+                      <div className="flex flex-col items-end text-3xl text-white font-paytone">
+                        <span className="translate-y-[6px]">
+                          {shirt.shirt_favorite.length}
+                        </span>
+                        <span className="-translate-y-[6px]">{shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}</span>
+                      </div>
                       <button
                         className=""
                         onClick={() => {
@@ -194,10 +200,15 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                       >
                         <img src={shirtUnfavorite} alt="Unfavorite Shirt" />
                       </button>
-                      <span>{shirt.shirt_favorite.length}</span>
                     </div>
                   ) : (
-                    <div className="__favorite-container__ flex items-center justify-center gap-4 w-[220px]">
+                    <div className="__favorite-container__ flex items-center justify-end w-[220px] -translate-x-8">
+                      <div className="flex flex-col items-end text-3xl text-white font-paytone">
+                        <span className="translate-y-[6px]">
+                          {shirt.shirt_favorite.length}
+                        </span>
+                        <span className="-translate-y-[6px]">{shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}</span>
+                      </div>
                       <button
                         className=""
                         onClick={() => {
@@ -206,11 +217,10 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                       >
                         <img src={shirtFavorite} alt="Favorite Shirt" />
                       </button>
-                      <span>{shirt.shirt_favorite.length}</span>
                     </div>
                   )
                 ) : (
-                  <div className="__edit-delete-dock__ flex items-center justify-around w-[680px]">
+                  <div className="__edit-delete-dock__ flex items-center justify-around w-[646px]">
                     <div className="__delete-button__ flex items-center">
                       <div className="flex flex-col items-end font-paytone text-3xl text-white cursor-default">
                         <span className="translate-y-[6px]">DELETE</span>
@@ -242,12 +252,13 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                     </div>
                     <div className="__favorites__ flex items-center">
                       <div className="flex flex-col items-end font-paytone text-3xl text-white cursor-default">
-                        <span className="translate-y-[6px]">{shirt.shirt_favorite.length}</span>
+                        <span className="translate-y-[6px]">
+                          {shirt.shirt_favorite.length}
+                        </span>
                         <span className="-translate-y-[6px]">FAVS</span>
                       </div>
 
-                        <img src={shirtUnfavorite} alt="Delete Shirt Button" />
-
+                      <img src={shirtUnfavorite} alt="Delete Shirt Button" />
                     </div>
                   </div>
                 )}
