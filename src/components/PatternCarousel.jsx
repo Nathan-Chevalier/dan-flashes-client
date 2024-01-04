@@ -47,7 +47,7 @@ export const PatternCarousel = ({
               className={`${
                 // Hides the remove pattern button if no pattern is selected
                 currentId
-                  ? "__button-remove-pattern__ self-end rounded-full text-white font-bold h-[24px] w-[24px] translate-y-14 outline bg-slate-800/20 hover:bg-red-300"
+                  ? "__button-remove-pattern__ font-lobster self-end rounded-full text-white font-bold h-[24px] w-[24px] translate-y-14 outline bg-slate-800/20 hover:bg-red-300"
                   : "opacity-0"
               }`}
               onClick={(event) => {
@@ -58,7 +58,7 @@ export const PatternCarousel = ({
             >
               X
             </button>
-            <span className="bg-orange-600 px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-30">
+            <span className="bg-orange-600 font-lobster text-xl px-4 py-[2px] w-max rounded-full text-white outline outline-white outline-2 z-30">
               {pattern.label}
             </span>
             <div
