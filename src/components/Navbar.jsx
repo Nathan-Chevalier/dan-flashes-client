@@ -1,7 +1,19 @@
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { getMe } from "../services/fetchServices";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const userObject = JSON.parse(localStorage.getItem("flashes_token"));
+  const userId = userObject.user_id;
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    getMe(userId).then((user) => {
+      setCurrentUser(user);
+    });
+  }, []);
+
   return (
     <div className="h-[100%] w-[96px] fixed z-1 top-0 left-0 bg-[#55c3f0] overflow-x-hidden py-5 flex flex-col items-start rounded-r-3xl justify-between outline outline-white outline-8">
       {localStorage.getItem("flashes_token") !== null ? (
