@@ -290,7 +290,7 @@ export const Edit = () => {
             })}
           </fieldset>
         </div>
-        <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px]">
+        <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px] -translate-x-3">
           <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
             <div
               className={`${"__choice-a-container__ flex flex-col items-center"}`}
@@ -332,7 +332,7 @@ export const Edit = () => {
               />
             </div>
           </div>
-          <div className="__pattern-second-trio-container__ flex w-full px-8 pt-8 h-[248px]">
+          <div className="__pattern-second-trio-container__ mb-12 flex w-full px-8 pt-8 h-[248px]">
             <div className={`${
               patternC ?
               "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
@@ -374,24 +374,25 @@ export const Edit = () => {
               />
             </div>
           </div>
-          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-4">
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-8">
             <fieldset className="__public-toggle__">
-              <label>
+              <label className="flex items-center gap-2 bg-slate-900/30 rounded-3xl py-[2px] px-6 outline outline-white">
+                <span className="mr-2 text-white text-3xl font-lobster">Check that box to share!</span>
                 <input
                   type="checkbox"
                   checked={isPublic}
+                  className="mr-2 scale-150"
                   onChange={() => setIsPublic(!isPublic)}
                 />
-                Share this shirt?
               </label>
             </fieldset>
             <button
-              className="btn-edit"
+              className="btn-edit font-paytone text-lg"
               onClick={(event) => {
                 handleEditShirt(event);
               }}
             >
-              CONFIRM EDIT
+              SAVE CHANGES
             </button>
           </div>
         </div>
