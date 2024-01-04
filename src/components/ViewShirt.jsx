@@ -4,10 +4,10 @@ import shirtButtons from "../assets/shirt_buttons.png";
 import shirtMultiply from "../assets/shirt_multiply.png";
 import shirtShadow from "../assets/shirt_shadow.png";
 import shirtOverlay from "../assets/shirt_overlay.png";
-import shirtDelete from "../assets/button_delete_shirt.png"
-import shirtEdit from "../assets/button_edit_shirt.png"
-import shirtFavorite from "../assets/button_favorite_shirt.png"
-import shirtUnfavorite from "../assets/button_unfavorite_shirt.png"
+import shirtDelete from "../assets/button_delete_shirt.png";
+import shirtEdit from "../assets/button_edit_shirt.png";
+import shirtFavorite from "../assets/button_favorite_shirt.png";
+import shirtUnfavorite from "../assets/button_unfavorite_shirt.png";
 
 export const ViewShirt = ({ shirts, updateShirts }) => {
   const navigate = useNavigate();
@@ -134,31 +134,36 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                   />
                 </div>
                 <div className="pl-10 flex items-center translate-x-3 -translate-y-8 bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
-                  <span className="text-white text-[56px] font-bold">{`${shirt.flashes_user.flashes_name}'s`}</span>
+                  <span className="text-white text-[56px] font-bold font-paytone -translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</span>
                 </div>
               </div>
               <div className="__shirt-label-empty__ h-[96px]"></div>
               {/* Pattern Choices Display*/}
-              <div className="__pattern-choice-container__ flex-col flex-wrap items-start justify-around h-[368px] w-[620px] ml-[122px]">
+              <div className="__pattern-choice-container__ grid grid-cols-[240px_300px] justify-items-start align-start gap-x-20 self-start h-[376px] w-[1000px] ml-[122px] bg-slate-900/20 rounded-[64px] px-12">
                 {shirt?.shirt_pattern.map((pattern) => {
                   return (
                     <div
                       key={`pattern-preview-${pattern.id}`}
-                      className="flex items-center gap-2 flex-1"
+                      className="flex items-start gap-4 py-2 pt-8"
                     >
-                      <div className="__preview-image__ w-[64px] h-[64px]">
+                      <div
+                        className="__preview-image__ w-[64px] h-[64px] rounded-full overflow-hidden z-10 outline-white outline"
+                        style={{ backgroundColor: `${shirt.color.color}` }}
+                      >
                         <img src={pattern.pattern.pattern_preview} />
                       </div>
-                      <span className="__preview-label__ text-lg font-bold text-white w-max">
+                      <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 translate-y-2 py-2 drop-shadow-lg rounded-3xl">
                         {pattern.pattern.label}
                       </span>
                     </div>
                   );
                 })}
               </div>
-              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-12 z-[150]">
+              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-4 z-[150]">
                 <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
-                  <span className="text-center">${shirt.price}</span>
+                  <span className="text-center font-lobster">
+                    ${shirt.price}
+                  </span>
                 </div>
                 <div className="__price-shape__">
                   {/* Price Starburst */}
@@ -177,7 +182,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
-              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center translate-x-44 translate-y-32">
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center self-end translate-y-9 translate-x-20">
                 {!shirt.is_owner ? (
                   isFavorite ? (
                     <div className="__unfavorite-container__ flex items-center justify-center gap-4 w-[220px]">
@@ -205,31 +210,52 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                     </div>
                   )
                 ) : (
-                  <div className="__edit-delete-dock__ flex items-center justify-around w-[440px]">
-                    <button
-                      className="w-[64px] h-[64px]"
-                      onClick={() => {
-                        navigate(`/edit/${shirt.id}`);
-                      }}
-                    >
-                      <img src={shirtEdit} alt="Edit Shirt Button"/>
-                    </button>
-                    <button
-                      className="btn-delete"
-                      onClick={() => {
-                        setDeleteTarget(shirt.id);
-                        deleteModal.current.showModal();
-                      }}
-                    >
-                      <img src={shirtDelete} alt="Delete Shirt Button"/>
-                    </button>
+                  <div className="__edit-delete-dock__ flex items-center justify-around w-[680px]">
+                    <div className="__delete-button__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-3xl text-white cursor-default">
+                        <span className="translate-y-[6px]">DELETE</span>
+                        <span className="-translate-y-[6px]">SHIRT</span>
+                      </div>
+                      <button
+                        className="w-[64px] h-[64px]"
+                        onClick={() => {
+                          setDeleteTarget(shirt.id);
+                          deleteModal.current.showModal();
+                        }}
+                      >
+                        <img src={shirtDelete} alt="Delete Shirt Button" />
+                      </button>
+                    </div>
+                    <div className="__edit-button__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-3xl text-white cursor-default">
+                        <span className="translate-y-[6px]">EDIT</span>
+                        <span className="-translate-y-[6px]">SHIRT</span>
+                      </div>
+                      <button
+                        className="w-[64px] h-[64px]"
+                        onClick={() => {
+                          navigate(`/edit/${shirt.id}`);
+                        }}
+                      >
+                        <img src={shirtEdit} alt="Edit Shirt Button" />
+                      </button>
+                    </div>
+                    <div className="__favorites__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-3xl text-white cursor-default">
+                        <span className="translate-y-[6px]">{shirt.shirt_favorite.length}</span>
+                        <span className="-translate-y-[6px]">FAVS</span>
+                      </div>
+
+                        <img src={shirtUnfavorite} alt="Delete Shirt Button" />
+
+                    </div>
                   </div>
                 )}
               </div>
             </div>
-            {/* Shirt Container, contains base SVG element matched with shirt object color and mapped pattern array */}
+            {/* Shirt Container, contains label, base SVG element matched with shirt object color and mapped pattern array */}
             <div className="__shirt-preview-label-container__ relative w-[640px] h-[718px]">
-              <div className="text-3xl font-bold text-white pt-5 absolute z-[200] -translate-x-[630px] translate-y-16 text-[96px] w-max">
+              <div className="text-3xl font-bold font-lobster text-white pt-5 absolute z-[200] -translate-x-[630px] translate-y-16 text-[96px] w-max">
                 {shirt.label}
               </div>
               {/* Blending stack, adds texture to the shirt*/}
