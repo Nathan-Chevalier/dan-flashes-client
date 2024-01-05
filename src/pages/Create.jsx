@@ -222,7 +222,7 @@ export const Create = () => {
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px] -translate-x-3">
-          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
+          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-3 h-[248px]">
             <div
               className={`${"__choice-a-container__ flex flex-col items-center"}`}
             >
@@ -346,12 +346,13 @@ export const Create = () => {
               </label>
             </fieldset>
             <div
-              className="bg-cyan-800/60 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white  rounded-2xl font-paytone text-2xl flex items-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white"
+              className=" flex flex-col bg-orange-500 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white font-paytone text-lg items-center justify-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white h-20 w-20 rounded-full"
               onClick={(event) => {
                 handleSaveShirt(event);
               }}
             >
-              <span className="-translate-y-[2px]">SAVE</span>
+              <span className="translate-y-[6px]">CREATE</span>
+              <span className="-translate-y-[6px]">SHIRT</span>
             </div>
           </div>
         </div>

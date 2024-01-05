@@ -290,7 +290,7 @@ export const Edit = () => {
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px] -translate-x-3">
-          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
+          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-3 h-[248px]">
             <div
               className={`${"__choice-a-container__ flex flex-col items-center"}`}
             >
@@ -373,26 +373,35 @@ export const Edit = () => {
               />
             </div>
           </div>
-          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-8">
-            <fieldset className="__public-toggle__">
-              <label className="flex items-center gap-2 bg-slate-900/30 rounded-3xl py-[2px] px-6 outline outline-white">
-                <span className="mr-2 text-white text-3xl font-lobster">Check that box to share!</span>
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-8 h-[56px]">
+          <fieldset className="__public-toggle__">
+              <label className="flex items-center gap-2 bg-slate-900/30 rounded-3xl py-[2px] px-6 outline outline-white h-[56px] ">
+                <div className="text-white text-2xl font-paytone flex flex-col justify-center items-end">
+                  <span className="translate-y-[6px]">SHARE</span>
+                  <span className="-translate-y-[6px]">SHIRT</span>
+                </div>
                 <input
                   type="checkbox"
                   checked={isPublic}
-                  className="mr-2 scale-150"
+                  className={`${
+                    // Checks an offset currentId against the index to render the checked/unchecked button
+                    isPublic
+                      ? "__button-pattern-checked__ h-[64px] w-[64px] appearance-none"
+                      : "__button-pattern-unchecked__ h-[64px] w-[64px] appearance-none"
+                  }`}
                   onChange={() => setIsPublic(!isPublic)}
                 />
               </label>
             </fieldset>
-            <button
-              className="btn-edit font-paytone text-lg"
+            <div
+              className=" flex flex-col bg-orange-500 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white font-paytone text-lg items-center justify-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white h-20 w-20 rounded-full"
               onClick={(event) => {
                 handleEditShirt(event);
               }}
             >
-              SAVE CHANGES
-            </button>
+              <span className="translate-y-[6px]">SAVE</span>
+              <span className="-translate-y-[6px]">SHIRT</span>
+            </div>
           </div>
         </div>
       </form>
