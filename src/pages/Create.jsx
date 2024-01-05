@@ -13,7 +13,7 @@ export const Create = () => {
   const [isPublic, setIsPublic] = useState(false);
 
   const [shirt, setShirt] = useState({
-    color: { color: "#9d9fdc" },
+    color: { color: "#7c0b0b", id: 1 },
     label: "",
     public: false,
     price: "",
@@ -199,7 +199,7 @@ export const Create = () => {
             })}
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
+          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6 bg-cyan-200 py-2 rounded-3xl outline outline-white">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
@@ -207,24 +207,22 @@ export const Create = () => {
                     style={{ backgroundColor: `${color.color}` }}
                     className={
                       shirt.color.id === color.id
-                        ? "w-[40px] h-[40px] border border-white rounded-lg"
-                        : "w-[32px] h-[32px] rounded"
+                        ? "w-[32px] h-[32px] border-2 border-white rounded-lg outline outline-orange-500"
+                        : "w-[32px] h-[32px] rounded-full border-2 border-white"
                     }
                     onClick={() => {
                       const copy = { ...shirt };
                       copy.color = color;
                       setShirt(copy);
                     }}
-                  >
-                    {" "}
-                  </div>
+                  ></div>
                 </label>
               );
             })}
           </fieldset>
         </div>
         <div className="__pattern-public-save-container__ flex flex-col items-center justify-between w-[774px] -translate-x-3">
-          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-8 h-[248px]">
+          <div className="__pattern-first-trio-container__ flex w-full px-8 pt-3 h-[248px]">
             <div
               className={`${"__choice-a-container__ flex flex-col items-center"}`}
             >
@@ -238,9 +236,13 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className={`${
-              patternA ?
-              "__choice-b-container__ flex px-12 flex-col items-center" : "__choice-b-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
+            <div
+              className={`${
+                patternA
+                  ? "__choice-b-container__ flex px-12 flex-col items-center"
+                  : "__choice-b-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"
+              }`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternB}
@@ -251,9 +253,13 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className={`${
-              patternB ?
-              "__choice-c-container__ flex flex-col items-center" : "__choice-c-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+            <div
+              className={`${
+                patternB
+                  ? "__choice-c-container__ flex flex-col items-center"
+                  : "__choice-c-container__ flex flex-col items-center opacity-20 pointer-events-none"
+              }`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternC}
@@ -266,9 +272,13 @@ export const Create = () => {
             </div>
           </div>
           <div className="__pattern-second-trio-container__ mb-12 flex w-full px-8 pt-8 h-[248px]">
-            <div className={`${
-              patternC ?
-              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+            <div
+              className={`${
+                patternC
+                  ? "__choice-d-container__ flex flex-col items-center"
+                  : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"
+              }`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternD}
@@ -280,9 +290,13 @@ export const Create = () => {
               />
             </div>
 
-            <div className={`${
-              patternD ?
-              "__choice-e-container__ flex px-12 flex-col items-center" : "__choice-e-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"}`}>
+            <div
+              className={`${
+                patternD
+                  ? "__choice-e-container__ flex px-12 flex-col items-center"
+                  : "__choice-e-container__ flex px-12 flex-col items-center opacity-20 pointer-events-none"
+              }`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternE}
@@ -293,9 +307,13 @@ export const Create = () => {
                 shirtColor={shirt.color.color}
               />
             </div>
-            <div className={`${
-              patternE ?
-              "__choice-d-container__ flex flex-col items-center" : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"}`}>
+            <div
+              className={`${
+                patternE
+                  ? "__choice-d-container__ flex flex-col items-center"
+                  : "__choice-d-container__ flex flex-col items-center opacity-20 pointer-events-none"
+              }`}
+            >
               <PatternCarousel
                 patterns={patterns}
                 setPatternChoice={setPatternF}
@@ -307,25 +325,34 @@ export const Create = () => {
               />
             </div>
           </div>
-          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-8">
+          <div className="__public-toggle-save-container__ flex self-end pr-8 mb-5 items-center justify-center gap-8 h-[56px]">
             <fieldset className="__public-toggle__">
-              <label className="flex items-center gap-2 bg-slate-900/30 rounded-3xl py-[2px] px-6 outline outline-white">
-                <span className="mr-2 text-white text-3xl font-lobster">Check that box to share!</span>
+              <label className="flex items-center gap-2 bg-slate-900/30 rounded-3xl py-[2px] px-6 outline outline-white h-[56px] ">
+                <div className="text-white text-2xl font-paytone flex flex-col justify-center items-end">
+                  <span className="translate-y-[6px]">SHARE</span>
+                  <span className="-translate-y-[6px]">SHIRT</span>
+                </div>
                 <input
                   type="checkbox"
                   checked={isPublic}
-                  className="mr-2 scale-150"
+                  className={`${
+                    // Checks an offset currentId against the index to render the checked/unchecked button
+                    isPublic
+                      ? "__button-pattern-checked__ h-[64px] w-[64px] appearance-none"
+                      : "__button-pattern-unchecked__ h-[64px] w-[64px] appearance-none"
+                  }`}
                   onChange={() => setIsPublic(!isPublic)}
                 />
               </label>
             </fieldset>
             <div
-              className="bg-cyan-800/60 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white  rounded-2xl font-paytone text-2xl flex items-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white"
+              className=" flex flex-col bg-orange-500 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white font-paytone text-lg items-center justify-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white h-20 w-20 rounded-full"
               onClick={(event) => {
                 handleSaveShirt(event);
               }}
             >
-              <span className="-translate-y-[2px]">SAVE</span>
+              <span className="translate-y-[6px]">CREATE</span>
+              <span className="-translate-y-[6px]">SHIRT</span>
             </div>
           </div>
         </div>
