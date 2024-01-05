@@ -15,7 +15,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="h-[100%] w-[124px] fixed z-1 top-0 left-0 bg-cyan-500 overflow-x-hidden py-5 flex flex-col items-start rounded-r-3xl justify-between outline outline-white outline-8">
+    <div className="font-paytone h-[100%] w-[124px] fixed z-1 top-0 left-0 bg-cyan-500 overflow-x-hidden py-5 flex flex-col items-center rounded-r-3xl justify-between outline outline-white outline-8">
       {localStorage.getItem("flashes_token") !== null ? (
         <div className="__profile-image-logout__ flex flex-col">
           <div className="overflow-hidden rounded-full outline outline-white outline-8">
@@ -23,7 +23,7 @@ export const Navbar = () => {
           </div>
 
           <button
-            className=" font-paytone text-white bg-orange-500 w-12 rounded-full outline outline-white outline-4 scale-[90%] hover:bg-orange-300 hover:ring hover:ring-white hover:ring-offset-4 hover:text-cyan-500 active:bg-orange-600"
+            className=" text-white bg-orange-500 w-12 rounded-full outline outline-white outline-4 scale-[90%] hover:bg-orange-600 hover:ring hover:ring-white hover:ring-offset-4 hover:text-cyan-500 active:bg-orange-600"
             onClick={() => {
               localStorage.removeItem("flashes_token");
               navigate("/login");
@@ -55,24 +55,31 @@ export const Navbar = () => {
           </li>
         </>
       )}
-      <div className="btn-navbar">
-        <NavLink className="" to={"/favs"}>
-          Favs
+      <NavLink className="flex flex-col" to={"/favs"}>
+        <div className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white">
+          <span className="translate-y-[6px]">YOUR</span>
+          <span className="-translate-y-[6px]">FAVS</span>
+        </div>
+      </NavLink>
+
+        <NavLink className="" to={"/closet"}>
+        <div className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white">
+          <span className="translate-y-[6px]">YOUR</span>
+          <span className="-translate-y-[6px]">CLOSET</span>
+        </div>
         </NavLink>
-      </div>
-      <div className="navbar__item">
-        <NavLink className="btn-navbar" to={"/closet"}>
-          Closet
+
+
+        <NavLink className="" to={"/create"}>
+        <div className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white">
+          <span className="translate-y-[6px]">CREATE</span>
+          <span className="-translate-y-[6px]">SHIRT</span>
+        </div>
         </NavLink>
-      </div>
-      <div className="navbar__item">
-        <NavLink className="btn-navbar" to={"/create"}>
-          Create
-        </NavLink>
-      </div>
+
       <div className="navbar__item">
         <NavLink className="btn-navbar" to={"/"}>
-          FLASHES LOGO
+          LOGO
         </NavLink>
       </div>
     </div>
