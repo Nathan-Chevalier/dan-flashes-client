@@ -15,17 +15,24 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="h-[100%] w-[96px] fixed z-1 top-0 left-0 bg-[#55c3f0] overflow-x-hidden py-5 flex flex-col items-start rounded-r-3xl justify-between outline outline-white outline-8">
+    <div className="h-[100%] w-[124px] fixed z-1 top-0 left-0 bg-cyan-500 overflow-x-hidden py-5 flex flex-col items-start rounded-r-3xl justify-between outline outline-white outline-8">
       {localStorage.getItem("flashes_token") !== null ? (
-        <div className="navbar__item -translate-y-2">
+        <div className="__profile-image-logout__ flex flex-col">
+          <div className="overflow-hidden rounded-full outline outline-white outline-8">
+            <img src={currentUser.profile_image_url} alt="Profile Image" />
+          </div>
+
           <button
-            className="btn-delete"
+            className=" font-paytone text-white bg-orange-500 w-12 rounded-full outline outline-white outline-4 scale-[90%] hover:bg-orange-300 hover:ring hover:ring-white hover:ring-offset-4 hover:text-cyan-500 active:bg-orange-600"
             onClick={() => {
               localStorage.removeItem("flashes_token");
               navigate("/login");
             }}
           >
-            Logout
+            <div className="flex flex-col">
+              <span className="translate-y-[6px]">LOG</span>
+              <span className="-translate-y-[6px]">OUT</span>
+            </div>
           </button>
         </div>
       ) : (
