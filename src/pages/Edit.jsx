@@ -266,7 +266,7 @@ export const Edit = () => {
             })}
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
+          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6 bg-cyan-200 py-2 rounded-3xl outline outline-white">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
@@ -274,8 +274,8 @@ export const Edit = () => {
                     style={{ backgroundColor: `${color.color}` }}
                     className={
                       shirt.color.id === color.id
-                        ? "w-[40px] h-[40px] border border-white rounded-lg"
-                        : "w-[32px] h-[32px] rounded"
+                        ? "w-[32px] h-[32px] border-2 border-white rounded-lg outline outline-orange-500"
+                        : "w-[32px] h-[32px] rounded-full border-2 border-white"
                     }
                     onClick={() => {
                       const copy = { ...shirt };
@@ -283,7 +283,6 @@ export const Edit = () => {
                       setShirt(copy);
                     }}
                   >
-                    {" "}
                   </div>
                 </label>
               );
