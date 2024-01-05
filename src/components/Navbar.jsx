@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getMe } from "../services/fetchServices";
+import flashesLogo128 from "../assets/flashes_logo_128.png";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -62,26 +63,25 @@ export const Navbar = () => {
         </div>
       </NavLink>
 
-        <NavLink className="" to={"/closet"}>
+      <NavLink className="" to={"/closet"}>
         <div className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white">
           <span className="translate-y-[6px]">YOUR</span>
           <span className="-translate-y-[6px]">CLOSET</span>
         </div>
-        </NavLink>
+      </NavLink>
 
-
-        <NavLink className="" to={"/create"}>
+      <NavLink className="" to={"/create"}>
         <div className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white">
           <span className="translate-y-[6px]">CREATE</span>
           <span className="-translate-y-[6px]">SHIRT</span>
         </div>
-        </NavLink>
+      </NavLink>
 
-      <div className="navbar__item">
-        <NavLink className="btn-navbar" to={"/"}>
-          LOGO
-        </NavLink>
-      </div>
+      <NavLink className="" to={"/"}>
+        <div className="bg-cyan-500 w-[118px] h-[118px] hover:bg-cyan-600 flex flex-col items-center justify-center rounded-full outline outline-8 border-orange-500 border-8 outline-white">
+          <img src={flashesLogo128} alt="Dan Flashes Logo" className="scale-75"/>
+        </div>
+      </NavLink>
     </div>
   );
 };
