@@ -13,7 +13,7 @@ export const Create = () => {
   const [isPublic, setIsPublic] = useState(false);
 
   const [shirt, setShirt] = useState({
-    color: { color: "#9d9fdc" },
+    color: { color: "#7c0b0b", id: 1 },
     label: "",
     public: false,
     price: "",
@@ -199,7 +199,7 @@ export const Create = () => {
             })}
           </div>
           {/* Color input */}
-          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6">
+          <fieldset className="__color-choice-container flex items-center justify-evenly w-[90%] -translate-y-6 bg-cyan-200 py-2 rounded-3xl outline outline-white">
             {colors.map((color) => {
               return (
                 <label key={color.id}>
@@ -207,8 +207,8 @@ export const Create = () => {
                     style={{ backgroundColor: `${color.color}` }}
                     className={
                       shirt.color.id === color.id
-                        ? "w-[40px] h-[40px] border border-white rounded-lg"
-                        : "w-[32px] h-[32px] rounded"
+                        ? "w-[32px] h-[32px] border-2 border-white rounded-lg outline outline-orange-500"
+                        : "w-[32px] h-[32px] rounded-full border-2 border-white"
                     }
                     onClick={() => {
                       const copy = { ...shirt };
@@ -216,7 +216,6 @@ export const Create = () => {
                       setShirt(copy);
                     }}
                   >
-                    {" "}
                   </div>
                 </label>
               );
