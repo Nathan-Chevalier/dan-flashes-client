@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 export const Register = () => {
   const [email, setEmail] = useState("admina@straytor.com");
   const [password, setPassword] = useState("straytor");
-  const [firstName, setFirstName] = useState("Admina");
-  const [lastName, setLastName] = useState("Straytor");
   const [flashesName, setFlashesName] = useState("Flashes Name");
   const [profile_image_url, setProfileImg] = useState("Image URL");
   const existDialog = useRef();
@@ -18,8 +16,6 @@ export const Register = () => {
       body: JSON.stringify({
         email,
         password,
-        first_name: firstName,
-        last_name: lastName,
         flashes_name: flashesName,
         profile_image_url,
       }),
@@ -54,32 +50,6 @@ export const Register = () => {
         <form className="form--login" onSubmit={handleRegister}>
           <h1 className="text-4xl mt-7 mb-3">rare</h1>
           <h2 className="text-xl mb-10">Register new account</h2>
-          <fieldset className="mb-4">
-            <label htmlFor="firstName"> First name </label>
-            <input
-              type="text"
-              id="firstName"
-              value={firstName}
-              onChange={(evt) => setFirstName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="lastName"> Last name </label>
-            <input
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={(evt) => setLastName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
           <fieldset className="mb-4">
             <label htmlFor="inputEmail"> Email </label>
             <input
