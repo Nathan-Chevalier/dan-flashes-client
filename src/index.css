@@ -51,3 +51,15 @@ html {
 .__button-pattern-unchecked__ {
   background-image: url("/src/assets/pattern_select_unchecked.png")
 }
+
+.__shirt-pattern-nav__ {
+  background-image: url("/src/assets/shirt_pattern.png")
+}
+
+.__shirt-pattern-nav__:hover {
+  background-image: url("/src/assets/shirt_pattern_hover.png")
+}
+
+.__shirt-pattern-nav__:active {
+  background-image: url("/src/assets/shirt_pattern_active.png")
+}
