@@ -5,8 +5,6 @@ import flashesLogo from "../assets/flashes_logo_512.png"
 export const Register = () => {
   const [email, setEmail] = useState("admina@straytor.com");
   const [password, setPassword] = useState("straytor");
-  const [firstName, setFirstName] = useState("Admina");
-  const [lastName, setLastName] = useState("Straytor");
   const [flashesName, setFlashesName] = useState("Flashes Name");
   const [profile_image_url, setProfileImg] = useState("Image URL");
   const existDialog = useRef();
@@ -19,8 +17,6 @@ export const Register = () => {
       body: JSON.stringify({
         email,
         password,
-        first_name: firstName,
-        last_name: lastName,
         flashes_name: flashesName,
         profile_image_url,
       }),
