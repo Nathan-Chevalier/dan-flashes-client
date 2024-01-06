@@ -18,8 +18,6 @@ export const Register = () => {
       body: JSON.stringify({
         email,
         password,
-        first_name: firstName,
-        last_name: lastName,
         flashes_name: flashesName,
         profile_image_url,
       }),
@@ -54,32 +52,6 @@ export const Register = () => {
         <form className="form--login" onSubmit={handleRegister}>
           <h1 className="text-4xl mt-7 mb-3">rare</h1>
           <h2 className="text-xl mb-10">Register new account</h2>
-          <fieldset className="mb-4">
-            <label htmlFor="firstName"> First name </label>
-            <input
-              type="text"
-              id="firstName"
-              value={firstName}
-              onChange={(evt) => setFirstName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="lastName"> Last name </label>
-            <input
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={(evt) => setLastName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
           <fieldset className="mb-4">
             <label htmlFor="inputEmail"> Email </label>
             <input
