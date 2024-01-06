@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 export const Register = () => {
   const [email, setEmail] = useState("admina@straytor.com");
   const [password, setPassword] = useState("straytor");
-  const [firstName, setFirstName] = useState("Admina");
-  const [lastName, setLastName] = useState("Straytor");
   const [flashesName, setFlashesName] = useState("Flashes Name");
   const [profile_image_url, setProfileImg] = useState("Image URL");
   const existDialog = useRef();
