@@ -43,7 +43,7 @@ export const Login = () => {
       </dialog>
 
       <form
-        className="flex flex-col bg-cyan-500 w-[350px] items-center py-4 rounded-3xl outline outline-white "
+        className="flex flex-col bg-cyan-500 w-[350px] items-center py-4 rounded-3xl outline outline-white"
         onSubmit={handleLogin}
       >
         <div className="__flashes-main-logo__ h-[226px] w-[226px] flex items-center justify-center rounded-full bg-slate-500/20">
@@ -57,8 +57,7 @@ export const Login = () => {
         </span>
         <fieldset className="mb-4 flex flex-col items-center">
           <span className="font-paytone bg-cyan-600 px-12 rounded-t-lg text-xl outline-white outline text-white py-2">
-            {" "}
-            EMAIL{" "}
+            EMAIL
           </span>
           <input
             type="text"

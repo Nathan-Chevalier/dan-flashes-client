@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import flashesLogo from "../assets/flashes_logo_512.png"
 
 export const Register = () => {
   const [email, setEmail] = useState("admina@straytor.com");
@@ -39,7 +40,7 @@ export const Register = () => {
   };
 
   return (
-    <main className="container--login">
+    <main className="flex flex-col items-center justify-center h-screen">
       <dialog className="dialog dialog--auth" ref={existDialog}>
         <div>User does not exist</div>
         <button
@@ -51,11 +52,18 @@ export const Register = () => {
       </dialog>
 
       <section>
-        <form className="form--login" onSubmit={handleRegister}>
-          <h1 className="text-4xl mt-7 mb-3">rare</h1>
-          <h2 className="text-xl mb-10">Register new account</h2>
-          <fieldset className="mb-4">
-            <label htmlFor="firstName"> First name </label>
+        <form className="flex flex-col bg-cyan-500 w-[350px] items-center py-4 rounded-3xl outline outline-white" onSubmit={handleRegister}>
+        <div className="__flashes-main-logo__ h-[226px] w-[226px] flex items-center justify-center rounded-full bg-slate-500/20">
+          <img className=" h-[228px] w-[228px]" src={flashesLogo} />
+        </div>
+        <span className="text-4xl mt-6 text-white font-lobster">
+          New Account
+        </span>
+        <span className="text-4xl mb-10 text-cyan-200 font-lobster self-center italic bg-white/20 px-2 rounded-xl">
+          Registration
+        </span>
+          <fieldset className="mb-4 flex flex-col items-center">
+            <div> First name </div>
             <input
               type="text"
               id="firstName"
