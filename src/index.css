@@ -18,6 +18,9 @@
   .input-text {
     @apply font-lobster text-lg text-center shadow appearance-none rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-offset-4 focus:ring-orange-300
   }
+  .btn-circle {
+    @apply flex flex-col bg-orange-500 hover:bg-cyan-300 hover:text-orange-500 text-white font-bold py-1 px-2 border-white border-4 hover:border-white font-paytone text-lg items-center justify-center cursor-pointer hover:outline-offset-2 hover:outline hover:outline-white h-20 w-20 rounded-full
+  }
 }
 
 html {

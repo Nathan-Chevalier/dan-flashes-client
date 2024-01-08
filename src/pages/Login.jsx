@@ -4,8 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import flashesLogo from "../assets/flashes_logo_512.png";
 
 export const Login = () => {
-  const [email, setEmail] = useState("nathan@email.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const existDialog = useRef();
   const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ export const Login = () => {
             value={email}
             onChange={(evt) => setEmail(evt.target.value)}
             className="input-text"
-            placeholder="Email"
+            placeholder="Enter Email..."
             required
             autoFocus
           />
@@ -81,7 +81,7 @@ export const Login = () => {
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}
             className="input-text"
-            placeholder="Password"
+            placeholder="Enter Your Password..."
           />
         </fieldset>
         <fieldset>
