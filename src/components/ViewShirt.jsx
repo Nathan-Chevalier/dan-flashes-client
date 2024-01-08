@@ -112,8 +112,11 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 : "hidden"
             }`}
           >
-            <div onClick={handlePrevious} className="__shirt-pattern-nav__ w-[128px] h-[128px] translate-x-10" />
-            
+            <div
+              onClick={handlePrevious}
+              className="__shirt-pattern-nav__ w-[128px] h-[128px] translate-x-10"
+            />
+
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
             <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[740px] h-[768px]">
               <div className="__username-image__ flex justify-between self-start relative">
@@ -180,7 +183,9 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                         <span className="translate-y-[6px]">
                           {shirt.shirt_favorite.length}
                         </span>
-                        <span className="-translate-y-[6px]">{shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}</span>
+                        <span className="-translate-y-[6px]">
+                          {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
+                        </span>
                       </div>
                       <button
                         className=""
@@ -197,7 +202,9 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                         <span className="translate-y-[6px]">
                           {shirt.shirt_favorite.length}
                         </span>
-                        <span className="-translate-y-[6px]">{shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}</span>
+                        <span className="-translate-y-[6px]">
+                          {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
+                        </span>
                       </div>
                       <button
                         className=""
@@ -319,30 +326,36 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <div onClick={handleNext} className="__shirt-pattern-nav__ w-[128px] h-[128px] -scale-100" />
+            <div
+              onClick={handleNext}
+              className="__shirt-pattern-nav__ w-[128px] h-[128px] -scale-100"
+            />
           </div>
         );
       })}
       {/* Delete Modal */}
       <dialog
-        className="__delete-modal__ bg-red-400/90 p-10 font-bold rounded border border-white"
+        className="__delete-modal__ bg-cyan-500 p-10 rounded-3xl border-4 border-white outline outline-orange-500 outline-4 outline-offset-4 relative"
         ref={deleteModal}
       >
-        <div>Are you sure you want to delete this shirt?</div>
+        <div className="font-lobster text-white text-3xl underline pb-6">
+          Are you sure you want to delete this shirt?
+        </div>
         <div className="__btn-container__ flex justify-around mt-6">
           <button
-            className="btn-edit px-6"
+            className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white font-paytone"
             onClick={(event) => {
               handleDeleteShirt(event);
             }}
           >
-            Ok
+            <span className="translate-y-[6px]">YES!</span>
+            <span className="-translate-y-[6px]">DELETE!</span>
           </button>
           <button
-            className="btn-delete"
+            className="absolute top-2 right-0 font-lobster rounded-full text-white font-bold h-[24px] w-[24px] outline -translate-x-2 hover:bg-orange-600"
             onClick={() => deleteModal.current.close()}
           >
-            Cancel
+            X
           </button>
         </div>
       </dialog>
