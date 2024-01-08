@@ -78,14 +78,15 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
   };
 
   return shirts.length === 0 ? (
-    <button
-      className="btn-edit"
+    <div
+      className="btn-circle scale-[200%]"
       onClick={() => {
         navigate("/create");
       }}
     >
-      Create New Shirt
-    </button>
+      <span className="translate-y-[6px]">CREATE</span>
+      <span className="-translate-y-[6px]">SHIRT</span>
+    </div>
   ) : (
     <>
       {/* Shirt Favorite Mechanics, checks if shirt has already been favorited by user */}
