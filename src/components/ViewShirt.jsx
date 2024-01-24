@@ -109,14 +109,16 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             className={`${
               // Creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index
               i === index
-                ? "flex justify-between h-[768px] w-[1645px] items-center"
+                ? "flex justify-between h-full w-auto items-center"
                 : "hidden"
             }`}
           >
-            <div
-              onClick={handlePrevious}
-              className="__shirt-pattern-nav__ w-[128px] h-[128px] translate-x-10"
-            />
+            <div className="w-[6vw] h-[6vw]">
+              <div
+                onClick={handlePrevious}
+                className="__shirt-pattern-nav__ translate-x-[20%] h-full w-full bg-cover"
+              />
+            </div>
 
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
             <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[740px] h-[768px]">
@@ -327,10 +329,13 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <div
-              onClick={handleNext}
-              className="__shirt-pattern-nav__ w-[128px] h-[128px] -scale-100"
-            />
+            <div className="w-[6vw] h-[6vw]">
+              <div
+                onClick={handleNext}
+                className="__shirt-pattern-nav__ h-full w-full bg-cover -scale-100"
+              />
+            </div>
+
           </div>
         );
       })}
