@@ -148,22 +148,22 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                       >
                         <img src={pattern.pattern.pattern_preview} />
                       </div>
-                      <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
+                      <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max h-auto bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
                         {pattern.pattern.label}
                       </span>
                     </div>
                   );
                 })}
               </div>
-              <div className="__price-shape-container__ relative w-[416px] flex justify-center translate-x-[700px] translate-y-4 z-[150]">
-                <div className="__shirt-price__ text-[88px] font-bold text-white absolute z-10 translate-x-[198px] translate-y-9">
+              <div className="__price-shape-container__ relative flex justify-center translate-x-[38vw] translate-y-[4vh] z-[150]">
+                <div className="__shirt-price__ text-[calc(72px+.4vh)] font-bold text-white absolute z-10 translate-x-[11vw] translate-y-[5vh]">
                   <span className="text-center font-lobster">
                     ${shirt.price}
                   </span>
                 </div>
                 <div className="__price-shape__">
                   {/* Price Starburst */}
-                  <svg width="415.5px" height="215.5px" className="absolute">
+                  <svg className="translate-x-[11vw] translate-y-[4vh]" viewBox="0 0 415.5 215.5" preserveAspectRatio="xMidYMid meet">
                     <path
                       stroke="#ffffff"
                       strokeWidth="4px"
