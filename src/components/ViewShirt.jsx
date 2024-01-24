@@ -156,14 +156,14 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 })}
               </div>
               <div className="__price-shape-container__ relative flex justify-center translate-x-[38vw] translate-y-[4vh] z-[150]">
-                <div className="__shirt-price__ text-[calc(72px+.4vh)] font-bold text-white absolute z-10 translate-x-[11vw] translate-y-[5vh]">
-                  <span className="text-center font-lobster">
+                <div className="__shirt-price__ text-[calc(1rem+3vi)] font-bold text-white absolute z-10 translate-x-[11vw] translate-y-[16vh]">
+                  <span className="font-lobster">
                     ${shirt.price}
                   </span>
                 </div>
                 <div className="__price-shape__">
                   {/* Price Starburst */}
-                  <svg className="translate-x-[11vw] translate-y-[4vh]" viewBox="0 0 415.5 215.5" preserveAspectRatio="xMidYMid meet">
+                  <svg className="translate-x-[11vw] translate-y-[12vh] w-[20vw]" viewBox="0 0 415.5 215.5" preserveAspectRatio="xMidYMid meet">
                     <path
                       stroke="#ffffff"
                       strokeWidth="4px"
@@ -178,20 +178,20 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
 
               {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
-              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[96px] outline outline-white outline-8 flex items-center justify-center self-end translate-y-9 translate-x-10">
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[12vh] outline outline-white outline-8 flex items-center justify-center self-end translate-y-9 translate-x-10">
                 {!shirt.is_owner ? (
                   isFavorite ? (
                     <div className="__unfavorite-container__ flex items-center justify-end w-[220px] -translate-x-8">
-                      <div className="flex flex-col items-end text-3xl text-white font-paytone">
-                        <span className="translate-y-[6px]">
+                      <div className="flex flex-col items-end text-[calc(1rem+1vi)] text-white font-paytone">
+                        <span className="translate-y-[1vh]">
                           {shirt.shirt_favorite.length}
                         </span>
-                        <span className="-translate-y-[6px]">
+                        <span className="-translate-y-[1vh]">
                           {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
                         </span>
                       </div>
                       <button
-                        className=""
+                        className="w-[4vw] h-auto"
                         onClick={() => {
                           handleUnfavorite(favId);
                         }}
@@ -201,16 +201,16 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                     </div>
                   ) : (
                     <div className="__favorite-container__ flex items-center justify-end w-[220px] -translate-x-8">
-                      <div className="flex flex-col items-end text-3xl text-white font-paytone">
-                        <span className="translate-y-[6px]">
+                      <div className="flex flex-col items-end text-[calc(1rem+1vi)] text-white font-paytone">
+                        <span className="translate-y-[1vh]">
                           {shirt.shirt_favorite.length}
                         </span>
-                        <span className="-translate-y-[6px]">
+                        <span className="-translate-y-[1vh]">
                           {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
                         </span>
                       </div>
                       <button
-                        className=""
+                        className="w-[4vw] h-auto"
                         onClick={() => {
                           handleFavorite(shirt.id);
                         }}
