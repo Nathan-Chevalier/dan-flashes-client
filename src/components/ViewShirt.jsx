@@ -121,16 +121,16 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             </div>
 
             {/* Info Container, Username + User Image, Pattern Choices, Price, and isOwner menu (favorite/edit/delete)*/}
-            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[740px] h-[768px]">
+            <div className="__user-pattern-price-interaction__ flex flex-col items-center w-[40vw] h-full">
               <div className="__username-image__ flex justify-between self-start relative">
-                <div className="h-[128px] w-[128px] z-10">
+                <div className="h-[7vh] w-[7vw] z-10">
                   <img
-                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-14 translate-x-8"
+                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-[43%] translate-x-[20%]"
                     src={`${shirt.flashes_user.profile_image_url}`}
                   />
                 </div>
-                <div className="pl-10 flex items-center translate-x-3 -translate-y-8 bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
-                  <span className="text-white text-[56px] font-bold font-paytone -translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</span>
+                <div className="pl-[2vw] flex items-center translate-x-[4%] -translate-y-[40%] bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
+                  <span className="text-white text-[calc(45px+.4vw)] font-bold font-paytone -translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</span>
                 </div>
               </div>
               <div className="__shirt-label-empty__ h-[96px]"></div>
