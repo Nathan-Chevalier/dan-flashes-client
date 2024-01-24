@@ -42,6 +42,7 @@ export const Landing = () => {
       setShirts(publicShirts);
     });
   }, []);
+  
   const updateShirts = async () => {
     const updatedShirts = await getAllShirts();
     setShirts(updatedShirts);
