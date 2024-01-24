@@ -329,10 +329,13 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
                 );
               })}
             </div>
-            <div
-              onClick={handleNext}
-              className="__shirt-pattern-nav__ w-[128px] h-[128px] -scale-100"
-            />
+            <div className="w-[6vw] h-[6vw]">
+              <div
+                onClick={handleNext}
+                className="__shirt-pattern-nav__ h-full w-full bg-cover -scale-100"
+              />
+            </div>
+
           </div>
         );
       })}
