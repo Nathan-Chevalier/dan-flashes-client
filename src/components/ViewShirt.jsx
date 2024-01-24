@@ -125,30 +125,30 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               <div className="__username-image__ flex justify-between self-start relative">
                 <div className="h-[7vh] w-[7vw] z-10">
                   <img
-                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-[43%] translate-x-[20%]"
+                    className="rounded-full w-[100%] h-auto outline outline-8 border-orange-400 border-8 outline-white -translate-y-[50%] translate-x-[20%]"
                     src={`${shirt.flashes_user.profile_image_url}`}
                   />
                 </div>
-                <div className="pl-[2vw] flex items-center translate-x-[4%] -translate-y-[40%] bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
-                  <span className="text-white text-[calc(45px+.4vw)] font-bold font-paytone -translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</span>
+                <div className="pl-[2vw] flex items-center translate-x-[4%] -translate-y-[50%] bg-orange-400 h-max pr-10 outline-white outline outline-4 rounded-r-full">
+                  <span className="text-white text-[calc(45px+.4vh)] font-bold font-paytone -translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</span>
                 </div>
               </div>
-              <div className="__shirt-label-empty__ h-[96px]"></div>
+              <div className="__shirt-label-empty__ h-[14vh]"></div>
               {/* Pattern Choices Display*/}
-              <div className="__pattern-choice-container__ grid grid-cols-[240px_300px] justify-items-start align-start gap-x-20 self-start h-[376px] w-[1000px] ml-[122px] bg-slate-900/20 rounded-[64px] px-12">
+              <div className="__pattern-choice-container__ grid grid-cols-[minmax(150px,_1fr)_minmax(200px,_2fr)] justify-items-start align-start gap-x-[2vw] self-start h-[40vh] w-[1000px] ml-[122px] bg-slate-900/20 rounded-[64px] px-12">
                 {shirt?.shirt_pattern.map((pattern) => {
                   return (
                     <div
                       key={`pattern-preview-${pattern.id}`}
-                      className="flex items-start gap-4 py-2 pt-8"
+                      className="flex gap-4 py-2 pt-8 w-max h-[9vh] items-center"
                     >
                       <div
-                        className="__preview-image__ w-[64px] h-[64px] rounded-full overflow-hidden z-10 outline-white outline"
+                        className="__preview-image__ w-[4vw] h-[4vw] rounded-full overflow-hidden z-10 outline-white outline"
                         style={{ backgroundColor: `${shirt.color.color}` }}
                       >
                         <img src={pattern.pattern.pattern_preview} />
                       </div>
-                      <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 translate-y-2 py-2 drop-shadow-lg rounded-3xl">
+                      <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
                         {pattern.pattern.label}
                       </span>
                     </div>
