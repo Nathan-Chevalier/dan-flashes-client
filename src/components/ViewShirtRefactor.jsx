@@ -118,7 +118,20 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                 className="__shirt-pattern-nav__ h-full w-full bg-cover"
               />
             </button>
-            <div className="__interaction-container__ bg-cyan-500 outline outline-white outline-8 rounded-[6vw] h-[100%] w-[76vw] mx-4"></div>
+            {/* Main container */}
+            <div className="__interaction-container__ flex flex-col bg-cyan-500 outline outline-white outline-8 rounded-[6vw] h-[100%] w-[76vw] mx-4">
+              <div className="__user-identifier-container__ flex items-center h-[14%] -translate-y-4">
+                <div className="__user-image__ h-[100%] z-10">
+                  <img
+                    className="h-[100%] w-auto rounded-full outline outline-8 outline-white border-orange-400 border-4"
+                    src={`${shirt.flashes_user.profile_image_url}`}
+                  />
+                </div>
+                <div className="__user-name__ pl-[2.5vw] pr-10 py-1 bg-orange-400 font-paytone text-white text-[calc(1rem+3.5vw)] rounded-full -translate-x-4 outline-white outline-8 outline">
+                  <h2 className="-translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</h2>
+                </div>
+              </div>
+            </div>
             <button className="w-[6vw] h-[6vw]">
               <div
                 onClick={handleNext}
