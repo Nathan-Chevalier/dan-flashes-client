@@ -116,7 +116,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
             <div className="w-[6vw] h-[6vw]">
               <div
                 onClick={handlePrevious}
-                className="__shirt-pattern-nav__ translate-x-[20%] h-full w-full bg-cover"
+                className="__shirt-pattern-nav__ h-full w-full bg-cover"
               />
             </div>
 
@@ -135,7 +135,7 @@ export const ViewShirt = ({ shirts, updateShirts }) => {
               </div>
               <div className="__shirt-label-empty__ h-[14vh]"></div>
               {/* Pattern Choices Display*/}
-              <div className="__pattern-choice-container__ grid grid-cols-[minmax(150px,_1fr)_minmax(200px,_2fr)] justify-items-start align-start gap-x-[2vw] self-start h-[40vh] w-[1000px] ml-[122px] bg-slate-900/20 rounded-[64px] px-12">
+              <div className="__pattern-choice-container__ grid grid-cols-[minmax(150px,_1fr)_minmax(200px,_2fr)] justify-items-start align-start gap-x-[2vw] self-start h-[40vh] w-[70vw] ml-[10vw] bg-slate-900/20 rounded-[64px] px-12">
                 {shirt?.shirt_pattern.map((pattern) => {
                   return (
                     <div
