@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllShirts } from "../services/fetchServices";
 import { ViewShirt } from "../components/ViewShirt";
+import { ViewShirtRefactor } from "../components/ViewShirtRefactor";
 
 export const Landing = () => {
   const [shirts, setShirts] = useState([
@@ -49,8 +50,8 @@ export const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-cyan-500 h-[79%] w-[68%] rounded-[36px] outline outline-white outline-8">
-      <ViewShirt shirts={shirts} updateShirts={updateShirts} />
+    <div className="flex flex-col items-center justify-center bg-cyan-500 h-[79%] w-[68%] rounded-[36px] outline outline-white outline-8 ml-[4vw]">
+      <ViewShirtRefactor shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
 };
