@@ -89,7 +89,45 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
     </div>
   ) : (
     <>
-
+      {shirts.map((shirt, i) => {
+        const isFavorite = shirt.shirt_favorite.some(
+          (favorite) => favorite.flashes_user == currentUser
+        );
+        let favId = null;
+        {
+          /* Sets favId if the shirt has already been favorited, this is for DELETE request targeting*/
+        }
+        shirt.shirt_favorite.forEach((favorite) => {
+          if (favorite.flashes_user == currentUser) {
+            favId = favorite.id;
+          }
+        });
+        return (
+          <div
+            key={`shirt-${shirt.id}`}
+            className={`${
+              // Creates the carousel functionality, hiding any object from the shirt array that doesn't match the current index
+              i === index
+                ? "flex justify-between h-full w-auto items-center"
+                : "hidden"
+            }`}
+          >
+            <button className="w-[6vw] h-[6vw]">
+              <div
+                onClick={handlePrevious}
+                className="__shirt-pattern-nav__ h-full w-full bg-cover"
+              />
+            </button>
+            <div className="__interaction-container__ bg-cyan-500 outline outline-white outline-8 rounded-[6vw] h-[100%] w-[76vw] mx-4"></div>
+            <button className="w-[6vw] h-[6vw]">
+              <div
+                onClick={handleNext}
+                className="__shirt-pattern-nav__ h-full w-full bg-cover -scale-100"
+              />
+            </button>
+          </div>
+        );
+      })}
     </>
   );
 };
