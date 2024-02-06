@@ -133,40 +133,37 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                   <h2 className="-translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</h2>
                 </div>
               </div>
-              <div className="__content-container__ flex justify-between items-center">
+              <div className="__content-container__ flex justify-between">
                 <div className="__information-container__ flex flex-col h-[100%] w-[45%] max-w-[45%]">
                   {/* Shirt Name */}
                   <h2 className="__shirt-name__ text-[calc(2em+3.5vw)] font-lobster text-white font-bold pl-[2.5vw] overflow-visible whitespace-nowrap z-[1000]">{`${shirt.label}`}</h2>
-                  {/* Pattern Choices & Shirt View Container */}
-                  <div className="__pattern-shirt-container__ flex justify-between">
-                    {/* Pattern Choices */}
-                    <div className="__pattern-choice-container__ bg-slate-900/10">
-                      {shirt?.shirt_pattern.map((pattern) => {
-                        // Pattern Choices Displayed
-                        return (
+                  {/* Pattern Choices Container */}
+                  <div className="__pattern-choice-container__ h-[60%] bg-slate-900/10 flex flex-col flex-wrap ml-[2.5vw] pl-1">
+                    {shirt?.shirt_pattern.map((pattern) => {
+                      // Pattern Choices Displayed
+                      return (
+                        <div
+                          key={`pattern-preview-${pattern.id}`}
+                          className="__pattern-card__ flex gap-2 py-2 pt-8 w-max h-[9vh] items-center z-[300]"
+                        >
                           <div
-                            key={`pattern-preview-${pattern.id}`}
-                            className="__pattern-card__ flex gap-2 py-2 pt-8 w-max h-[9vh] items-center"
+                            className="__preview-image__ w-[4vw] h-[4vw] rounded-full overflow-hidden z-10 outline-white outline"
+                            style={{
+                              backgroundColor: `${shirt.color.color}`,
+                            }}
                           >
-                            <div
-                              className="__preview-image__ w-[4vw] h-[4vw] rounded-full overflow-hidden z-10 outline-white outline"
-                              style={{
-                                backgroundColor: `${shirt.color.color}`,
-                              }}
-                            >
-                              <img src={pattern.pattern.pattern_preview} />
-                            </div>
-                            <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max h-auto bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
-                              {pattern.pattern.label}
-                            </span>
+                            <img src={pattern.pattern.pattern_preview} />
                           </div>
-                        );
-                      })}
-                    </div>
+                          <h3 className="__preview-label__ text-xl font-bold font-lobster text-white w-max h-auto bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
+                            {pattern.pattern.label}
+                          </h3>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
                 {/* Shirt Container */}
-                <div className="__shirt-container__ relative w-[50%] min-h-[80vh] h-[auto] bg-slate-900">
+                <div className="__shirt-container__ w-[50%] min-w-[70vh] h-auto overflow-visible relative bottom-[10vh]">
                   {/* Blending stack, adds texture to the shirt*/}
                   <img
                     alt="Shirt Overlay Layer"
@@ -227,7 +224,31 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                   })}
                 </div>
               </div>
+              <div className="__price-shape-container__ fixed bottom-[15%] right-[15%] flex justify-center z-[150]">
+                <div className="__shirt-price__ text-[calc(1rem+3vi)] font-bold text-white absolute z-10 translate-x-[11vw] translate-y-[16vh]">
+                  <span className="font-lobster">${shirt.price}</span>
+                </div>
+                <div className="__price-shape__">
+                  {/* Price Starburst */}
+                  <svg
+                    className="translate-x-[11vw] translate-y-[12vh] w-[20vw]"
+                    viewBox="0 0 415.5 215.5"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      stroke="#ffffff"
+                      strokeWidth="4px"
+                      strokeLinecap="butt"
+                      strokeLinejoin="miter"
+                      fillRule="evenodd"
+                      fill="rgb(219, 125, 33)"
+                      d="M248.78,1.499 L262.147,38.948 L323.56,17.637 L308.474,55.32 L380.442,47.455 L339.429,79.104 L411.500,86.415 L350.300,107.500 L411.500,128.584 L339.429,135.895 L380.442,167.544 L308.474,159.967 L323.56,197.362 L262.147,176.51 L248.78,213.500 L207.500,181.700 L166.921,213.500 L152.852,176.51 L91.943,197.362 L106.525,159.967 L34.557,167.544 L75.570,135.895 L3.499,128.584 L64.699,107.500 L3.499,86.415 L75.570,79.104 L34.557,47.455 L106.525,55.32 L91.943,17.637 L152.852,38.948 L166.921,1.499 L207.500,33.299 L248.78,1.499 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
+
             {/* Next Button */}
             <button className="w-[6vw] h-[6vw]">
               <div

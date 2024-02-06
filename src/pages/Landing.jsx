@@ -50,7 +50,7 @@ export const Landing = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-cyan-500/40 h-[90%] w-[100%] ml-[4vw] mr-[1vw]">
+    <div className="h-[90%] w-[100%] ml-[4vw] mr-[1vw]">
       <ViewShirtRefactor shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
