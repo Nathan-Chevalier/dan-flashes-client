@@ -138,7 +138,7 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                   {/* Shirt Name */}
                   <h2 className="__shirt-name__ text-[calc(2em+3.5vw)] font-lobster text-white font-bold pl-[2.5vw] overflow-visible whitespace-nowrap z-[1000]">{`${shirt.label}`}</h2>
                   {/* Pattern Choices Container */}
-                  <div className="__pattern-choice-container__ h-[60%] bg-slate-900/10 flex flex-col flex-wrap ml-[2.5vw] pl-1">
+                  <div className="__pattern-choice-container__ h-[40vh] flex flex-col flex-wrap pt-[3vh] ml-[2.5vw] pl-1">
                     {shirt?.shirt_pattern.map((pattern) => {
                       // Pattern Choices Displayed
                       return (
@@ -224,7 +224,94 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                   })}
                 </div>
               </div>
-              <div className="__price-shape-container__ fixed bottom-[15%] right-[15%] flex justify-center z-[150]">
+              {/* Ternary Chains if not owner will display Favorite/Unfavorite buttons.  If owner will display edit/delete */}
+              <div className="__ternary-menu-container__ rounded-3xl bg-orange-400 w-max h-[12vh] outline outline-white outline-8 flex items-center justify-center self-start ml-[2.5vw] mt-[12vh] z-[100]">
+                {!shirt.is_owner ? (
+                  isFavorite ? (
+                    <div className="__unfavorite-container__ pl-7 flex items-center mr-2 justify-start w-[11vw] h-full">
+                      <div className="flex flex-col items-end text-[calc(1rem+1vi)] text-white font-paytone">
+                        <span className="translate-y-[1vh]">
+                          {shirt.shirt_favorite.length}
+                        </span>
+                        <span className="-translate-y-[1vh]">
+                          {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          handleUnfavorite(favId);
+                        }}
+                      >
+                        <img className="w-[4vw] h-auto" src={shirtUnfavorite} alt="Unfavorite Shirt" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="__favorite-container__ flex items-center mr-2 pl-7 justify-start w-[11vw] h-full">
+                      <div className="flex flex-col items-end text-[calc(1rem+1vi)] text-white font-paytone">
+                        <span className="translate-y-[1vh]">
+                          {shirt.shirt_favorite.length}
+                        </span>
+                        <span className="-translate-y-[1vh]">
+                          {shirt.shirt_favorite.length === 1 ? "FAV" : "FAVS"}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          handleFavorite(shirt.id);
+                        }}
+                      >
+                        <img className="w-[4vw] h-auto" src={shirtFavorite} alt="Favorite Shirt" />
+                      </button>
+                    </div>
+                  )
+                ) : (
+                  <div className="__edit-delete-dock__ flex items-center justify-between px-7 mr-2 w-[40vw] h-full">
+                    <div className="__favorites__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-[calc(1rem+1vi)] text-white cursor-default">
+                        <span className="translate-y-[1vh]">
+                          {shirt.shirt_favorite.length}
+                        </span>
+                        <span className="-translate-y-[1vh]">FAVS</span>
+                      </div>
+
+                      <img className="w-[4vw] h-auto"
+                        src={shirtUnfavorite}
+                        alt="Unfavorite Shirt Button"
+                      />
+                    </div>
+                    <div className="__delete-button__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-[calc(1rem+1vi)] text-white cursor-default">
+                        <span className="translate-y-[1vh]">DELETE</span>
+                        <span className="-translate-y-[1vh]">SHIRT</span>
+                      </div>
+                      <button
+                        className="w-[4vw] h-auto"
+                        onClick={() => {
+                          setDeleteTarget(shirt.id);
+                          deleteModal.current.showModal();
+                        }}
+                      >
+                        <img src={shirtDelete} alt="Delete Shirt Button" />
+                      </button>
+                    </div>
+                    <div className="__edit-button__ flex items-center">
+                      <div className="flex flex-col items-end font-paytone text-[calc(1rem+1vi)] text-white cursor-default">
+                        <span className="translate-y-[1vh]">EDIT</span>
+                        <span className="-translate-y-[1vh]">SHIRT</span>
+                      </div>
+                      <button
+                        className="w-[4vw] h-auto"
+                        onClick={() => {
+                          navigate(`/edit/${shirt.id}`);
+                        }}
+                      >
+                        <img src={shirtEdit} alt="Edit Shirt Button" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="__price-shape-container__ fixed bottom-[12%] right-[15%] flex justify-center z-[150]">
                 <div className="__shirt-price__ text-[calc(1rem+3vi)] font-bold text-white absolute z-10 translate-x-[11vw] translate-y-[16vh]">
                   <span className="font-lobster">${shirt.price}</span>
                 </div>
