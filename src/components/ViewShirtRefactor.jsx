@@ -112,6 +112,7 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                 : "hidden"
             }`}
           >
+            {/* Previous button */}            
             <button className="w-[6vw] h-[6vw]">
               <div
                 onClick={handlePrevious}
@@ -127,11 +128,13 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                     src={`${shirt.flashes_user.profile_image_url}`}
                   />
                 </div>
-                <div className="__user-name__ pl-[2.5vw] pr-10 py-1 bg-orange-400 font-paytone text-white text-[calc(1rem+3.5vw)] rounded-full -translate-x-4 outline-white outline-8 outline">
+                <div className="__user-name__ pl-[2.5vw] pr-10 py-1 bg-orange-400 font-paytone text-white text-[calc(1em+3.5vw)] rounded-full -translate-x-4 outline-white outline-8 outline">
                   <h2 className="-translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</h2>
                 </div>
               </div>
+              <h2 className="__shirt-name__ text-[calc(2em+3.5vw)] font-lobster text-white font-bold pl-[2.5vw]">{`${shirt.label}`}</h2>
             </div>
+            {/* Next Button */}
             <button className="w-[6vw] h-[6vw]">
               <div
                 onClick={handleNext}
