@@ -346,6 +346,32 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
           </div>
         );
       })}
+            {/* Delete Modal */}
+            <dialog
+        className="__delete-modal__ bg-cyan-500 p-10 rounded-3xl border-4 border-white outline outline-orange-500 outline-4 outline-offset-4 relative"
+        ref={deleteModal}
+      >
+        <div className="font-lobster text-white text-3xl underline pb-6">
+          Are you sure you want to delete this shirt?
+        </div>
+        <div className="__btn-container__ flex justify-around mt-6">
+          <button
+            className="bg-orange-500 w-[118px] h-[118px] hover:bg-orange-600 hover:text-cyan-400 flex flex-col text-white text-2xl items-center justify-center rounded-full outline outline-8 outline-white font-paytone"
+            onClick={(event) => {
+              handleDeleteShirt(event);
+            }}
+          >
+            <span className="translate-y-[6px]">YES!</span>
+            <span className="-translate-y-[6px]">DELETE!</span>
+          </button>
+          <button
+            className="absolute top-2 right-0 font-lobster rounded-full text-white font-bold h-[24px] w-[24px] outline -translate-x-2 hover:bg-orange-600"
+            onClick={() => deleteModal.current.close()}
+          >
+            X
+          </button>
+        </div>
+      </dialog>
     </>
   );
 };
