@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllShirts } from "../services/fetchServices";
 import { ViewShirt } from "../components/ViewShirt";
-import { ViewShirtRefactor } from "../components/ViewShirtRefactor";
 
 export const Landing = () => {
   const [shirts, setShirts] = useState([
@@ -51,7 +50,7 @@ export const Landing = () => {
 
   return (
     <div className="h-[90%] w-[100%] ml-[4vw] mr-[1vw]">
-      <ViewShirtRefactor shirts={shirts} updateShirts={updateShirts} />
+      <ViewShirt shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
 };

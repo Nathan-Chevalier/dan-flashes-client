@@ -55,7 +55,7 @@ export const Favs = () => {
   }
 
   return (
-    <div className="__closet-container__ flex flex-col items-center justify-center bg-cyan-500 h-[768px] w-[1212px] rounded-[36px] outline outline-white outline-8">
+    <div className="__favs-container__ h-[90%] w-[100%] ml-[4vw] mr-[1vw]">
       <ViewShirt shirts={shirts} updateShirts={updateShirts} />
     </div>
   );
