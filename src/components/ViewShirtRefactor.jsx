@@ -120,7 +120,7 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
               />
             </button>
             {/* Main container */}
-            <div className="__interaction-container__ flex flex-col bg-cyan-500 outline outline-white outline-8 rounded-[6vw] h-[100%] w-[76vw] mx-4">
+            <div className="__main-container__ flex flex-col bg-cyan-500 outline outline-white outline-8 rounded-[6vw] h-[100%] w-[76vw] mx-4">
               {/* User Identifier */}
               <div className="__user-identifier-container__ flex items-center h-[14%] -translate-y-4">
                 <div className="__user-image__ h-[100%] z-10">
@@ -133,31 +133,37 @@ export const ViewShirtRefactor = ({ shirts, updateShirts }) => {
                   <h2 className="-translate-y-1">{`${shirt.flashes_user.flashes_name}'s`}</h2>
                 </div>
               </div>
-              {/* Shirt Name */}
-              <h2 className="__shirt-name__ text-[calc(2em+3.5vw)] font-lobster text-white font-bold pl-[2.5vw]">{`${shirt.label}`}</h2>
-              {/* Pattern Choices & Shirt View Container */}
-              <div className="__pattern-shirt-container__ flex justify-between">
-                {/* Pattern Choices */}
-                <div className="__pattern-choice-container__ bg-slate-900/10">
-                  {shirt?.shirt_pattern.map((pattern) => {
-                    // Pattern Choices Displayed
-                    return (
-                      <div
-                        key={`pattern-preview-${pattern.id}`}
-                        className="__pattern-card__ flex gap-2 py-2 pt-8 w-max h-[9vh] items-center"
-                      >
-                        <div
-                          className="__preview-image__ w-[4vw] h-[4vw] rounded-full overflow-hidden z-10 outline-white outline"
-                          style={{ backgroundColor: `${shirt.color.color}` }}
-                        >
-                          <img src={pattern.pattern.pattern_preview} />
-                        </div>
-                        <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max h-auto bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
-                          {pattern.pattern.label}
-                        </span>
-                      </div>
-                    );
-                  })}
+              <div className="__content-container__ flex justify-between items-center">
+                <div className="__information-container__ flex flex-col h-[100%] w-[45%] max-w-[45%]">
+                  {/* Shirt Name */}
+                  <h2 className="__shirt-name__ text-[calc(2em+3.5vw)] font-lobster text-white font-bold pl-[2.5vw] overflow-visible whitespace-nowrap z-[1000]">{`${shirt.label}`}</h2>
+                  {/* Pattern Choices & Shirt View Container */}
+                  <div className="__pattern-shirt-container__ flex justify-between">
+                    {/* Pattern Choices */}
+                    <div className="__pattern-choice-container__ bg-slate-900/10">
+                      {shirt?.shirt_pattern.map((pattern) => {
+                        // Pattern Choices Displayed
+                        return (
+                          <div
+                            key={`pattern-preview-${pattern.id}`}
+                            className="__pattern-card__ flex gap-2 py-2 pt-8 w-max h-[9vh] items-center"
+                          >
+                            <div
+                              className="__preview-image__ w-[4vw] h-[4vw] rounded-full overflow-hidden z-10 outline-white outline"
+                              style={{
+                                backgroundColor: `${shirt.color.color}`,
+                              }}
+                            >
+                              <img src={pattern.pattern.pattern_preview} />
+                            </div>
+                            <span className="__preview-label__ text-xl font-bold font-lobster text-white w-max h-auto bg-orange-400 outline-white outline pl-12 pr-4 -translate-x-12 py-2 drop-shadow-lg rounded-3xl">
+                              {pattern.pattern.label}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
                 {/* Shirt Container */}
                 <div className="__shirt-container__ relative w-[50%] min-h-[80vh] h-[auto] bg-slate-900">
